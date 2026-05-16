@@ -3,78 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri - Yapay Zeka Destekli Mega Engine</title>
+    <title>SiberCimri - Yapay Zeka Destekli Global Mega Engine v10</title>
     <style>
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1e29; color: #ffffff; overflow-x: hidden;
+            background-color: #13161f; color: #ffffff; overflow-x: hidden;
         }
 
         /* ========================================================
-           ANA PLATFORM (MEGA ENGINE ARAYÜZÜ)
+           HEADER & NAVIGASYON
            ======================================================== */
         .navbar-header {
-            background-color: #11141d; padding: 20px;
+            background-color: #0b0d13; padding: 20px;
             border-bottom: 2px solid #00d2ff; text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.15);
         }
         .main-brand-title {
-            color: #00d2ff; font-size: 36px; font-weight: 900; margin: 0 0 20px 0;
-            text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            color: #00d2ff; font-size: 38px; font-weight: 900; margin: 0 0 20px 0;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.4); font-style: italic;
         }
         .navbar-controls {
-            display: flex; max-width: 1300px; margin: 0 auto;
-            align-items: center; justify-content: space-between; gap: 15px;
+            display: flex; max-width: 1400px; margin: 0 auto;
+            align-items: center; justify-content: space-between; gap: 20px;
         }
         .search-input-field {
-            flex-grow: 1; background-color: #090d16; border: 1px solid #00d2ff;
-            border-radius: 25px; padding: 12px 24px; color: #ffffff; font-size: 14px; outline: none;
+            flex-grow: 1; background-color: #05070a; border: 1px solid #00d2ff;
+            border-radius: 25px; padding: 14px 25px; color: #ffffff; font-size: 15px; outline: none;
+            box-shadow: inset 0 0 10px rgba(0, 210, 255, 0.2);
+        }
+        .search-input-field:focus {
+            border-color: #ff007f;
+            box-shadow: inset 0 0 10px rgba(255, 0, 127, 0.2), 0 0 10px rgba(255, 0, 127, 0.2);
         }
         .user-status-badge {
             background-color: #00ffaa; color: #000000; padding: 12px 24px;
             font-weight: bold; border-radius: 25px; font-size: 13px;
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.3);
         }
-
-        .main-wrapper-content { max-width: 1300px; margin: 30px auto; padding: 0 20px; }
-        .database-card { background-color: #2b303c; border-radius: 16px; padding: 30px; }
-        
-        .product-row {
-            background-color: #171a23; border-radius: 12px; padding: 20px;
-            display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;
-        }
-        .price-text-highlight { color: #00ffaa; font-weight: 800; font-size: 18px; }
 
         /* ========================================================
-           YAPAY ZEKA CHATBOT ARAYÜZÜ (SAĞ ALT KÖŞE)
+           ANA PANEL DÜZENİ (ÇİFT SÜTUN)
+           ======================================================== */
+        .main-container {
+            display: flex; max-width: 1400px; margin: 30px auto 100px auto;
+            padding: 0 20px; gap: 25px;
+        }
+
+        /* Sol Akıllı Kategori Menüsü */
+        .sidebar-categories {
+            width: 280px; background-color: #0b0d13; border-radius: 16px;
+            padding: 20px; border: 1px solid #1f2431; flex-shrink: 0;
+        }
+        .sidebar-categories h3 {
+            font-size: 14px; text-transform: uppercase; color: #00d2ff;
+            margin-top: 0; margin-bottom: 15px; padding-bottom: 8px;
+            border-bottom: 1px solid #1f2431; letter-spacing: 1px;
+        }
+        .category-btn {
+            display: block; width: 100%; text-align: left; background: transparent;
+            border: none; color: #a0aec0; padding: 12px 15px; font-size: 14px;
+            font-weight: 600; cursor: pointer; border-radius: 8px; margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background-color: #ff007f; color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+        }
+
+        /* Sağ Envanter Alanı */
+        .inventory-display-area {
+            flex-grow: 1; background-color: #171b26; border-radius: 16px;
+            padding: 25px; border: 1px solid #1f2431;
+        }
+        .panel-section-title {
+            font-size: 20px; font-weight: bold; margin-top: 0; margin-bottom: 25px;
+            display: flex; align-items: center; gap: 10px; color: #ffffff;
+        }
+
+        /* ========================================================
+           CANAVAR ÜRÜN KARTLARI
+           ======================================================== */
+        .product-row {
+            background-color: #0b0d13; border-radius: 12px; padding: 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 15px; border: 1px solid #1f2431; transition: border-color 0.2s;
+        }
+        .product-row:hover {
+            border-color: #00d2ff;
+        }
+        .product-info-block {
+            display: flex; align-items: center; gap: 20px;
+        }
+        .product-image-box {
+            width: 65px; height: 65px; background-color: #ffffff; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 5px;
+        }
+        .product-image-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .product-title-text { font-size: 16px; font-weight: bold; margin: 0 0 5px 0; color: #ffffff; }
+        .product-tag-text { font-size: 11px; color: #00d2ff; font-weight: bold; text-transform: uppercase; background: rgba(0, 210, 255, 0.1); padding: 2px 8px; border-radius: 4px; }
+        
+        .product-price-block { display: flex; align-items: center; gap: 25px; }
+        .vendor-name { color: #a0aec0; font-size: 13px; font-weight: 600; }
+        .price-text-highlight { color: #00ffaa; font-weight: 800; font-size: 18px; text-shadow: 0 0 8px rgba(0, 255, 170, 0.2); }
+        .btn-action-git {
+            background-color: #ff007f; color: #ffffff; border: none;
+            padding: 10px 24px; border-radius: 20px; font-weight: bold;
+            cursor: pointer; font-size: 12px; text-transform: uppercase;
+        }
+        .btn-action-git:hover { background-color: #df0000; }
+
+        /* ========================================================
+           YAPAY ZEKA CHATBOT ARAYÜZÜ (SABİT SAĞ ALT)
            ======================================================== */
         .ai-chat-widget {
-            position: fixed; bottom: 30px; right: 30px; width: 350px;
-            background-color: #11141d; border: 2px solid #ff007f;
-            border-radius: 16px; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            position: fixed; bottom: 30px; right: 30px; width: 360px;
+            background-color: #0b0d13; border: 2px solid #ff007f;
+            border-radius: 16px; box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
             display: flex; flex-direction: column; overflow: hidden; z-index: 100000;
         }
         .ai-chat-header {
-            background: linear-gradient(90deg, #ff0055, #df0000);
-            padding: 15px; font-weight: bold; font-size: 14px;
+            background: linear-gradient(90deg, #ff007f, #df0000);
+            padding: 15px; font-weight: bold; font-size: 13px;
             display: flex; justify-content: space-between; align-items: center;
         }
         .ai-chat-messages {
-            height: 250px; padding: 15px; overflow-y: auto;
+            height: 280px; padding: 15px; overflow-y: auto;
             display: flex; flex-direction: column; gap: 10px; font-size: 13px;
-            background-color: #090d16;
+            background-color: #05070a;
         }
         .msg { padding: 10px 14px; border-radius: 10px; max-width: 80%; line-height: 1.4; }
         .msg.user { background-color: #ff007f; color: #ffffff; align-self: flex-end; }
-        .msg.ai { background-color: #2b303c; color: #00d2ff; align-self: flex-start; }
+        .msg.ai { background-color: #171b26; color: #00d2ff; align-self: flex-start; }
         
-        .ai-chat-input-area { display: flex; border-top: 1px solid #222; background-color: #11141d; }
+        .ai-chat-input-area { display: flex; border-top: 1px solid #1f2431; background-color: #0b0d13; }
         .ai-chat-input {
-            flex-grow: 1; border: none; padding: 12px; background: transparent;
+            flex-grow: 1; border: none; padding: 14px; background: transparent;
             color: #ffffff; outline: none; font-size: 13px;
         }
         .ai-send-btn {
             background-color: #00d2ff; border: none; color: #000000;
-            padding: 0 15px; font-weight: bold; cursor: pointer; font-size: 13px;
+            padding: 0 20px; font-weight: bold; cursor: pointer; font-size: 13px;
         }
     </style>
 </head>
@@ -83,33 +152,40 @@
     <div class="navbar-header">
         <h1 class="main-brand-title">SiberCimri Mega Engine</h1>
         <div class="navbar-controls">
-            <input type="text" class="search-input-field" placeholder="Sistem içinde akıllı arama yapın...">
+            <input type="text" id="mainSearchInput" class="search-input-field" placeholder="Kategori, marka, model veya sanayi ürünü arayın..." oninput="triggerGlobalSearch()">
             <div class="user-status-badge">👑 EMRE ADIGÜZEL</div>
         </div>
     </div>
 
-    <div class="main-wrapper-content">
-        <div class="database-card">
-            <h2 style="margin-top:0;">📋 Aktif Pazar Yeri Verileri</h2>
-            <div class="product-row">
-                <div>
-                    <strong style="font-size:18px;">Apple iPhone 16 Pro Max 512 GB</strong><br>
-                    <span style="color:#00d2ff; font-size:12px;">Sektör: Elektronik</span>
-                </div>
-                <div>
-                    <span class="price-text-highlight">89.500 TL</span>
-                </div>
-            </div>
+    <div class="main-container">
+        
+        <div class="sidebar-categories">
+            <h3>🏢 Sektörel Kategoriler</h3>
+            <button class="category-btn active" id="cat-hepsi" onclick="filterSector('hepsi')">🌟 Tüm Envanter</button>
+            <button class="category-btn" id="cat-elektronik" onclick="filterSector('Elektronik')">💻 Elektronik &amp; PC Gamer</button>
+            <button class="category-btn" id="cat-ayakkabi" onclick="filterSector('Ayakkabı')">👟 Ayakkabı Dünyası</button>
+            <button class="category-btn" id="cat-cocuk" onclick="filterSector('Çocuk Giyim')">👶 Çocuk &amp; Bebek Giyim</button>
+            <button class="category-btn" id="cat-magaza" onclick="filterSector('Mağaza Giyim')">👕 Premium Mağaza Giyim</button>
+            <button class="category-btn" id="cat-sanayi" onclick="filterSector('Sanayi')">⚙️ Ağır Sanayi &amp; Elektrik</button>
+            <button class="category-btn" id="cat-ticaret" onclick="filterSector('Ticaret')">💼 Ticari Ofis &amp; İşyeri</button>
+            <button class="category-btn" id="cat-market" onclick="filterSector('Market')">🍏 Süpermarket &amp; Gıda</button>
         </div>
+
+        <div class="inventory-display-area">
+            <h2 class="panel-section-title" id="panelViewTitle">📋 Aktif Pazar Yeri Veri Tabanı (Tüm Envanter)</h2>
+            <div id="productsWrapper">
+                </div>
+        </div>
+
     </div>
 
     <div class="ai-chat-widget">
         <div class="ai-chat-header">
             <span>🤖 SiberCimri AI Smart Assistant</span>
-            <span style="font-size: 10px; background: #00ffaa; color: #000; padding: 2px 6px; border-radius: 10px;">AKTİF</span>
+            <span style="font-size: 10px; background: #00ffaa; color: #000; padding: 2px 6px; border-radius: 10px; font-weight: bold;">AKTİF</span>
         </div>
         <div class="ai-chat-messages" id="aiChatBox">
-            <div class="msg ai">Merhaba Emre Bey! Ben SiberCimri Akıllı Asistanı. Fiyat analizleri ve pazar yeri verileri konusunda size nasıl yardımcı olabilirim?</div>
+            <div class="msg ai">Merhaba Emre Bey! SiberCimri sistemini devasa pazar yeri envanteri ile canavarlaştırdık. İstediğiniz ürünü yukarıdan aratabilir veya bana sormak istediğiniz sektörel analizleri iletebilirsiniz!</div>
         </div>
         <div class="ai-chat-input-area">
             <input type="text" id="aiInputField" class="ai-chat-input" placeholder="Yapay zekaya sorun..." onkeypress="if(event.key === 'Enter') sendToAI()">
@@ -118,7 +194,114 @@
     </div>
 
     <script>
-        // Üretici firmalardan (Google veya OpenAI) aldığınız resmi API anahtarını buraya eklemelisiniz.
+        // DEVASA CANAVAR ENVANTER VERİ TABANI
+        const MassiveProductsDatabase = [
+            // 1. ELEKTRONİK & PC GAMER
+            { title: "Apple iPhone 16 Pro Max 512 GB", sector: "Elektronik", vendor: "Amazon TR", price: "89.500 TL", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100" },
+            { title: "Asus ROG Strix RTX 4090 Oyuncu Bilgisayarı", sector: "Elektronik", vendor: "İncehesap", price: "134.999 TL", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=100" },
+            { title: "MSI 34\" 175Hz Kavisli QD-OLED Gamer Monitör", sector: "Elektronik", vendor: "Hepsiburada", price: "42.450 TL", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=100" },
+            
+            // 2. AYAKKABI
+            { title: "Nike Air Max Apex Premium Spor Ayakkabı", sector: "Ayakkabı", vendor: "Nike TR", price: "6.890 TL", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=100" },
+            { title: "Adidas Terrex Waterproof Outdoor Bot", sector: "Ayakkabı", vendor: "Boyner", price: "5.400 TL", img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=100" },
+
+            // 3. ÇOCUK GİYİM
+            { title: "Organik Pamuklu 3'lü Bebek Takımı", sector: "Çocuk Giyim", vendor: "LC Waikiki", price: "699 TL", img: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=100" },
+            { title: "Çocuk Kapüşonlu Su Geçirmez Rüzgarlık", sector: "Çocuk Giyim", vendor: "H&M TR", price: "1.120 TL", img: "https://images.unsplash.com/photo-1522771930-78816df5547c?q=80&w=100" },
+
+            // 4. MAĞAZA GİYİM
+            { title: "Premium Slim Fit Erkek Kaşe Ceket", sector: "Mağaza Giyim", vendor: "Trendyol", price: "3.499 TL", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100" },
+            { title: "Oversize Kadın Örgü Triko Hırka", sector: "Mağaza Giyim", vendor: "Zara TR", price: "2.250 TL", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100" },
+
+            // 5. SANAYİ & ELEKTRİK
+            { title: "3 Fazlı Sanayi Tipi İnverter Kaynak Makinesi", sector: "Sanayi", vendor: "SanayiBurada", price: "24.750 TL", img: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=100" },
+            { title: "Siemens 40A Kaçak Akım Koruma Rölesi X10", sector: "Sanayi", vendor: "Karaköy Elektrik", price: "8.900 TL", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=100" },
+
+            // 6. TİCARET & OFİS
+            { title: "Ergonomik Fileli Müdür ve Ofis Çalışma Koltuğu", sector: "Ticaret", vendor: "IKEA TR", price: "7.300 TL", img: "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=100" },
+            { title: "Ofis Tipi Büyük Boy Çelik Para Kasası", sector: "Ticaret", vendor: "Trendyol İşyeri", price: "19.400 TL", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=100" },
+
+            // 7. SÜPERMARKET & GIDA
+            { title: "Sızma Zeytinyağı Soğuk Sıkım 5 Litre", sector: "Market", vendor: "Migros", price: "1.450 TL", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=100" },
+            { title: "Filtre Kahve Çekirdeği Etiyopya 1 KG", sector: "Market", vendor: "Trendyol Hızlı", price: "520 TL", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=100" }
+        ];
+
+        let selectedActiveSector = "hepsi";
+
+        // Sayfa İlk Açıldığında Devasa Listeyi Yükle
+        window.onload = function() {
+            renderEngineUi(MassiveProductsDatabase);
+        };
+
+        // Ürünleri Arayüze Kusursuz Basma Fonksiyonu
+        function renderEngineUi(itemsList) {
+            const wrapper = document.getElementById("productsWrapper");
+            wrapper.innerHTML = "";
+
+            if(itemsList.length === 0) {
+                wrapper.innerHTML = `<p style="color:#a0aec0; text-align:center; padding:40px; font-weight:600;">⚠️ Aradığınız kriterde veya kategoride veri bulunamadı.</p>`;
+                return;
+            }
+
+            itemsList.forEach(item => {
+                wrapper.innerHTML += `
+                    <div class="product-row">
+                        <div class="product-info-block">
+                            <div class="product-image-box">
+                                <img src="${item.img}" alt="SiberCimri Asset">
+                            </div>
+                            <div>
+                                <h3 class="product-title-text">${item.title}</h3>
+                                <span class="product-tag-text">${item.sector}</span>
+                            </div>
+                        </div>
+                        <div class="product-price-block">
+                            <span class="vendor-name">${item.vendor}</span>
+                            <span class="price-text-highlight">${item.price}</span>
+                            <button class="btn-action-git" onclick="alert('${item.title} için bayi kanalına bağlanılıyor...')">GİT</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Sol Menü Sektör Filtreleme Yapısı
+        function filterSector(sectorName) {
+            selectedActiveSector = sectorName;
+            
+            // Aktif buton rengini değiştir
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            if(sectorName === "hepsi") document.getElementById("cat-hepsi").classList.add("active");
+            else if(sectorName === "Elektronik") document.getElementById("cat-elektronik").classList.add("active");
+            else if(sectorName === "Ayakkabı") document.getElementById("cat-ayakkabi").classList.add("active");
+            else if(sectorName === "Çocuk Giyim") document.getElementById("cat-cocuk").classList.add("active");
+            else if(sectorName === "Mağaza Giyim") document.getElementById("cat-magaza").classList.add("active");
+            else if(sectorName === "Sanayi") document.getElementById("cat-sanayi").classList.add("active");
+            else if(sectorName === "Ticaret") document.getElementById("cat-ticaret").classList.add("active");
+            else if(sectorName === "Market") document.getElementById("cat-market").classList.add("active");
+
+            // Başlığı Güncelle
+            document.getElementById("panelViewTitle").innerText = `📋 Aktif Pazar Yeri Veri Tabanı (${sectorName === 'hepsi' ? 'Tüm Envanter' : sectorName})`;
+            
+            // Arama çubuğunu temizle ve tetikle
+            document.getElementById("mainSearchInput").value = "";
+            triggerGlobalSearch();
+        }
+
+        // Üst Arama Motoru Entegrasyonu
+        function triggerGlobalSearch() {
+            const searchValue = document.getElementById("mainSearchInput").value.toLowerCase().trim();
+            
+            const filtered = MassiveProductsDatabase.filter(prod => {
+                const matchesSector = (selectedActiveSector === "hepsi" || prod.sector === selectedActiveSector);
+                const matchesKeyword = prod.title.toLowerCase().includes(searchValue) || prod.sector.toLowerCase().includes(searchValue);
+                return matchesSector && matchesKeyword;
+            });
+
+            renderEngineUi(filtered);
+        }
+
+        // YAPAY ZEKA SİMÜLASYONU
         const AI_API_KEY = "YAPAY_ZEKA_API_KEY_BURAYA"; 
 
         async function sendToAI() {
@@ -127,42 +310,34 @@
             if (!userText) return;
 
             const chatBox = document.getElementById("aiChatBox");
-
-            // 1. Kullanıcı mesajını ekrana bas
             chatBox.innerHTML += `<div class="msg user">${userText}</div>`;
             inputEl.value = "";
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // 2. Yapay zeka yükleniyor simülasyonu
             const loadingId = "loading-" + Date.now();
             chatBox.innerHTML += `<div class="msg ai" id="${loadingId}">Düşünüyor...</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
 
             if (AI_API_KEY === "YAPAY_ZEKA_API_KEY_BURAYA") {
                 setTimeout(() => {
-                    document.getElementById(loadingId).innerText = "Yapay zeka yanıtı simüle edildi. Canlı yanıtlar almak için lütfen kodun içindeki AI_API_KEY alanına geçerli bir Google Gemini veya OpenAI API anahtarı entegre edin.";
+                    document.getElementById(loadingId).innerText = "Canlı yapay zeka modülü aktif! Gerçek zamanlı API yanıtları için sistem anahtarınızı entegre edebilirsiniz. Canavar altyapımız tüm kategorilerde analiz yapmaya hazır.";
                 }, 1000);
                 return;
             }
 
-            // 3. Gerçek Yapay Zeka API İstek Protokolü (Örnek: Google Gemini API)
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AI_API_KEY}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: `Sen SiberCimri platformunun akıllı pazar analiz asistanısın. Kullanıcının sorusu: ${userText}` }] }]
+                        contents: [{ parts: [{ text: `Sen SiberCimri canavar motorunun yapay zekasısın. Kullanıcıya fiyatlar ve pazar hakkında akıllıca bilgi ver: ${userText}` }] }]
                     })
                 });
-
                 const data = await response.json();
-                const aiResponseText = data.candidates[0].content.parts[0].text;
-                
-                document.getElementById(loadingId).innerText = aiResponseText;
-            } catch (error) {
-                document.getElementById(loadingId).innerText = "Sistem bağlantı hatası oluştu. Lütfen API anahtarınızı veya internet bağlantınızı kontrol edin.";
+                document.getElementById(loadingId).innerText = data.candidates[0].content.parts[0].text;
+            } catch (e) {
+                document.getElementById(loadingId).innerText = "Bağlantı hatası. API anahtarınızı kontrol edin.";
             }
-            
             chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
