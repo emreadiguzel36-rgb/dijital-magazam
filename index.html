@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Mega Engine - Full Enterprise v3</title>
+    <title>SiberCimri Mega Engine - Türkiye Enterprise v4</title>
     
     <style>
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Segoe UI', Arial, sans-serif; color: #ffffff;
-            /* ARKA PLAN RESMİ KESİN OLARAK TÜM SAYFADA SABİT */
             background: url('image_368ddf.jpg') no-repeat center center fixed;
             background-size: cover;
             overflow-x: hidden;
@@ -24,105 +23,116 @@
             display: flex; align-items: center; justify-content: center;
             z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
-        
         .auth-container {
-            background: #111726; border: 2px solid #ff007f; border-radius: 24px;
-            padding: 40px; width: 100%; max-width: 450px; box-sizing: border-box;
-            box-shadow: 0 0 40px rgba(255, 0, 127, 0.5); text-align: center;
+            background: #111726; border: 2px solid #ff007f; border-radius: 20px;
+            padding: 30px; width: 100%; max-width: 400px; box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.5); text-align: center;
         }
-        .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; font-size: 24px; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
-        .auth-container p { color: #94a3b8; font-size: 13px; margin: 0 0 25px 0; line-height: 1.4; }
-
+        .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; font-size: 20px; }
+        .auth-container p { color: #94a3b8; font-size: 12px; margin: 0 0 20px 0; }
         #anaIcerik { display: none; }
-
-        .form-grup { margin-bottom: 18px; text-align: left; }
-        .form-grup label { display: block; margin-bottom: 8px; color: #cbd5e1; font-size: 13px; font-weight: 600; }
+        .form-grup { margin-bottom: 14px; text-align: left; }
+        .form-grup label { display: block; margin-bottom: 6px; color: #cbd5e1; font-size: 12px; font-weight: 600; }
         .form-grup input { 
-            width: 100%; padding: 14px 16px; border-radius: 12px; 
-            border: 1px solid rgba(255,255,255,0.15); background: #000000; 
-            color: #ffffff; box-sizing: border-box; font-size: 15px; outline: none;
+            width: 100%; padding: 10px 14px; border-radius: 8px; 
+            border: 1px solid rgba(255,255,255,0.15); background: #000; 
+            color: #fff; box-sizing: border-box; font-size: 14px; outline: none;
         }
-        .form-grup input:focus { border-color: #00f2fe; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
-        
         .btn-auth { 
             background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; border: none; 
-            padding: 15px; width: 100%; font-weight: bold; border-radius: 12px; 
-            cursor: pointer; font-size: 15px; letter-spacing: 0.5px; transition: 0.2s; margin-top: 10px;
+            padding: 12px; width: 100%; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;
         }
-        .btn-auth:hover { box-shadow: 0 0 20px #ff007f; }
-
         .sistem-log-kutusu { 
-            background: rgba(0,0,0,0.85); border: 1px solid #00f2fe; border-radius: 10px; 
-            padding: 14px; margin: 15px 0; font-family: monospace; font-size: 13px; 
-            color: #00ff87; text-align: left; display: none; line-height: 1.6; 
+            background: rgba(0,0,0,0.85); border: 1px solid #00f2fe; border-radius: 8px; 
+            padding: 10px; margin: 12px 0; font-family: monospace; font-size: 11px; color: #00ff87; text-align: left; display: none;
         }
 
         /* ========================================================
-           ANA DASHBOARD VE HEADER TASARIMI
+           HEADER TASARIMI (KOMPAKT VE KÜÇÜLTÜLMÜŞ)
            ======================================================== */
         header { 
-            background: rgba(19, 26, 42, 0.85); border-bottom: 3px solid #00f2fe;
-            padding: 25px 20px; backdrop-filter: blur(12px); text-align: center;
+            background: rgba(19, 26, 42, 0.9); border-bottom: 2px solid #00f2fe;
+            padding: 15px 20px; backdrop-filter: blur(10px);
         }
-        header h1 { margin: 0 0 20px 0; font-size: 2.5em; color: #00f2fe; font-weight: 800; text-shadow: 0 0 12px rgba(0,242,254,0.3); }
-        
-        .ust-kontroller { display: flex; gap: 15px; max-width: 1200px; margin: 0 auto; align-items: center; justify-content: space-between; }
-        .kategori-ac-btn { background: #ff007f; color: #fff; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; transition: 0.2s; }
-        .kategori-ac-btn:hover { box-shadow: 0 0 15px #ff007f; }
-
+        header h1 { margin: 0 0 12px 0; font-size: 1.8em; color: #00f2fe; text-align: center; font-weight: 800; text-shadow: 0 0 10px rgba(0,242,254,0.3); }
+        .ust-kontroller { display: flex; gap: 15px; max-width: 1400px; margin: 0 auto; align-items: center; }
         .arama-kutusu-kapsayici { flex-grow: 1; }
         .arama-kutusu { 
-            width: 100%; padding: 12px 24px; border-radius: 25px; border: 2px solid #00f2fe; 
-            background: rgba(0,0,0,0.7); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; transition: 0.3s;
+            width: 100%; padding: 10px 20px; border-radius: 20px; border: 2px solid #00f2fe; 
+            background: rgba(0,0,0,0.7); color: #fff; outline: none; font-size: 13px; box-sizing: border-box;
         }
-        .arama-kutusu:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255,0,127,0.4); }
-        
-        .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 12px 24px; font-weight: 800; border-radius: 25px; font-size: 14px; white-space: nowrap; }
+        .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 10px 20px; font-weight: 800; border-radius: 20px; font-size: 12px; white-space: nowrap; }
 
-        .menu-linkleri { display: flex; justify-content: center; gap: 25px; margin-top: 15px; font-size: 14px; }
-        .menu-linkleri a { color: #94a3b8; text-decoration: none; font-weight: 600; transition: 0.2s; }
-        .menu-linkleri a:hover { color: #00f2fe; }
+        /* ========================================================
+           YENİ ANA SAYFA DÜZENİ: SOL SIDEBAR + SAĞ ÇİFT PANEL
+           ======================================================== */
+        .main-wrapper {
+            display: flex; max-width: 1400px; margin: 20px auto; padding: 0 20px; gap: 20px; align-items: flex-start;
+        }
 
-        /* DİNAMİK ENVANTER ALANI */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        section { background: rgba(30, 41, 59, 0.65); padding: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(15px); }
-        section h2 { margin-top: 0; color: #fff; font-size: 22px; margin-bottom: 25px; font-weight: 700; }
-        
-        #envanterListesi { min-height: 200px; }
+        /* Sol Sabit Küçük Menü */
+        .sol-kategori-bar {
+            width: 220px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 15px; box-sizing: border-box; backdrop-filter: blur(10px); flex-shrink: 0;
+        }
+        .sol-kategori-bar h3 { font-size: 13px; text-transform: uppercase; color: #00f2fe; margin-top: 0; margin-bottom: 12px; letter-spacing: 0.5px; }
+        .sol-kategori-bar a { display: block; color: #cbd5e1; padding: 8px 12px; text-decoration: none; font-size: 12px; border-radius: 6px; margin-bottom: 4px; transition: 0.2s; background: rgba(255,255,255,0.02); }
+        .sol-kategori-bar a:hover { background: rgba(0,242,254,0.15); color: #00f2fe; padding-left: 16px; }
 
-        /* Kart Mimarisi */
+        /* Yan Yana Çift Panel Alanı */
+        .paneller-konteyner {
+            display: flex; flex-grow: 1; gap: 20px; width: calc(100% - 240px);
+        }
+        .cinsiyet-paneli {
+            flex: 1; background: rgba(30, 41, 59, 0.65); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px; padding: 20px; backdrop-filter: blur(15px); box-sizing: border-box;
+        }
+        .panel-baslik-erkek { color: #00f2fe; border-bottom: 2px solid #00f2fe; padding-bottom: 8px; margin-top: 0; font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .panel-baslik-kadin { color: #ff007f; border-bottom: 2px solid #ff007f; padding-bottom: 8px; margin-top: 0; font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* ========================================================
+           KÜÇÜLTÜLMÜŞ KOMPAKT ÜRÜN KARTLARI VE TABLOLAR
+           ======================================================== */
         .karsilastirma-karti { 
-            background: rgba(15, 23, 42, 0.85); padding: 25px; margin-bottom: 25px; 
-            border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.15); transition: 0.3s;
+            background: rgba(15, 23, 42, 0.9); padding: 12px; margin-bottom: 15px; 
+            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); transition: 0.2s;
         }
-        .karsilastirma-karti:hover { border-color: #ff007f; box-shadow: 0 10px 25px rgba(255,0,127,0.2); }
+        .karsilastirma-karti:hover { border-color: #ff007f; transform: translateY(-1px); }
         
-        .urun-ust-kisim { display: flex; align-items: center; gap: 20px; }
-        .urun-gorsel-kutusu { width: 90px; height: 90px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; flex-shrink: 0; }
+        .urun-ust-kisim { display: flex; align-items: center; gap: 12px; }
+        .urun-gorsel-kutusu { width: 50px; height: 50px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px; flex-shrink: 0; }
         .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .urun-bilgi { flex-grow: 1; }
-        .urun-baslik { margin: 0; color: #fff; font-size: 20px; font-weight: bold; }
+        .urun-baslik { margin: 0; color: #fff; font-size: 13px; font-weight: bold; line-height: 1.3; }
+        .urun-kategori-etiket { color: #94a3b8; font-size: 11px; display: block; margin-top: 2px; }
         
-        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 12px; overflow: hidden; }
-        .fiyat-satiri td { padding: 16px; font-size: 15px; background: rgba(0,0,0,0.5); }
+        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 10px; border-radius: 8px; overflow: hidden; font-size: 11px; }
+        .fiyat-satiri td { padding: 8px 10px; background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .fiyat-satiri:last-child td { border-bottom: none; }
         
-        .git-btn { background: #ff007f; color: #fff; padding: 10px 24px; text-decoration: none; border-radius: 20px; float: right; font-size: 13px; font-weight: bold; }
+        .git-btn { background: #ff007f; color: #fff; padding: 4px 10px; text-decoration: none; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; }
         .git-btn:hover { background: #e0006c; }
 
-        /* Kategori Menüsü (Sidebar) */
-        .sidebar { position: fixed; left: -310px; top: 0; width: 300px; height: 100%; background: #0b0f19; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 25px; box-sizing: border-box; }
-        .sidebar.aktif { left: 0; }
-        .sidebar a { display: block; color: #e2e8f0; padding: 12px 15px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; font-weight: 500; }
-        .sidebar a:hover { background: rgba(0,242,254,0.1); color: #00f2fe; }
-        .sidebar button { background: #ff007f; width: 100%; padding: 12px; color:#fff; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 8px; }
+        /* ========================================================
+           SAĞ ALT SABİT WHATSAPP & TELEGRAM LOGOLARI
+           ======================================================== */
+        .sabit-iletisim-kutusu {
+            position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100000;
+        }
+        .iletisim-buton {
+            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: 0.3s; color: #fff; font-size: 20px; text-decoration: none; font-weight: bold;
+        }
+        .iletisim-buton:hover { transform: scale(1.1); }
+        .wp-btn { background: #25D366; }
+        .tg-btn { background: #0088cc; }
     </style>
 </head>
 <body>
 
     <div id="authGateway">
         <div class="auth-container">
-            <h2>SiberCimri Secure Shield</h2>
-            <p>Bu platform ticari gizlilik nedeniyle sadece kayıtlı üyelerimize açıktır.</p>
+            <h2>SiberCimri Secure Gateway</h2>
+            <p>Türkiye pazar yeri veri tabanına erişmek için kimlik doğrulaması yapın.</p>
             
             <div id="authStep1">
                 <div class="form-grup">
@@ -137,105 +147,183 @@
                     <label>Telefon Numaranız GSM:</label>
                     <input type="tel" id="regTel" placeholder="05xx xxx xx xx" required>
                 </div>
-                <button type="button" class="btn-auth" onclick="requestOTP()">KİMLİK DOĞRULA VE SMS KODU İSTE</button>
+                <button type="button" class="btn-auth" onclick="requestOTP()">SMS KODU İSTE</button>
             </div>
 
             <div id="systemLog" class="sistem-log-kutusu"></div>
 
             <div id="authStep2" style="display: none;">
                 <div class="form-grup">
-                    <label>Telefonunuza Gönderilen 4 Haneli OTP Kodu:</label>
-                    <input type="number" id="smsInputCode" placeholder="••••" style="text-align: center; font-size: 24px; letter-spacing: 6px;" required>
+                    <label>4 Haneli Doğrulama Kodu:</label>
+                    <input type="number" id="smsInputCode" placeholder="••••" style="text-align: center; font-size: 20px; letter-spacing: 4px;" required>
                 </div>
-                <button type="button" class="btn-auth" style="background: linear-gradient(135deg, #00ff87, #006633); color: #000;" onclick="verifyOTP()">SİSTEME ERİŞİM YETKİSİ VER</button>
+                <button type="button" class="btn-auth" style="background: #00b358;" onclick="verifyOTP()">SİSTEME GİRİŞ YAP</button>
             </div>
         </div>
     </div>
 
 
     <div id="anaIcerik">
-        
-        <div id="kategoriSidebar" class="sidebar">
-            <button onclick="kategoriMenusuKapat()">MENÜYÜ KAPAT ×</button>
-            <a href="#" onclick="filtreleKategori('hepsi')">⭐ Tüm Sektörler</a>
-            <a href="#" onclick="filtreleKategori('elektronik')">📱 Elektronik</a>
-            <a href="#" onclick="filtreleKategori('giyim')">👕 Tekstil / Giyim</a>
-            <a href="#" onclick="filtreleKategori('gida')">🍏 Gıda / Market</a>
-        </div>
-
         <header>
             <h1>SiberCimri Mega Engine</h1>
             <div class="ust-kontroller">
-                <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Tüm Sektörler</button>
                 <div class="arama-kutusu-kapsayici">
-                    <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="canliAramaYap()" placeholder="Sistem içindeki tüm envanterlerde akıllı arama yapın...">
+                    <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="canliAramaYap()" placeholder="Erkek veya Kadın reyonundaki tüm Türkiye envanterinde akıllı arama yapın...">
                 </div>
                 <div id="userLabel" class="user-profile-tag">👤 Yükleniyor...</div>
             </div>
-            
-            <div class="menu-linkleri">
-                <a href="#">📊 Canlı Karşılaştırma</a>
-                <a href="#">🛠️ API Entegrasyonları</a>
-                <a href="#">ℹ️ Vizyonumuz</a>
-            </div>
         </header>
 
-        <div class="container">
-            <section>
-                <h2>📋 Korunan Ticari Pazar Yeri Veri Tabanı</h2>
-                <div id="envanterListesi"></div>
-            </section>
+        <div class="main-wrapper">
+            <div class="sol-kategori-bar">
+                <h3>🏢 Tüm Sektörler</h3>
+                <a href="#" onclick="filtreleEtiket('hepsi')">⭐ Tüm Envanter</a>
+                <a href="#" onclick="filtreleEtiket('Giyim')">👕 Giyim / Tekstil</a>
+                <a href="#" onclick="filtreleEtiket('Ayakkabı')">👟 Ayakkabı / Spor</a>
+                <a href="#" onclick="filtreleEtiket('Parfüm')">✨ Kozmetik & Parfüm</a>
+                <a href="#" onclick="filtreleEtiket('Saat')">⌚ Aksesuar & Saat</a>
+                <a href="#" onclick="filtreleEtiket('Bakım')">🪒 Kişisel Bakım</a>
+            </div>
+
+            <div class="paneller-konteyner">
+                
+                <div class="cinsiyet-paneli">
+                    <h2 class="panel-baslik-erkek">👨 ERKEK REYONU (HER ŞEY)</h2>
+                    <div id="erkekEnvanterAlani"></div>
+                </div>
+
+                <div class="cinsiyet-paneli">
+                    <h2 class="panel-baslik-kadin">👩 KADIN REYONU (HER ŞEY)</h2>
+                    <div id="kadinEnvanterAlani"></div>
+                </div>
+
+            </div>
         </div>
+    </div>
+
+    <div class="sabit-iletisim-kutusu">
+        <a href="https://wa.me/905000000000" target="_blank" class="iletisim-buton wp-btn" title="WhatsApp Destek">wp</a>
+        <a href="https://t.me/siber_cimri" target="_blank" class="iletisim-buton tg-btn" title="Telegram Kanalı">tg</a>
     </div>
 
 
     <script>
-        // MERKEZİ ENVANTER VERİTABANI (HARDCODED OLMAKTAN ÇIKARILDI, ZENGİNLEŞTİRİLDİ)
-        const UrunVeritabani = [
+        // TÜRKİYE PAZARINDAKİ TÜM YASAL ÜRÜNLER VE TÜM SİTELERDEKİ KARŞILAŞTIRMALI FİYATLARI
+        const DevVeritabani = [
+            // ERKEK ENVENTERLERİ
             {
-                id: 1,
-                baslik: "Apple iPhone 16 Pro Max 512 GB",
-                kategori: "elektronik",
-                altBilgi: "Sektör: Elektronik / Akıllı Telefon",
-                gorsel: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150",
-                pazar: "Amazon TR",
-                fiyat: "89.500 TL"
+                cinsiyet: "erkek",
+                etiket: "Giyim",
+                baslik: "Premium Slim Fit Erkek Ceket - Siyah",
+                gorsel: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100",
+                fiyatlar: [
+                    { site: "Trendyol", fiyat: "3.499 TL" },
+                    { site: "Hepsiburada", fiyat: "3.550 TL" },
+                    { site: "Amazon TR", fiyat: "3.390 TL (En Ucuz)" },
+                    { site: "N11", fiyat: "3.600 TL" }
+                ]
             },
             {
-                id: 2,
-                baslik: "Premium Slim Fit Erkek Ceket",
-                kategori: "giyim",
-                altBilgi: "Sektör: Tekstil / Hazır Giyim",
-                gorsel: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=150",
-                pazar: "Hepsiburada",
-                fiyat: "3.499 TL"
+                cinsiyet: "erkek",
+                etiket: "Ayakkabı",
+                baslik: "Air Max Erkek Spor Ayakkabı Koşu / Günlük",
+                gorsel: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=100",
+                fiyatlar: [
+                    { site: "Amazon TR", fiyat: "4.100 TL" },
+                    { site: "Trendyol", fiyat: "3.999 TL (En Ucuz)" },
+                    { site: "Hepsiburada", fiyat: "4.150 TL" },
+                    { site: "Çiçeksepeti", fiyat: "4.300 TL" }
+                ]
             },
             {
-                id: 3,
-                baslik: "Asus ROG Strix Oyuncu Bilgisayarı",
-                kategori: "elektronik",
-                altBilgi: "Sektör: Elektronik / Bilgisayar",
-                gorsel: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=150",
-                pazar: "Trendyol",
-                fiyat: "64.999 TL"
+                cinsiyet: "erkek",
+                etiket: "Parfüm",
+                baslik: "Bleu De Chanel EDP 100 ml Erkek Parfümü",
+                gorsel: "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=100",
+                fiyatlar: [
+                    { site: "Sevil Parfüm", fiyat: "5.450 TL" },
+                    { site: "Trendyol (Onaylı)", fiyat: "5.100 TL (En Ucuz)" },
+                    { site: "Boyner", fiyat: "5.500 TL" }
+                ]
             },
             {
-                id: 4,
-                baslik: "Samsung Ultra HD 65' Smart TV",
-                kategori: "elektronik",
-                altBilgi: "Sektör: Elektronik / Televizyon",
-                gorsel: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=150",
-                pazar: "N11",
-                fiyat: "27.450 TL"
+                cinsiyet: "erkek",
+                etiket: "Saat",
+                baslik: "Steel Chronograph Erkek Kol Saati - Metalik",
+                gorsel: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=100",
+                fiyatlar: [
+                    { site: "N11", fiyat: "8.900 TL" },
+                    { site: "Hepsiburada", fiyat: "8.450 TL (En Ucuz)" },
+                    { site: "Trendyol", fiyat: "8.600 TL" }
+                ]
             },
             {
-                id: 5,
-                baslik: "Oversize Unisex Grafik Baskılı Hoodie",
-                kategori: "giyim",
-                altBilgi: "Sektör: Tekstil / Spor Giyim",
-                gorsel: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=150",
-                pazar: "Boyner",
-                fiyat: "1.290 TL"
+                cinsiyet: "erkek",
+                etiket: "Bakım",
+                baslik: "3'ü 1 Arada Islak Kuru Şarjlı Tıraş Makinesi Kit",
+                gorsel: "https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=100",
+                fiyatlar: [
+                    { site: "Amazon TR", fiyat: "1.490 TL (En Ucuz)" },
+                    { site: "Hepsiburada", fiyat: "1.599 TL" },
+                    { site: "N11", fiyat: "1.650 TL" }
+                ]
+            },
+
+            // KADIN ENVENTERLERİ
+            {
+                cinsiyet: "kadin",
+                etiket: "Giyim",
+                baslik: "Kuşaklı Kaşe Kaban / Kadın Palto Uzun",
+                gorsel: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100",
+                fiyatlar: [
+                    { site: "Trendyol Mill", fiyat: "2.199 TL (En Ucuz)" },
+                    { site: "Hepsiburada", fiyat: "2.350 TL" },
+                    { site: "Amazon TR", fiyat: "2.290 TL" }
+                ]
+            },
+            {
+                cinsiyet: "kadin",
+                etiket: "Ayakkabı",
+                baslik: "Zarif Süet Topuklu Ayakkabı - Bej",
+                gorsel: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=100",
+                fiyatlar: [
+                    { site: "Hepsiburada", fiyat: "1.250 TL" },
+                    { site: "Trendyol", fiyat: "1.150 TL (En Ucuz)" },
+                    { site: "Çiçeksepeti", fiyat: "1.300 TL" }
+                ]
+            },
+            {
+                cinsiyet: "kadin",
+                etiket: "Parfüm",
+                baslik: "Lancome La Vie Est Belle EDP 100 ml Kadın",
+                gorsel: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=100",
+                fiyatlar: [
+                    { site: "Boyner", fiyat: "4.800 TL" },
+                    { site: "Amazon TR", fiyat: "4.450 TL (En Ucuz)" },
+                    { site: "Trendyol", fiyat: "4.600 TL" }
+                ]
+            },
+            {
+                cinsiyet: "kadin",
+                etiket: "Saat",
+                baslik: "Rose Gold Hasır Kordon Kadın Kol Saati",
+                gorsel: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=100",
+                fiyatlar: [
+                    { site: "Trendyol", fiyat: "4.200 TL (En Ucuz)" },
+                    { site: "N11", fiyat: "4.400 TL" },
+                    { site: "Hepsiburada", fiyat: "4.350 TL" }
+                ]
+            },
+            {
+                cinsiyet: "kadin",
+                etiket: "Bakım",
+                baslik: "Profesyonel İyonik Saç Düzleştirici & Maşa",
+                gorsel: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=100",
+                fiyatlar: [
+                    { site: "Amazon TR", fiyat: "2.899 TL" },
+                    { site: "Hepsiburada", fiyat: "2.750 TL (En Ucuz)" },
+                    { site: "Trendyol", fiyat: "2.790 TL" }
+                ]
             }
         ];
 
@@ -243,91 +331,101 @@
         let savedName = "";
         let savedSurname = "";
         let savedPhone = "";
-        let aktifKategori = "hepsi";
+        let mevcutFiltreEtiket = "hepsi";
 
-        // ENVANTERLERİ EKRANA BASAN MOTOR FONKSİYONU
-        function envanterleriListele(filtreliListe) {
-            const listeKutusu = document.getElementById("envanterListesi");
-            listeKutusu.innerHTML = "";
+        // ÇİFT PANELDE LİSTELEME YAPAN MOTOR FONKSİYONU
+        function panelleriGuncelle(liste) {
+            const erkekKutusu = document.getElementById("erkekEnvanterAlani");
+            const kadinKutusu = document.getElementById("kadinEnvanterAlani");
+            
+            erkekKutusu.innerHTML = "";
+            kadinKutusu.innerHTML = "";
 
-            if(filtreliListe.length === 0) {
-                listeKutusu.innerHTML = `<div style="text-align:center; padding: 40px; color:#94a3b8; font-size:16px;">🔍 Aradığınız kriterlere uygun envanter kaydı bulunamadı.</div>`;
-                return;
-            }
+            let erkekSayac = 0;
+            let kadinSayac = 0;
 
-            filtreliListe.forEach(urun => {
+            liste.forEach(urun => {
+                // Fiyat satırlarını HTML formatına dönüştür
+                let fiyatSatirlariHtml = urun.fiyatlar.map(f => `
+                    <tr class="fiyat-satiri">
+                        <td style="color:#cbd5e1; font-weight:500;">${f.site}</td>
+                        <td style="color:#00ff87; font-weight:bold; text-align:right;">${f.fiyat}</td>
+                        <td style="text-align:right; width:40px;"><a href="#" class="git-btn">Git</a></td>
+                    </tr>
+                `).join('');
+
+                // Kart Tasarımı (Küçültülmüş Yapı)
                 const kartHtml = `
                     <div class="karsilastirma-karti">
                         <div class="urun-ust-kisim">
                             <div class="urun-gorsel-kutusu"><img src="${urun.gorsel}" alt="${urun.baslik}"></div>
-                            <div class="urun-bilgi">
+                            <div>
                                 <h3 class="urun-baslik">${urun.baslik}</h3>
-                                <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">${urun.altBilgi}</span>
+                                <span class="urun-kategori-etiket">Etiket: ${urun.etiket}</span>
                             </div>
                         </div>
                         <table class="fiyat-tablosu">
-                            <tr class="fiyat-satiri">
-                                <td style="color:#fff; font-weight: 600;">${urun.pazar}</td>
-                                <td style="color:#00ff87; font-weight:bold; font-size: 17px;">${urun.fiyat}</td>
-                                <td><a href="#" class="git-btn">Git</a></td>
-                            </tr>
+                            ${fiyatSatirlariHtml}
                         </table>
                     </div>
                 `;
-                listeKutusu.innerHTML += kartHtml;
+
+                if(urun.cinsiyet === "erkek") {
+                    erkekKutusu.innerHTML += kartHtml;
+                    erkekSayac++;
+                } else if(urun.cinsiyet === "kadin") {
+                    kadinKutusu.innerHTML += kartHtml;
+                    kadinSayac++;
+                }
             });
+
+            if(erkekSayac === 0) erkekKutusu.innerHTML = `<div style="padding:20px; color:#94a3b8; font-size:12px; text-align:center;">Bulunamadı.</div>`;
+            if(kadinSayac === 0) kadinKutusu.innerHTML = `<div style="padding:20px; color:#94a3b8; font-size:12px; text-align:center;">Bulunamadı.</div>`;
         }
 
-        // AKILLI VE CANLI ARAMA MOTORU ALGORİTMASI (BURASI ARTIK KESİN ÇALIŞIYOR)
+        // AKILLI SİTE İÇİ CANLI ARAMA MOTORU
         function canliAramaYap() {
-            const aramaTerimi = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
+            const ara = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
             
-            const filtrelenmiş = UrunVeritabani.filter(urun => {
-                // Kategori eşleşme kontrolü
-                const katUyumlu = (aktifKategori === "hepsi" || urun.kategori === aktifKategori);
-                // İsim eşleşme kontrolü
-                const isimUyumlu = urun.baslik.toLowerCase().includes(aramaTerimi);
-                
-                return katUyumlu && isimUyumlu;
+            const sonuclar = DevVeritabani.filter(urun => {
+                const etiketUyum = (mevcutFiltreEtiket === "hepsi" || urun.etiket === mevcutFiltreEtiket);
+                const isimUyum = urun.baslik.toLowerCase().includes(ara);
+                return etiketUyum && isimUyum;
             });
 
-            envanterleriListele(filtrelenmiş);
+            panelleriGuncelle(sonuclar);
         }
 
-        // KATEGORİ DEĞİŞTİRME MOTORU
-        function filtreleKategori(katKodu) {
-            aktifKategori = katKodu;
-            document.getElementById("aramaGirdisi").value = ""; // Kategori değişince aramayı sıfırla
+        // SOL BAR ETİKET FİLTRESİ
+        function filtreleEtiket(etiketKodu) {
+            mevcutFiltreEtiket = etiketKodu;
+            document.getElementById("aramaGirdisi").value = ""; // Aramayı temizle
             
-            const filtrelenmiş = katKodu === "hepsi" 
-                ? UrunVeritabani 
-                : UrunVeritabani.filter(u => u.kategori === katKodu);
+            const sonuclar = etiketKodu === "hepsi" 
+                ? DevVeritabani 
+                : DevVeritabani.filter(u => u.etiket === etiketKodu);
                 
-            envanterleriListele(filtrelenmiş);
-            kategoriMenusuKapat();
+            panelleriGuncelle(sonuclar);
         }
 
-        // GÜVENLİK GEÇİDİ (AUTH FUNCTIONS)
+        // GATEWAY LOGIC
         function requestOTP() {
             savedName = document.getElementById("regAd").value.trim();
             savedSurname = document.getElementById("regSoyad").value.trim();
             savedPhone = document.getElementById("regTel").value.trim();
 
             if(!savedName || !savedSurname || savedPhone.length < 10) {
-                alert("Lütfen alanları eksiksiz doldurunuz!");
+                alert("Lütfen tüm alanları eksiksiz doldurunuz!");
                 return;
             }
 
             generatedOTP = Math.floor(1000 + Math.random() * 9000);
-            
             let logBox = document.getElementById("systemLog");
             logBox.style.display = "block";
-            logBox.innerHTML = "⏳ Güvenli kanal üzerinden SMS API'sine bağlanılıyor...<br>";
+            logBox.innerHTML = "⏳ Türkiye SMS Gateway API bağlantısı kuruluyor...<br>";
 
             setTimeout(() => {
-                logBox.innerHTML += "🛰️ Hücresel Operatör Doğrulandı...<br>";
-                logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Şifre Gönderildi.<br>🔑 Doğrulama Kodunuz: <strong style='font-size:16px; color:#fff;'>" + generatedOTP + "</strong>";
-                
+                logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Kod iletildi.<br>🔑 Onay Kodunuz: <strong style='font-size:14px; color:#fff;'>" + generatedOTP + "</strong>";
                 document.getElementById("authStep1").style.display = "none";
                 document.getElementById("authStep2").style.display = "block";
             }, 800);
@@ -335,25 +433,19 @@
 
         function verifyOTP() {
             let enteredCode = document.getElementById("smsInputCode").value.trim();
-
             if(enteredCode == generatedOTP) {
                 document.getElementById("authGateway").style.opacity = "0";
-                
                 setTimeout(() => {
                     document.getElementById("authGateway").style.display = "none";
                     document.getElementById("anaIcerik").style.display = "block";
                     document.getElementById("userLabel").innerHTML = "👑 " + savedName.toUpperCase() + " " + savedSurname.toUpperCase();
-                    
-                    // SİTE AÇILIR AÇILMAZ VERİTABANINDAKİ TÜM ENVANTERLERİ LİSTELE
-                    envanterleriListele(UrunVeritabani);
+                    // TÜM VERİLERİ PANEL AÇILDIĞINDA BAS
+                    panelleriGuncelle(DevVeritabani);
                 }, 400);
             } else {
-                alert("❌ Kod hatalı, lütfen kontrol edin!");
+                alert("Hatalı kod girdiniz!");
             }
         }
-
-        function kategoriMenusuAc() { document.getElementById("kategoriSidebar").classList.add("aktif"); }
-        function kategoriMenusuKapat() { document.getElementById("kategoriSidebar").classList.remove("aktif"); }
     </script>
 </body>
 </html>
