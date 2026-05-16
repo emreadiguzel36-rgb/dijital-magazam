@@ -3,322 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Mega Engine</title>
+    <title>SiberCimri - Yapay Zeka Destekli Mega Engine</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1a1e29;
-            color: #ffffff;
-            min-height: 100vh;
+        html, body {
+            margin: 0; padding: 0; min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1e29; color: #ffffff; overflow-x: hidden;
         }
 
         /* ========================================================
-           GİRİŞ GATEWAY BÖLÜMÜ (MODAL)
+           ANA PLATFORM (MEGA ENGINE ARAYÜZÜ)
            ======================================================== */
-        #gatewayOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #2b2b2b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
+        .navbar-header {
+            background-color: #11141d; padding: 20px;
+            border-bottom: 2px solid #00d2ff; text-align: center;
         }
-        .gateway-box {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 440px;
-            border-top: 5px solid #df0000;
-            padding: 40px 30px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        .gateway-box h2 {
-            color: #df0000;
-            margin: 0 0 10px 0;
-            font-size: 26px;
-            font-weight: bold;
-        }
-        .gateway-box p {
-            color: #666666;
-            font-size: 13px;
-            margin: 0 0 25px 0;
-            line-height: 1.4;
-        }
-        .form-grup {
-            text-align: left;
-            margin-bottom: 15px;
-        }
-        .form-grup label {
-            display: block;
-            color: #333333;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-grup input {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #cccccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-            font-size: 14px;
-            color: #333333;
-            outline: none;
-        }
-        .form-grup input:focus {
-            border-color: #df0000;
-        }
-        .btn-kirmizi {
-            background-color: #df0000;
-            color: #ffffff;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-        .btn-kirmizi:hover {
-            background-color: #b30000;
-        }
-        .demo-kod-alani {
-            background-color: #f4f4f4;
-            border-left: 4px solid #00d2ff;
-            color: #333333;
-            padding: 10px;
-            font-family: monospace;
-            font-size: 12px;
-            text-align: left;
-            margin: 15px 0;
-            display: none;
-        }
-
-        /* ========================================================
-           ANA PANEL (MEGA ENGINE)
-           ======================================================== */
-        #mainEngine {
-            display: none;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header-area {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .header-title {
-            color: #00d2ff;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .main-brand-title {
+            color: #00d2ff; font-size: 36px; font-weight: 900; margin: 0 0 20px 0;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
         }
         .navbar-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            display: flex; max-width: 1300px; margin: 0 auto;
+            align-items: center; justify-content: space-between; gap: 15px;
         }
-        .btn-sektor {
-            background-color: #ff007f;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 20px;
-            cursor: pointer;
-            white-space: nowrap;
+        .search-input-field {
+            flex-grow: 1; background-color: #090d16; border: 1px solid #00d2ff;
+            border-radius: 25px; padding: 12px 24px; color: #ffffff; font-size: 14px; outline: none;
         }
-        .search-bar {
-            flex-grow: 1;
-            background-color: #0d1117;
-            border: 1px solid #00d2ff;
-            border-radius: 20px;
-            padding: 10px 20px;
-            color: #ffffff;
-            outline: none;
-        }
-        .user-badge {
-            background-color: #00ff99;
-            color: #000000;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 20px;
-            white-space: nowrap;
+        .user-status-badge {
+            background-color: #00ffaa; color: #000000; padding: 12px 24px;
+            font-weight: bold; border-radius: 25px; font-size: 13px;
         }
 
-        /* VERİ TABANI KARTI */
-        .content-card {
-            background-color: #222733;
-            border-radius: 8px;
-            padding: 25px;
-            border: 1px solid #2f3646;
+        .main-wrapper-content { max-width: 1300px; margin: 30px auto; padding: 0 20px; }
+        .database-card { background-color: #2b303c; border-radius: 16px; padding: 30px; }
+        
+        .product-row {
+            background-color: #171a23; border-radius: 12px; padding: 20px;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;
         }
-        .card-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .price-text-highlight { color: #00ffaa; font-weight: 800; font-size: 18px; }
+
+        /* ========================================================
+           YAPAY ZEKA CHATBOT ARAYÜZÜ (SAĞ ALT KÖŞE)
+           ======================================================== */
+        .ai-chat-widget {
+            position: fixed; bottom: 30px; right: 30px; width: 350px;
+            background-color: #11141d; border: 2px solid #ff007f;
+            border-radius: 16px; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            display: flex; flex-direction: column; overflow: hidden; z-index: 100000;
         }
-        .item-row {
-            background-color: #161b22;
-            border-radius: 6px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .ai-chat-header {
+            background: linear-gradient(90deg, #ff0055, #df0000);
+            padding: 15px; font-weight: bold; font-size: 14px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .item-details {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .ai-chat-messages {
+            height: 250px; padding: 15px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 10px; font-size: 13px;
+            background-color: #090d16;
         }
-        .item-img {
-            width: 50px;
-            height: 50px;
-            background-color: #ffffff;
-            border-radius: 4px;
+        .msg { padding: 10px 14px; border-radius: 10px; max-width: 80%; line-height: 1.4; }
+        .msg.user { background-color: #ff007f; color: #ffffff; align-self: flex-end; }
+        .msg.ai { background-color: #2b303c; color: #00d2ff; align-self: flex-start; }
+        
+        .ai-chat-input-area { display: flex; border-top: 1px solid #222; background-color: #11141d; }
+        .ai-chat-input {
+            flex-grow: 1; border: none; padding: 12px; background: transparent;
+            color: #ffffff; outline: none; font-size: 13px;
         }
-        .item-name {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0 0 5px 0;
-        }
-        .item-sector {
-            font-size: 12px;
-            color: #00d2ff;
-        }
-        .price-tag {
-            color: #00ff99;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .btn-git {
-            background-color: #ff007f;
-            color: #ffffff;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            cursor: pointer;
+        .ai-send-btn {
+            background-color: #00d2ff; border: none; color: #000000;
+            padding: 0 15px; font-weight: bold; cursor: pointer; font-size: 13px;
         }
     </style>
 </head>
 <body>
 
-    <div id="gatewayOverlay">
-        <div class="gateway-box">
-            <h2>SiberCimri Secure Gateway</h2>
-            <p>Ticari veri tabanına erişmek için kimlik doğrulaması yapın.</p>
-            
-            <div id="step1">
-                <div class="form-grup">
-                    <label>Adınız:</label>
-                    <input type="text" id="inputAd" value="emre">
-                </div>
-                <div class="form-grup">
-                    <label>Soyadınız:</label>
-                    <input type="text" id="inputSoyad" value="adıgüzel">
-                </div>
-                <div class="form-grup">
-                    <label>Telefon Numaranız GSM:</label>
-                    <input type="tel" id="inputTel" placeholder="05358274639" value="05358274639">
-                </div>
-                <button type="button" class="btn-kirmizi" onclick="kodUret()">SMS KODU İSTE</button>
-            </div>
+    <div class="navbar-header">
+        <h1 class="main-brand-title">SiberCimri Mega Engine</h1>
+        <div class="navbar-controls">
+            <input type="text" class="search-input-field" placeholder="Sistem içinde akıllı arama yapın...">
+            <div class="user-status-badge">👑 EMRE ADIGÜZEL</div>
+        </div>
+    </div>
 
-            <div id="demoLog" class="demo-kod-alani"></div>
-
-            <div id="step2" style="display: none;">
-                <div class="form-grup">
-                    <label>Doğrulama Kodunu Girin:</label>
-                    <input type="number" id="inputOtp" placeholder="••••" style="text-align: center; font-size: 18px; letter-spacing: 5px;">
+    <div class="main-wrapper-content">
+        <div class="database-card">
+            <h2 style="margin-top:0;">📋 Aktif Pazar Yeri Verileri</h2>
+            <div class="product-row">
+                <div>
+                    <strong style="font-size:18px;">Apple iPhone 16 Pro Max 512 GB</strong><br>
+                    <span style="color:#00d2ff; font-size:12px;">Sektör: Elektronik</span>
                 </div>
-                <button type="button" class="btn-kirmizi" style="background-color: #00ff99; color: #000000;" onclick="sistemeGirisYap()">KODU ONAYLA VE GİRİŞ YAP</button>
+                <div>
+                    <span class="price-text-highlight">89.500 TL</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="mainEngine">
-        <div class="header-area">
-            <div class="header-title">SiberCimri Mega Engine</div>
-            
-            <div class="navbar-controls">
-                <button class="btn-sektor">☰ Tüm Sektörler</button>
-                <input type="text" class="search-bar" placeholder="Sistem içinde akıllı arama yapın...">
-                <div class="user-badge" id="lblUser">👑 EMRE ADIGÜZEL</div>
-            </div>
+    <div class="ai-chat-widget">
+        <div class="ai-chat-header">
+            <span>🤖 SiberCimri AI Smart Assistant</span>
+            <span style="font-size: 10px; background: #00ffaa; color: #000; padding: 2px 6px; border-radius: 10px;">AKTİF</span>
         </div>
-
-        <div class="content-card">
-            <h3 class="card-title">📋 Korunan Ticari Pazar Yeri Veri Tabanı</h3>
-            
-            <div class="item-row">
-                <div class="item-details">
-                    <div class="item-img" style="background: url('https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=50&auto=format&fit=crop') center/cover;"></div>
-                    <div>
-                        <p class="item-name">Apple iPhone 16 Pro Max 512 GB</p>
-                        <span class="item-sector">Sektör: Elektronik / Akıllı Telefon</span>
-                    </div>
-                </div>
-                <div>
-                    <span style="color: #aaa; font-size: 14px; margin-right: 20px;">Amazon TR</span>
-                    <span class="price-tag">89.500 TL</span>
-                </div>
-                <button class="btn-git">Git</button>
-            </div>
+        <div class="ai-chat-messages" id="aiChatBox">
+            <div class="msg ai">Merhaba Emre Bey! Ben SiberCimri Akıllı Asistanı. Fiyat analizleri ve pazar yeri verileri konusunda size nasıl yardımcı olabilirim?</div>
+        </div>
+        <div class="ai-chat-input-area">
+            <input type="text" id="aiInputField" class="ai-chat-input" placeholder="Yapay zekaya sorun..." onkeypress="if(event.key === 'Enter') sendToAI()">
+            <button class="ai-send-btn" onclick="sendToAI()">GÖNDER</button>
         </div>
     </div>
 
     <script>
-        let sistemKodu = null;
+        // Üretici firmalardan (Google veya OpenAI) aldığınız resmi API anahtarını buraya eklemelisiniz.
+        const AI_API_KEY = "YAPAY_ZEKA_API_KEY_BURAYA"; 
 
-        function kodUret() {
-            const ad = document.getElementById("inputAd").value.trim();
-            const soyad = document.getElementById("inputSoyad").value.trim();
-            const tel = document.getElementById("inputTel").value.trim();
+        async function sendToAI() {
+            const inputEl = document.getElementById("aiInputField");
+            const userText = inputEl.value.trim();
+            if (!userText) return;
 
-            if(!ad || !soyad || !tel) {
-                alert("Lütfen tüm alanları doldurun.");
+            const chatBox = document.getElementById("aiChatBox");
+
+            // 1. Kullanıcı mesajını ekrana bas
+            chatBox.innerHTML += `<div class="msg user">${userText}</div>`;
+            inputEl.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // 2. Yapay zeka yükleniyor simülasyonu
+            const loadingId = "loading-" + Date.now();
+            chatBox.innerHTML += `<div class="msg ai" id="${loadingId}">Düşünüyor...</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            if (AI_API_KEY === "YAPAY_ZEKA_API_KEY_BURAYA") {
+                setTimeout(() => {
+                    document.getElementById(loadingId).innerText = "Yapay zeka yanıtı simüle edildi. Canlı yanıtlar almak için lütfen kodun içindeki AI_API_KEY alanına geçerli bir Google Gemini veya OpenAI API anahtarı entegre edin.";
+                }, 1000);
                 return;
             }
 
-            // Statik arayüz için rastgele doğrulama kodu üretimi
-            sistemKodu = Math.floor(1000 + Math.random() * 9000);
-            
-            const logAlani = document.getElementById("demoLog");
-            logAlani.style.display = "block";
-            logAlani.innerHTML = "📡 Sistem bağlantısı başarılı.<br>🔑 Test Doğrulama Kodunuz: <strong style='color:#df0000; font-size:14px;'>" + sistemKodu + "</strong>";
+            // 3. Gerçek Yapay Zeka API İstek Protokolü (Örnek: Google Gemini API)
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AI_API_KEY}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Sen SiberCimri platformunun akıllı pazar analiz asistanısın. Kullanıcının sorusu: ${userText}` }] }]
+                    })
+                });
 
-            // İkinci aşamayı göster
-            document.getElementById("step1").style.display = "none";
-            document.getElementById("step2").style.display = "block";
-        }
-
-        function sistemeGirisYap() {
-            const girilenKod = document.getElementById("inputOtp").value.trim();
-
-            if(girilenKod == sistemKodu) {
-                // Gateway ekranını kapat, ana motoru aç
-                document.getElementById("gatewayOverlay").style.display = "none";
-                document.getElementById("mainEngine").style.display = "block";
+                const data = await response.json();
+                const aiResponseText = data.candidates[0].content.parts[0].text;
                 
-                // Kullanıcı ismini dinamik güncelle
-                const ad = document.getElementById("inputAd").value.toUpperCase();
-                const soyad = document.getElementById("inputSoyad").value.toUpperCase();
-                document.getElementById("lblUser").innerText = "👑 " + ad + " " + soyad;
-            } else {
-                alert("Hatalı kod girdiniz! Lütfen mavi bantta belirtilen kodu yazın.");
+                document.getElementById(loadingId).innerText = aiResponseText;
+            } catch (error) {
+                document.getElementById(loadingId).innerText = "Sistem bağlantı hatası oluştu. Lütfen API anahtarınızı veya internet bağlantınızı kontrol edin.";
             }
+            
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
 </body>
