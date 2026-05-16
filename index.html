@@ -2,10 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>SiberCimri - Dijital Fiyat Karşılaştırma</title>
+    <title>SiberCimri - Türkiye'nin Dev Karşılaştırma Motoru</title>
     
     <style>
-        /* Oyuncu & Siber Gece Teması */
+        /* Siber Temayı Koruyoruz */
         body { 
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; 
             background: #0d1117 url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center fixed;
@@ -82,12 +82,11 @@
         }
         .kategori-linkleri a:hover { background: rgba(0, 242, 254, 0.1); border-color: #00f2fe; color: #00f2fe; padding-left: 25px; }
 
-        /* Standart Üst Menü */
+        /* Üst Menü */
         .menu { margin-top: 20px; }
         .menu a { color: #00f2fe; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 10px 20px; border-radius: 30px; border: 1px solid #00f2fe; }
         .menu a:hover { background: #00f2fe; color: #000; box-shadow: 0 0 15px #00f2fe; }
 
-        /* Konteyner */
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
         section { 
@@ -97,7 +96,7 @@
         }
         h2 { color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5); margin-top: 0; }
 
-        /* Fiyat Karşılaştırma Kartları */
+        /* Dev Envanter Listesi */
         .urun-kapsayici { display: flex; flex-direction: column; gap: 30px; }
         .karsilastirma-karti {
             background: rgba(255, 255, 255, 0.02);
@@ -112,7 +111,7 @@
         .urun-gorsel { font-size: 50px; background: rgba(0, 242, 254, 0.1); padding: 10px; border-radius: 12px; }
         .urun-baslik { font-size: 22px; font-weight: bold; margin: 0; color: #fff; }
 
-        /* Mağaza Fiyat Listesi Tablosu */
+        /* Fiyat Tablosu */
         .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .fiyat-satiri { 
             background: rgba(255, 255, 255, 0.03); 
@@ -135,10 +134,9 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 0 10px #00ff87;
-            display: none; /* JavaScript en ucuz olana bunu "block" yapacak */
+            display: none;
         }
 
-        /* Git Butonu */
         .git-btn {
             background: linear-gradient(135deg, #ff007f, #7928ca);
             border: none; color: white; padding: 8px 20px; border-radius: 20px;
@@ -147,7 +145,7 @@
         }
         .git-btn:hover { box-shadow: 0 0 15px #ff007f; transform: scale(1.05); }
 
-        /* İletişim Formu */
+        /* Form Elemanları */
         .form-grup { margin-bottom: 20px; }
         .form-grup label { display: block; margin-bottom: 8px; font-weight: bold; color: #00f2fe; }
         .form-grup input, .form-grup textarea { width: 100%; padding: 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; box-sizing: border-box; background: rgba(0,0,0,0.3); color: white; }
@@ -158,20 +156,21 @@
 
     <div id="kategoriSidebar" class="sidebar">
         <div class="sidebar-baslik">
-            <h3>🗂️ Oyunlar</h3>
+            <h3>🗂️ Dev Envanter</h3>
             <button class="kapat-btn" onclick="kategoriMenusuKapat()">×</button>
         </div>
         <div class="kategori-linkleri">
-            <a href="#" onclick="kategoriFiltrele('hepsi')">🌐 Tüm Ürünler</a>
-            <a href="#" onclick="kategoriFiltrele('valorant')">🎮 Valorant VP</a>
-            <a href="#" onclick="kategoriFiltrele('pubg')">🪂 PUBG Mobile UC</a>
-            <a href="#" onclick="kategoriFiltrele('steam')">🕹️ Steam Kodları</a>
+            <a href="#" onclick="kategoriFiltrele('hepsi')">🌐 Tüm Kategoriler</a>
+            <a href="#" onclick="kategoriFiltrele('teknoloji')">📱 Teknoloji / Elektronik</a>
+            <a href="#" onclick="kategoriFiltrele('giyim')">👕 Moda & Giyim</a>
+            <a href="#" onclick="kategoriFiltrele('kozmetik')">💄 Kozmetik & Bakım</a>
+            <a href="#" onclick="kategoriFiltrele('oyun')">🎮 Oyun & E-Pin</a>
         </div>
     </div>
 
     <header>
         <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Kategoriler</button>
-        <h1>SiberCimri</h1>
+        <h1>SiberCimri Pro</h1>
         <div class="menu">
             <a href="index.html">🏠 Ana Sayfa</a>
             <a href="hizmetler.html">🛠️ Hizmetlerimiz</a>
@@ -182,63 +181,115 @@
     <div class="container">
         
         <section id="kararsilastirmaAlani">
-            <h2>🔥 Canlı Dijital Kod Fiyat Karşılaştırma Motoru</h2>
-            <p style="color: #a0aec0; margin-bottom: 30px;">Türkiye'deki popüler epin sitelerinin fiyatları anlık taranır. En ucuz fiyat otomatik yeşil yanar.</p>
+            <h2>📊 Türkiye'nin En Çok Satan Ürünleri Fiyat Karşılaştırması</h2>
+            <p style="color: #a0aec0; margin-bottom: 30px;">Aradığın her şey burada! Pazar yerlerindeki en dip fiyatlar otomatik taranır.</p>
             
             <div class="urun-kapsayici">
 
-                <div class="karsilastirma-karti" data-game="valorant">
+                <div class="karsilastirma-karti" data-kat="teknoloji">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel">🎯</div>
+                        <div class="urun-gorsel">📱</div>
                         <div>
-                            <h3 class="urun-baslik">Valorant 1200 VP (Valorant Puanı)</h3>
-                            <span style="color: #a0aec0; font-size: 14px;">Kategori: Valorant E-Pin</span>
+                            <h3 class="urun-baslik">Apple iPhone 15 Pro Max 256 GB</h3>
+                            <span style="color: #4facfe; font-size: 14px;">Kategori: Teknoloji / Akıllı Telefon</span>
                         </div>
                     </div>
-                    
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="210">
-                            <td class="magaza-adi">🏪 Kabasakal Online <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">210.00 TL</td>
-                            <td><a href="https://www.kabasakalonline.com" target="_blank" class="git-btn">Mağazaya Git</a></td>
+                        <tr class="fiyat-satiri" data-fiyat="76500">
+                            <td class="magaza-adi">🏪 Amazon Türkiye <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">76,500.00 TL</td>
+                            <td><a href="https://www.amazon.com.tr" target="_blank" class="git-btn">Git</a></td>
                         </tr>
-                        <tr class="fiyat-satiri" data-fiyat="195">
-                            <td class="magaza-adi">🏪 Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">195.00 TL</td>
-                            <td><a href="https://www.trendyol.com" target="_blank" class="git-btn">Mağazaya Git</a></td>
+                        <tr class="fiyat-satiri" data-fiyat="75999">
+                            <td class="magaza-adi">🏪 Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">75,999.00 TL</td>
+                            <td><a href="https://www.hepsiburada.com" target="_blank" class="git-btn">Git</a></td>
                         </tr>
-                        <tr class="fiyat-satiri" data-fiyat="205">
-                            <td class="magaza-adi">🏪 Klasgame <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">205.00 TL</td>
-                            <td><a href="https://www.klasgame.com" target="_blank" class="git-btn">Mağazaya Git</a></td>
+                        <tr class="fiyat-satiri" data-fiyat="77200">
+                            <td class="magaza-adi">🏪 Vatan Bilgisayar <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">77,200.00 TL</td>
+                            <td><a href="https://www.vatanbilgisayar.com" target="_blank" class="git-btn">Git</a></td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-game="pubg">
+                <div class="karsilastirma-karti" data-kat="giyim">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel">🪂</div>
+                        <div class="urun-gorsel">👟</div>
                         <div>
-                            <h3 class="urun-baslik">PUBG Mobile 325 UC</h3>
-                            <span style="color: #a0aec0; font-size: 14px;">Kategori: PUBG Mobile UC</span>
+                            <h3 class="urun-baslik">Nike Air Force '07 Erkek Spor Ayakkabı</h3>
+                            <span style="color: #4facfe; font-size: 14px;">Kategori: Giyim / Ayakkabı</span>
                         </div>
                     </div>
-                    
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="145">
+                        <tr class="fiyat-satiri" data-fiyat="3400">
+                            <td class="magaza-adi">🏪 Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">3,400.00 TL</td>
+                            <td><a href="https://www.trendyol.com" target="_blank" class="git-btn">Git</a></td>
+                        </tr>
+                        <tr class="fiyat-satiri" data-fiyat="3250">
+                            <td class="magaza-adi">🏪 Nike Resmi Mağaza <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">3,250.00 TL</td>
+                            <td><a href="https://www.nike.com/tr" target="_blank" class="git-btn">Git</a></td>
+                        </tr>
+                        <tr class="fiyat-satiri" data-fiyat="3500">
+                            <td class="magaza-adi">🏪 Boyner <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">3,500.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="kozmetik">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel">🧴</div>
+                        <div>
+                            <h3 class="urun-baslik">Bleu De Chanel EDP 100 ml Erkek Parfüm</h3>
+                            <span style="color: #4facfe; font-size: 14px;">Kategori: Kozmetik / Parfüm</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="4850">
+                            <td class="magaza-adi">🏪 Sephora <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">4,850.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
+                        </tr>
+                        <tr class="fiyat-satiri" data-fiyat="4990">
+                            <td class="magaza-adi">🏪 Beymen <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">4,990.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
+                        </tr>
+                        <tr class="fiyat-satiri" data-fiyat="4600">
+                            <td class="magaza-adi">🏪 Trendyol (Onaylı Satıcı) <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">4,600.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="oyun">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel">🎯</div>
+                        <div>
+                            <h3 class="urun-baslik">Valorant 1200 VP (Valorant Puanı)</h3>
+                            <span style="color: #4facfe; font-size: 14px;">Kategori: Oyun / E-Pin</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="210">
                             <td class="magaza-adi">🏪 Kabasakal Online <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">145.00 TL</td>
-                            <td><a href="#" class="git-btn">Mağazaya Git</a></td>
+                            <td class="magaza-fiyat">210.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
                         </tr>
-                        <tr class="fiyat-satiri" data-fiyat="150">
-                            <td class="magaza-adi">🏪 Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">150.00 TL</td>
-                            <td><a href="#" class="git-btn">Mağazaya Git</a></td>
+                        <tr class="fiyat-satiri" data-fiyat="195">
+                            <td class="magaza-adi">🏪 Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
+                            <td class="magaza-fiyat">195.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
                         </tr>
-                        <tr class="fiyat-satiri" data-fiyat="140">
+                        <tr class="fiyat-satiri" data-fiyat="205">
                             <td class="magaza-adi">🏪 Klasgame <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">140.00 TL</td>
-                            <td><a href="#" class="git-btn">Mağazaya Git</a></td>
+                            <td class="magaza-fiyat">205.00 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
                         </tr>
                     </table>
                 </div>
@@ -247,18 +298,18 @@
         </section>
 
         <section id="iletisim">
-            <h2>Sitenizi Buraya Ekleyin (Reklam & Sponsorluk)</h2>
-            <p>E-pin satış sitenizin sitemizde listelenmesini ve fiyat karşılaştırmasına dahil olmasını istiyorsanız bizimle iletişime geçin.</p>
+            <h2>Sitenizi Karşılaştırma Listesine Ekleyin</h2>
+            <p>E-ticaret mağazanızdaki giyim, teknoloji veya kozmetik ürün fiyatlarının sitemizde listelenmesini istiyorsanız başvurun.</p>
             <form action="https://formspree.io/f/xbjnrdpq" method="POST">
                 <div class="form-grup">
-                    <label>E-Posta Adresiniz:</label>
+                    <label>Şirket E-Posta Adresiniz:</label>
                     <input type="email" name="email" placeholder="sirketadi@mail.com" required>
                 </div>
                 <div class="form-grup">
-                    <label>Mesajınız / Başvuru Talebiniz:</label>
-                    <textarea name="message" rows="4" placeholder="Site adresinizi ve listelenmek istediğiniz kategorileri yazın..." required></textarea>
+                    <label>Mağaza Entegrasyon Talebiniz:</label>
+                    <textarea name="message" rows="4" placeholder="Mağaza adınızı ve XML ürün linkinizi ekleyin..." required></textarea>
                 </div>
-                <button type="submit" class="btn-gonder">📧 İş Ortaklığı Formu Gönder</button>
+                <button type="submit" class="btn-gonder">📧 Mağaza Kayıt Başvurusu Gönder</button>
             </form>
         </section>
 
@@ -268,30 +319,32 @@
         function kategoriMenusuAc() { document.getElementById("kategoriSidebar").classList.add("aktif"); }
         function kategoriMenusuKapat() { document.getElementById("kategoriSidebar").classList.remove("aktif"); }
 
-        function kategoriFiltrele(oyunAdi) {
+        // Gelişmiş Kategori Filtreleme Fonksiyonu
+        function kategoriFiltrele(kategoriKodu) {
             let kartlar = document.querySelectorAll(".karsilastirma-karti");
             kartlar.forEach(kart => {
-                if (oyunAdi === "hepsi") { kart.style.display = "block"; } 
-                else {
-                    if (kart.getAttribute("data-game") === oyunAdi) { kart.style.display = "block"; } 
-                    else { kart.style.display = "none"; }
+                if (kategoriKodu === "hepsi") { 
+                    kart.style.display = "block"; 
+                } else {
+                    if (kart.getAttribute("data-kat") === kategoriKodu) { 
+                        kart.style.display = "block"; 
+                    } else { 
+                        kart.style.display = "none"; 
+                    }
                 }
             });
             kategoriMenusuKapat();
         }
 
-        // OTOMATİK EN UCUZ BULMA ALGORİTMASI
+        // AKILLI EN UCUZ BULMA MOTORU
         function enUcuzBulVeIsaretle() {
-            // Sitedeki tüm karşılaştırma kartlarını (ürünleri) tara
             let urunKartlari = document.querySelectorAll(".karsilastirma-karti");
 
             urunKartlari.forEach(kart => {
-                // Her ürünün altındaki fiyat satırlarını bul
                 let satirlar = kart.querySelectorAll(".fiyat-satiri");
                 let enDusukFiyat = Infinity;
                 let enUcuzSatir = null;
 
-                // Satırları tek tek dönerek fiyat karşılaştırması yap
                 satirlar.forEach(satir => {
                     let fiyat = parseFloat(satir.getAttribute("data-fiyat"));
                     if (fiyat < enDusukFiyat) {
@@ -300,7 +353,6 @@
                     }
                 });
 
-                // En ucuz satırı bulduktan sonra içindeki rozeti görünür yap
                 if (enUcuzSatir) {
                     let rozet = enUcuzSatir.querySelector(".en-ucuz-rozet");
                     if (rozet) {
@@ -310,7 +362,6 @@
             });
         }
 
-        // Sayfa yüklendiği an akıllı motor çalışsın
         window.onload = enUcuzBulVeIsaretle;
     </script>
 </body>
