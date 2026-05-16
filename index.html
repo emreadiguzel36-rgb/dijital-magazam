@@ -2,121 +2,189 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Premium Dijital Mağazam - Daha Canlı Sürüm!</title>
+    <title>Cyber Neon - Dijital Mağazam</title>
     
     <style>
-        /* Modern ve Canlı Tasarım */
+        /* Oyuncu & Siber Gece Teması */
         body { 
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; /* Daha modern bir yazı tipi */
-            background-color: #f0f4f8; /* Daha taze bir arka plan */
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; 
+            /* Arka plana hareketli siber/uzay hissi veren derin bir görsel ve koyu renk ekliyoruz */
+            background: #0d1117 url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
             margin: 0; 
             padding: 0; 
-            color: #333;
+            color: #ffffff;
         }
 
-        /* Başlık ve Arka Plan Paneli */
+        /* Neon Geçişli Başlık Paneli */
         header { 
-            background: linear-gradient(135deg, #2c3e50, #34495e); /* Canlı geçişli renk */
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(10px); /* Arkadaki resmi buzlu cam yapar */
             color: white; 
-            padding: 50px 20px; 
+            padding: 40px 20px; 
             text-align: center; 
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-bottom: 2px solid #00f2fe; /* Neon Mavi Çizgi */
+            box-shadow: 0 4px 30px rgba(0, 242, 254, 0.2);
         }
-        header h1 { margin: 0; font-size: 3em; text-transform: uppercase; letter-spacing: 2px; }
+        header h1 { 
+            margin: 0; 
+            font-size: 3em; 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00f2fe, 0 0 20px #4facfe; /* Neon Parlama Efekti */
+        }
 
+        /* Siber Menü Linkleri */
         .menu { margin-top: 20px; }
         .menu a { 
-            color: white; 
+            color: #00f2fe; 
             text-decoration: none; 
             font-weight: bold; 
             margin: 0 15px; 
-            padding: 10px 15px; 
+            padding: 10px 20px; 
             border-radius: 30px; 
             transition: 0.3s;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid #00f2fe;
+            box-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
         }
-        .menu a:hover { background-color: rgba(255,255,255,0.2); border-color: white; }
+        .menu a:hover { 
+            background: #00f2fe; 
+            color: #000; 
+            box-shadow: 0 0 15px #00f2fe; 
+        }
 
         /* Ana İçerik Kaplayıcı */
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
-        /* İçerik Kutuları */
+        /* Cam Efektli Kutular (Glassmorphic Kutular) */
         section { 
-            background-color: white; 
+            background: rgba(22, 27, 34, 0.75); /* Yarı şeffaf koyu arka plan */
+            backdrop-filter: blur(12px); /* Arkadaki temayı harika şekilde süzerek gösterir */
+            -webkit-backdrop-filter: blur(12px);
             padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05); 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             margin-bottom: 30px;
         }
+
+        h2 {
+            color: #ff007f; /* Neon Pembe Başlıklar */
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+            margin-top: 0;
+        }
         
-        /* Bakiye Paneli Gelişmiş Tasarım */
-        .panel-header { display: flex; align-items: center; justify-content: space-between; }
+        /* Bakiye Paneli Düzeni */
+        .panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .user-info { display: flex; align-items: center; gap: 20px; }
-        .avatar { width: 60px; height: 60px; background-color: #3498db; color: white; font-size: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        .avatar { width: 60px; height: 60px; background: linear-gradient(135deg, #00f2fe, #4facfe); color: white; font-size: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 0 15px #00f2fe; }
 
-        .bakiye-kutusu { font-size: 24px; color: #27ae60; font-weight: bold; }
+        .bakiye-kutusu { font-size: 28px; color: #00ff87; font-weight: bold; text-shadow: 0 0 10px rgba(0, 255, 135, 0.5); }
 
-        /* Ürün Kartları (Görsel Canlılık) */
-        .fiyatlar-listesi { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 0; }
+        /* Ürün Kartları (Neon Siber Düzen) */
+        .fiyatlar-listesi { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0; list-style: none; }
         .urun-karti { 
-            background-color: white; 
-            border-radius: 15px; 
-            padding: 20px; 
+            background: rgba(255, 255, 255, 0.03); 
+            border-radius: 20px; 
+            padding: 25px; 
             text-align: center; 
             transition: 0.3s;
-            border: 1px solid #f0f0f0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .urun-karti:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: #e67e22; }
+        .urun-karti:hover { 
+            transform: translateY(-8px); 
+            border-color: #ff007f; 
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.3); 
+        }
 
-        .urun-ikon { font-size: 60px; margin-bottom: 10px; background: #f8f9fa; display: inline-block; padding: 15px; border-radius: 15px; }
-        .urun-adi { font-size: 1.5em; font-weight: bold; }
-        .urun-aciklama { color: #7f8c8d; font-size: 14px; margin: 10px 0; }
+        .urun-ikon { font-size: 60px; margin-bottom: 15px; display: inline-block; }
+        .urun-adi { font-size: 1.6em; font-weight: bold; color: #fff; }
+        .urun-aciklama { color: #a0aec0; font-size: 14px; margin: 12px 0; min-height: 40px; }
         
-        .fiyat-satinal-grubu { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-        .fiyat { font-size: 1.5em; font-weight: bold; }
+        .fiyat-satinal-grubu { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+        .fiyat { font-size: 1.6em; font-weight: bold; color: #00f2fe; }
 
-        /* Butonlar */
+        /* Neon Butonlar */
         button, .btn-gonder { 
             border: none; 
-            padding: 12px 24px; 
+            padding: 12px 28px; 
             border-radius: 30px; 
             cursor: pointer; 
             font-weight: bold; 
             color: white; 
             transition: 0.2s;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn-satin-al { background-color: #e67e22; }
-        .btn-satin-al:hover { background-color: #d35400; }
+        .btn-satin-al { 
+            background: linear-gradient(135deg, #ff007f, #7928ca); 
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+        }
+        .btn-satin-al:hover { 
+            box-shadow: 0 0 20px #ff007f; 
+            transform: scale(1.05); 
+        }
         
-        .btn-bakiye-yukle { background-color: #2ecc71; margin-top: 10px; font-size: 16px; }
-        .btn-bakiye-yukle:hover { background-color: #27ae60; }
+        .btn-bakiye-yukle { 
+            background: linear-gradient(135deg, #00ff87, #60efff); 
+            color: #000;
+            font-size: 16px; 
+            box-shadow: 0 0 10px rgba(0, 255, 135, 0.4);
+        }
+        .btn-bakiye-yukle:hover { 
+            box-shadow: 0 0 20px #00ff87; 
+            transform: scale(1.05);
+        }
 
-        /* Envanter İçeriği */
-        .envanter-listesi { padding: 0; }
+        /* Envanter Kutuları */
+        .envanter-listesi { display: flex; flex-direction: column; gap: 15px; }
         .envanter-item { 
-            background-color: #f8f9fa; 
-            border: 1px solid #e0e0e0;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 20px;
+            border-radius: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .item-bilgi { display: flex; align-items: center; gap: 10px; }
-        .status-badge { background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 10px; font-size: 12px; }
+        .item-bilgi { display: flex; align-items: center; gap: 15px; }
+        .lisans-kodu {
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff87;
+            background: #111;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 15px;
+            border: 1px solid #00ff87;
+            box-shadow: 0 0 5px rgba(0,255,135,0.2);
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .status-badge { background: #00ff87; color: #000; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
 
-        /* Formlar */
-        .form-grup { margin-bottom: 15px; }
-        .form-grup label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-grup input, .form-grup textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; }
-        .btn-gonder { background-color: #34495e; width: 100%; font-size: 16px; }
+        /* Form Elemanları */
+        .form-grup { margin-bottom: 20px; }
+        .form-grup label { display: block; margin-bottom: 8px; font-weight: bold; color: #00f2fe; }
+        .form-grup input, .form-grup textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            background: rgba(0,0,0,0.3); 
+            color: white;
+        }
+        .form-grup input:focus, .form-grup textarea:focus {
+            outline: none;
+            border-color: #00f2fe;
+            box-shadow: 0 0 10px rgba(0,242,254,0.5);
+        }
+        .btn-gonder { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #000; font-size: 16px; }
+        .btn-gonder:hover { box-shadow: 0 0 20px #00f2fe; }
 
-        /* Mağaza İçeriğini Gizlemek İçin */
-        .gizli { display: none !important; }
+        p { color: #a0aec0; }
     </style>
 </head>
 <body>
@@ -135,14 +203,14 @@
         <section id="panel">
             <div class="panel-header">
                 <div class="user-info">
-                    <div class="avatar">👨‍💻</div>
+                    <div class="avatar">👑</div>
                     <div>
-                        <h2>Hoş geldin, <strong id="kullaniciAdiYazisi">admin</strong>! 👋</h2>
-                        <p>Bugün harika bir alışveriş deneyimi yaşamanızı dileriz.</p>
+                        <h2 style="color: #00f2fe; margin:0;">Hoş geldin, Yöneticim! 👋</h2>
+                        <p style="margin: 5px 0 0 0;">Siber mağazanız tam kapasiteyle çalışıyor.</p>
                     </div>
                 </div>
                 <div style="text-align: right;">
-                    <p>Mevcut Bakiyeniz:</p>
+                    <p style="margin:0 0 5px 0;">Mevcut Bakiyeniz:</p>
                     <span class="bakiye-kutusu" id="bakiyeMiktari">500.00 TL</span>
                     <br>
                     <button class="btn-bakiye-yukle" onclick="bakiyeYukle()">➕ Bakiye Yükle</button>
@@ -151,14 +219,14 @@
         </section>
 
         <section id="fiyatlar">
-            <h2>🔥 Dijital Ürünlerimiz & Paketler</h2>
+            <h2>🔥 Dijital Envanter & Paketler</h2>
             <div class="fiyatlar-listesi">
                 
                 <div class="urun-karti">
                     <div>
                         <div class="urun-ikon">📦</div>
                         <div class="urun-adi">Gümüş Paket</div>
-                        <p class="urun-aciklama">Başlangıç seviyesi dijital kod paketi. Temel lisansları içerir.</p>
+                        <p class="urun-aciklama">Giriş seviyesi siber sistem erişim kodu. Temel özellikleri hemen aktif eder.</p>
                     </div>
                     <div class="fiyat-satinal-grubu">
                         <span class="fiyat">50 TL</span>
@@ -170,7 +238,7 @@
                     <div>
                         <div class="urun-ikon">🚀</div>
                         <div class="urun-adi">Altın Paket</div>
-                        <p class="urun-aciklama">Premium özellikler içeren üst düzey paket. Özel lisanslar ve kupon kodları teslimatı.</p>
+                        <p class="urun-aciklama">Yüksek hızlı veri ve premium sunucu erişim paketi. Tam otomasyon desteği sağlar.</p>
                     </div>
                     <div class="fiyat-satinal-grubu">
                         <span class="fiyat">150 TL</span>
@@ -182,7 +250,7 @@
                     <div>
                         <div class="urun-ikon">🎮</div>
                         <div class="urun-adi">Elmas Oyun Paketi</div>
-                        <p class="urun-aciklama">Popüler oyun kodlarını içeren, anında teslim edilen VIP kod paketi.</p>
+                        <p class="urun-aciklama">Tüm platformlarda geçerli VIP oyun ve kasa anahtarı kuponlarını içerir.</p>
                     </div>
                     <div class="fiyat-satinal-grubu">
                         <span class="fiyat">300 TL</span>
@@ -194,23 +262,23 @@
         </section>
 
         <section id="envanter">
-            <h2>🔑 Satın Alınan Paketler & Lisans Anahtarları</h2>
-            <p id="bosMesaji">Henüz hiçbir paket satın almadınız. Satın aldığınız dijital kodlar anında burada belirecektir.</p>
+            <h2>🔑 Üretilen Dijital Lisans Anahtarlarınız</h2>
+            <p id="bosMesaji" style="color: #a0aec0;">Henüz şifreli bir kod üretilmedi. Satın aldığınız ürünlerin kodları anlık olarak siber ağ üzerinden buraya düşer.</p>
             <div id="envanterListesi" class="envanter-listesi"></div>
         </section>
 
         <section id="iletisim">
-            <h2>Bizimle İletişime Geçin</h2>
+            <h2>Siber Destek Hattı</h2>
             <form action="https://formspree.io/f/xbjnrdpq" method="POST">
                 <div class="form-grup">
                     <label>E-Posta Adresiniz:</label>
                     <input type="email" name="email" placeholder="ornek@mail.com" required>
                 </div>
                 <div class="form-grup">
-                    <label>Mesajınız:</label>
-                    <textarea name="message" rows="5" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                    <label>Destek İstediğiniz Konu / Mesajınız:</label>
+                    <textarea name="message" rows="5" placeholder="Mesajınızı siber merkeze iletin..." required></textarea>
                 </div>
-                <button type="submit" class="btn-gonder">📧 Mesajı Gönder</button>
+                <button type="submit" class="btn-gonder">📧 Güvenli Mesaj Gönder</button>
             </form>
         </section>
 
@@ -219,53 +287,4 @@
     <script>
         let mevcutBakiye = 500;
 
-        function bakiyeYukle() {
-            mevcutBakiye = mevcutBakiye + 100;
-            document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
-        }
-
-        function lisansKoduUret() {
-            let karakterler = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let kod = "KEY-";
-            for (let i = 0; i < 4; i++) {
-                kod += karakterler.charAt(Math.floor(Math.random() * karakterler.length));
-            }
-            kod += "-";
-            for (let i = 0; i < 4; i++) {
-                kod += karakterler.charAt(Math.floor(Math.random() * karakterler.length));
-            }
-            return kod;
-        }
-
-        function paketSatinAl(fiyat, paketAdi) {
-            if (mevcutBakiye >= fiyat) {
-                mevcutBakiye = mevcutBakiye - fiyat;
-                document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
-                
-                document.getElementById("bosMesaji").style.display = "none";
-
-                let yeniKod = lisansKoduUret();
-
-                let liste = document.getElementById("envanterListesi");
-                let envanterItem = document.createElement("div");
-                envanterItem.className = "envanter-item";
-                envanterItem.innerHTML = `
-                    <div class="item-bilgi">
-                        <span style="font-size: 20px;">KEY</span>
-                        <div>
-                            <strong>${paketAdi} Satın Alındı</strong><br>
-                            <span class="lisans-kodu" style="font-family: monospace; color: #2ecc71; background: #2c3e50; padding: 2px 5px; border-radius: 3px;">${yeniKod}</span>
-                        </div>
-                    </div>
-                    <span class="status-badge">Aktif</span>
-                `;
-                liste.appendChild(envanterItem);
-
-                alert("Satın alma başarılı! Dijital ürün kodunuz envantere teslim edildi.");
-            } else {
-                alert("Yetersiz bakiye! Lütfen cüzdanınıza bakiye yükleyin.");
-            }
-        }
-    </script>
-</body>
-</html>
+        function baki
