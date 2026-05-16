@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Pro - Enterprise Engine</title>
+    <title>SiberCimri Pro - Mega Engine Enterprise</title>
     
     <style>
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             margin: 0; padding: 0; color: #ffffff; overflow-x: hidden; min-height: 100vh;
-            /* ARKA PLAN RESMİ HEM GİRİŞTE HEM ANA SİTEDE SABİT KALACAK */
+            /* DALGALI ARKA PLAN RESMİ */
             background: url('image_368ddf.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
         /* ========================================================
-           %100 KİLİTLENMEZ GİRİŞ PANELİ (SECURE GATEWAY)
+           %100 KİLİTLENMEZ GİRİŞ GATEWAY PANELİ
            ======================================================== */
         #authGateway {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(9, 13, 22, 0.45); 
-            backdrop-filter: blur(12px); 
+            backdrop-filter: blur(15px); 
             display: flex; align-items: center; justify-content: center;
             z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
@@ -36,7 +36,7 @@
         .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); font-size: 24px; }
         .auth-container p { color: #94a3b8; font-size: 13px; margin: 0 0 25px 0; line-height: 1.4; }
 
-        /* ANA SİTE BAŞLANGIÇTA GİZLİ TUTULUR */
+        /* ANA İÇERİK BAŞTA TAMAMEN GİZLİ KALIR */
         #anaIcerik { display: none; }
 
         .form-grup { margin-bottom: 18px; text-align: left; }
@@ -62,79 +62,50 @@
         }
 
         /* ========================================================
-           KAYMA ENGELLİ PREMIUM SİTE HEADER TASARIMI
+           GERİ GETİRİLEN ESKİ PREMİUM SİTE DÜZENİ VE HEADER
            ======================================================== */
         header { 
-            background: rgba(11, 15, 25, 0.75); 
-            border-bottom: 3px solid #00f2fe;
-            padding: 25px 20px; 
-            backdrop-filter: blur(20px); 
-            position: sticky; top: 0; z-index: 999;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(11, 15, 25, 0.8); border-bottom: 3px solid #00f2fe;
+            padding: 20px; backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 999;
         }
-        header h1 { margin: 0 0 20px 0; font-size: 2.4em; color: #00f2fe; text-align: center; font-weight: 800; text-shadow: 0 0 15px rgba(0,242,254,0.4); }
+        header h1 { margin: 0 0 15px 0; font-size: 2.2em; color: #00f2fe; text-align: center; font-weight: 800; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
         
-        .ust-kontroller { 
-            display: flex; 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            align-items: center; 
-            justify-content: space-between; 
-        }
-        
-        .kategori-ac-btn { 
-            background: #ff007f; color: #fff; border: none; padding: 14px 28px; 
-            font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; 
-            box-shadow: 0 4px 15px rgba(255,0,127,0.3); transition: 0.2s;
-        }
-        .kategori-ac-btn:hover { background: #fff; color: #000; }
+        .ust-kontroller { display: flex; gap: 15px; max-width: 1200px; margin: 0 auto; align-items: center; justify-content: space-between; }
+        .kategori-ac-btn { background: #ff007f; color: #fff; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; transition: 0.2s; }
+        .kategori-ac-btn:hover { box-shadow: 0 0 15px #ff007f; }
         
         .arama-kutusu-kapsayici { flex-grow: 1; }
-        .arama-kutusu { 
-            width: 100%; padding: 14px 24px; border-radius: 25px; border: 2px solid #00f2fe; 
-            background: rgba(0,0,0,0.75); color: #fff; outline: none; font-size: 15px; 
-            box-sizing: border-box; transition: 0.3s;
-        }
-        .arama-kutusu:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255,0,127,0.3); }
+        .arama-kutusu { width: 100%; padding: 12px 24px; border-radius: 25px; border: 2px solid #00f2fe; background: rgba(0,0,0,0.65); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; }
         
-        .user-profile-tag { 
-            background: linear-gradient(135deg, #00ff87, #00b358); color: #000; 
-            padding: 14px 28px; font-weight: 800; border-radius: 25px; font-size: 14px; 
-            white-space: nowrap; box-shadow: 0 4px 15px rgba(0,255,135,0.3); letter-spacing: 0.5px;
-        }
+        .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 12px 24px; font-weight: 800; border-radius: 25px; font-size: 14px; white-space: nowrap; }
 
-        /* İÇERİK KARTLARI VE GÖRSEL PANAL KATMANLARI */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        section { 
-            background: rgba(17, 23, 38, 0.75); 
-            padding: 35px; border-radius: 24px; 
-            border: 1px solid rgba(255,255,255,0.08); 
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        h2 { color: #ff007f; margin-top: 0; font-size: 26px; letter-spacing: 0.5px; margin-bottom: 25px; }
+        .menu-linkleri { display: flex; justify-content: center; gap: 25px; margin-top: 15px; }
+        .menu-linkleri a { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; }
+        .menu-linkleri a:hover { color: #00f2fe; }
+
+        /* YAN KATEGORİ MENÜSÜ (SIDEBAR) GERİ GELDİ */
+        .sidebar { position: fixed; left: -310px; top: 0; width: 300px; height: 100%; background: #0b0f19; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 25px; box-sizing: border-box; box-shadow: 5px 0 25px rgba(0,0,0,0.5); }
+        .sidebar.aktif { left: 0; }
+        .sidebar a { display: block; color: #e2e8f0; padding: 14px 15px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; font-weight: 500; transition: 0.2s; }
+        .sidebar a:hover { background: rgba(0, 242, 254, 0.15); color: #00f2fe; }
+        .sidebar button { background: #ff007f; width: 100%; padding: 12px; color:#fff; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 8px; }
+
+        /* ENVENTER VE VERİ KARTLARI ALANI */
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        section { background: rgba(15, 23, 42, 0.75); padding: 35px; margin-bottom: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+        section h2 { margin-top: 0; color: #fff; font-size: 22px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
         
-        .karsilastirma-karti { 
-            background: rgba(30, 41, 59, 0.65); padding: 30px; margin-bottom: 25px; 
-            border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.2); transition: 0.3s;
-        }
-        .karsilastirma-karti:hover { border-color: #ff007f; box-shadow: 0 10px 30px rgba(255,0,127,0.15); transform: translateY(-2px); }
-        
-        .urun-ust-kisim { display: flex; align-items: center; gap: 25px; }
-        .urun-gorsel-kutusu { width: 95px; height: 95px; background: #fff; border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .karsilastirma-karti { background: rgba(30, 41, 59, 0.7); padding: 25px; margin-bottom: 25px; border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.2); }
+        .urun-ust-kisim { display: flex; align-items: center; gap: 20px; }
+        .urun-gorsel-kutusu { width: 90px; height: 90px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; flex-shrink: 0; }
         .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .urun-baslik { margin: 0; color: #fff; font-size: 22px; font-weight: bold; }
+        .urun-baslik { margin: 0; color: #fff; font-size: 20px; font-weight: bold; }
         
-        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 14px; overflow: hidden; }
-        .fiyat-satiri td { padding: 18px; font-size: 16px; background: rgba(0,0,0,0.45); }
+        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 12px; overflow: hidden; }
+        .fiyat-satiri td { padding: 16px; font-size: 15px; background: rgba(0,0,0,0.4); }
         
-        .git-btn { 
-            background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; padding: 12px 28px; 
-            text-decoration: none; border-radius: 20px; float: right; font-size: 13px; 
-            font-weight: bold; text-transform: uppercase; box-shadow: 0 4px 12px rgba(255,0,127,0.3); transition: 0.2s;
-        }
-        .git-btn:hover { box-shadow: 0 0 15px #ff007f; transform: scale(1.05); }
+        .git-btn { background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; padding: 10px 24px; text-decoration: none; border-radius: 20px; float: right; font-size: 13px; font-weight: bold; text-transform: uppercase; box-shadow: 0 4px 10px rgba(255,0,127,0.2); }
+        .git-btn:hover { box-shadow: 0 0 15px #ff007f; }
     </style>
 </head>
 <body>
@@ -174,24 +145,39 @@
 
 
     <div id="anaIcerik">
+        
+        <div id="kategoriSidebar" class="sidebar">
+            <button onclick="kategoriMenusuKapat()">MENÜYÜ KAPAT ×</button>
+            <a href="#" onclick="kategoriFiltrele('hepsi')">⭐ Tüm Sektörler</a>
+            <a href="#" onclick="kategoriFiltrele('elektronik')">📱 Elektronik</a>
+            <a href="#" onclick="kategoriFiltrele('giyim')">👕 Tekstil / Giyim</a>
+            <a href="#" onclick="kategoriFiltrele('gida')">🍏 Gıda / Market</a>
+        </div>
+
         <header>
             <h1>SiberCimri Mega Engine</h1>
             <div class="ust-kontroller">
-                <button class="kategori-ac-btn">☰ Tüm Sektörler</button>
+                <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Tüm Sektörler</button>
                 <div class="arama-kutusu-kapsayici">
                     <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="urunAra()" placeholder="Sistem içinde akıllı arama yapın...">
                 </div>
                 <div id="userLabel" class="user-profile-tag">👤 Yükleniyor...</div>
+            </div>
+            <div class="menu-linkleri">
+                <a href="#fiyatMotoru">📊 Canlı Karşılaştırma</a>
+                <a href="#">🛠️ API Entegrasyonları</a>
+                <a href="#">ℹ️ Vizyonumuz</a>
             </div>
         </header>
 
         <div class="container">
             <section id="fiyatMotoru">
                 <h2>📋 Korunan Ticari Pazar Yeri Veri Tabanı</h2>
-                <div class="karsilastirma-karti">
-                    <div class="urun-ust-kim">
+                
+                <div class="karsilastirma-karti" data-kat="elektronik">
+                    <div class="urun-ust-kisim">
                         <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150"></div>
-                        <div style="margin-left: 20px;">
+                        <div>
                             <h3 class="urun-baslik">Apple iPhone 16 Pro Max 512 GB</h3>
                             <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">Sektör: Elektronik / Akıllı Telefon</span>
                         </div>
@@ -199,11 +185,29 @@
                     <table class="fiyat-tablosu">
                         <tr class="fiyat-satiri">
                             <td style="color:#fff; font-weight: 600;">Amazon TR</td>
-                            <td style="color:#00ff87; font-weight:bold; font-size: 18px;">89.500 TL</td>
+                            <td style="color:#00ff87; font-weight:bold; font-size: 17px;">89.500 TL</td>
                             <td><a href="#" class="git-btn">Git</a></td>
                         </tr>
                     </table>
                 </div>
+
+                <div class="karsilastirma-karti" data-kat="giyim">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">Premium Slim Fit Erkek Ceket</h3>
+                            <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">Sektör: Tekstil / Hazır Giyim</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri">
+                            <td style="color:#fff; font-weight: 600;">Hepsiburada</td>
+                            <td style="color:#00ff87; font-weight:bold; font-size: 17px;">3.499 TL</td>
+                            <td><a href="#" class="git-btn">Git</a></td>
+                        </tr>
+                    </table>
+                </div>
+
             </section>
         </div>
     </div>
@@ -221,7 +225,7 @@
                 savedPhone = document.getElementById("regTel").value.trim();
 
                 if(!savedName || !savedSurname || savedPhone.length < 10) {
-                    alert("Lütfen alanları eksiksiz doldurunuz!");
+                    alert("Lütfen tüm alanları eksiksiz doldurunuz!");
                     return;
                 }
 
@@ -229,18 +233,18 @@
                 
                 let logBox = document.getElementById("systemLog");
                 logBox.style.display = "block";
-                logBox.innerHTML = "⏳ SMS API ağ geçidine bağlanılıyor...<br>";
+                logBox.innerHTML = "⏳ Güvenli ağ kanalından SMS API'sine bağlanılıyor...<br>";
 
                 setTimeout(() => {
-                    logBox.innerHTML += "🛰️ Operatör Onayı Alındı...<br>";
-                    logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Numara: " + savedPhone + "<br>🔑 Telefon Kodu: <strong style='font-size:16px; color:#fff;'> " + generatedOTP + "</strong>";
+                    logBox.innerHTML += "🛰️ Operatör Doğrulaması Alındı...<br>";
+                    logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Giden Numara: " + savedPhone + "<br>🔑 Giriş Kodunuz: <strong style='font-size:16px; color:#fff;'>" + generatedOTP + "</strong>";
                     
                     document.getElementById("authStep1").style.display = "none";
                     document.getElementById("authStep2").style.display = "block";
                 }, 800);
 
             } catch (err) {
-                alert("Sistem hatası oluştu, lütfen sayfayı yenileyin.");
+                alert("Sayfa yükleme hatası, lütfen yenileyin.");
             }
         }
 
@@ -256,8 +260,20 @@
                     document.getElementById("userLabel").innerHTML = "👑 " + savedName.toUpperCase() + " " + savedSurname.toUpperCase();
                 }, 400);
             } else {
-                alert("❌ Hatalı şifre girdiniz!");
+                alert("❌ Girdiğiniz OTP kodu yanlış!");
             }
+        }
+
+        function kategoriMenusuAc() { document.getElementById("kategoriSidebar").classList.add("aktif"); }
+        function kategoriMenusuKapat() { document.getElementById("kategoriSidebar").classList.remove("aktif"); }
+
+        function kategoriFiltrele(katKodu) {
+            let kartlar = document.querySelectorAll(".karsilastirma-karti");
+            kartlar.forEach(k => {
+                if(katKodu === 'hepsi' || k.getAttribute("data-kat") === katKodu) { k.style.display = "block"; }
+                else { k.style.display = "none"; }
+            });
+            kategoriMenusuKapat();
         }
 
         function urunAra() {
