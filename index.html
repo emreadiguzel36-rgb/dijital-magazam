@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri - Canavar Mega Engine v100 - Stable</title>
+    <title>SiberCimri - Yapay Zeka Destekli Akıllı Entegrasyon Motoru</title>
     <style>
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #13161f; color: #ffffff; overflow-x: hidden;
         }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0b0d13; }
-        ::-webkit-scrollbar-thumb { background: #ff007f; border-radius: 4px; }
 
         /* HEADER */
         .navbar-header {
@@ -39,77 +34,66 @@
             font-weight: bold; border-radius: 25px; font-size: 13px;
         }
 
-        /* ANA LAYOUT */
+        /* NAVİGASYON SEKMELERİ (SAYFA DEĞİŞTİRİCİ) */
+        .page-navigation-tabs {
+            display: flex; justify-content: center; background-color: #0b0d13;
+            border-bottom: 1px solid #1f2431; padding: 10px 0; gap: 20px;
+        }
+        .tab-btn {
+            background: transparent; border: none; color: #a0aec0;
+            padding: 10px 20px; font-size: 14px; font-weight: bold;
+            cursor: pointer; border-radius: 8px; transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background-color: #ff007f; color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+        }
+
+        /* ANA SÜTUN DÜZENLERİ */
         .main-container {
             display: flex; max-width: 1500px; margin: 30px auto 120px auto;
             padding: 0 20px; gap: 25px;
         }
-
-        /* SOL SEKTÖR PANELİ */
         .sidebar-categories {
             width: 310px; background-color: #0b0d13; border-radius: 16px;
             padding: 20px; border: 1px solid #1f2431; flex-shrink: 0;
-            max-height: 80vh; overflow-y: auto; position: sticky; top: 20px;
+            max-height: 80vh; overflow-y: auto;
         }
-        .sidebar-categories h3 {
-            font-size: 14px; text-transform: uppercase; color: #00d2ff;
-            margin-top: 0; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #1f2431;
-        }
+        .sidebar-categories h3 { font-size: 14px; text-transform: uppercase; color: #00d2ff; margin-top: 0; margin-bottom: 15px; }
+        
         .category-btn {
             display: flex; align-items: center; justify-content: space-between;
-            width: 100%; text-align: left; background: transparent;
-            border: none; color: #a0aec0; padding: 12px; font-size: 13px;
-            font-weight: 600; cursor: pointer; border-radius: 8px; margin-bottom: 4px;
+            width: 100%; text-align: left; background: transparent; border: none;
+            color: #a0aec0; padding: 12px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 4px;
         }
-        .category-btn:hover, .category-btn.active {
-            background: linear-gradient(90deg, #ff007f, #df0000); color: #ffffff;
-        }
-        .badge-count { background-color: rgba(255, 255, 255, 0.15); color: #ffffff; font-size: 10px; padding: 2px 6px; border-radius: 10px; }
+        .category-btn:hover, .category-btn.active { background: linear-gradient(90deg, #ff007f, #df0000); color: #ffffff; border-radius: 8px; }
 
-        /* SAĞ ENVANTER PANELİ */
-        .inventory-display-area {
-            flex-grow: 1; background-color: #171b26; border-radius: 16px; padding: 25px; border: 1px solid #1f2431;
-        }
+        .inventory-display-area { flex-grow: 1; background-color: #171b26; border-radius: 16px; padding: 25px; border: 1px solid #1f2431; }
         .panel-section-title { font-size: 20px; font-weight: bold; margin-top: 0; margin-bottom: 25px; display: flex; justify-content: space-between; }
 
-        /* ÜRÜN KARTLARI */
+        /* ÜRÜN VE KARŞILAŞTIRMA KARTLARI */
         .product-row {
             background-color: #0b0d13; border-radius: 12px; padding: 18px 20px;
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 12px; border: 1px solid #1f2431;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border: 1px solid #1f2431;
         }
         .product-info-block { display: flex; align-items: center; gap: 20px; }
-        .product-image-box {
-            width: 60px; height: 60px; background-color: #ffffff; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; flex-shrink: 0;
-        }
+        .product-image-box { width: 60px; height: 60px; background-color: #ffffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; }
         .product-image-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .product-title-text { font-size: 16px; font-weight: bold; margin: 0 0 6px 0; }
-        .product-tag-text { font-size: 10px; color: #00d2ff; font-weight: bold; text-transform: uppercase; background: rgba(0, 210, 255, 0.1); padding: 3px 8px; border-radius: 4px; }
         
-        .product-price-block { display: flex; align-items: center; gap: 25px; }
-        .vendor-name { color: #a0aec0; font-size: 13px; background: #171b26; padding: 4px 10px; border-radius: 6px; }
-        .price-text-highlight { color: #00ffaa; font-weight: 800; font-size: 18px; }
+        .compare-table { width: 100%; border-collapse: collapse; margin-top: 15px; background-color: #05070a; border-radius: 8px; overflow: hidden; }
+        .compare-table th, .compare-table td { padding: 12px; text-align: left; border-bottom: 1px solid #1f2431; }
+        .compare-table th { background-color: #0b0d13; color: #00d2ff; font-size: 13px; }
+        
+        .cheapest-badge { background-color: #00ffaa; color: #000000; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-left: 5px; }
+        
         .btn-action-git {
             background: linear-gradient(90deg, #ff007f, #ff0055); color: #ffffff; border: none;
-            padding: 10px 22px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px;
+            padding: 8px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 11px; text-transform: uppercase;
         }
 
-        /* YAPAY ZEKA ASİSTANI */
-        .ai-chat-widget {
-            position: fixed; bottom: 30px; right: 30px; width: 360px;
-            background-color: #0b0d13; border: 2px solid #ff007f;
-            border-radius: 16px; box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
-            display: flex; flex-direction: column; overflow: hidden; z-index: 100000;
-        }
-        .ai-chat-header { background: linear-gradient(90deg, #ff007f, #df0000); padding: 15px; font-weight: bold; font-size: 13px; display: flex; justify-content: space-between; }
-        .ai-chat-messages { height: 260px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px; background-color: #05070a; }
-        .msg { padding: 10px 14px; border-radius: 10px; max-width: 80%; line-height: 1.4; }
-        .msg.user { background-color: #ff007f; color: #ffffff; align-self: flex-end; }
-        .msg.ai { background-color: #171b26; color: #00d2ff; align-self: flex-start; }
-        .ai-chat-input-area { display: flex; border-top: 1px solid #1f2431; }
-        .ai-chat-input { flex-grow: 1; border: none; padding: 14px; background: transparent; color: #ffffff; outline: none; }
-        .ai-send-btn { background-color: #00d2ff; border: none; color: #000000; padding: 0 20px; font-weight: bold; cursor: pointer; }
+        /* SIFIRDAN İKİNCİ SAYFA ALANI */
+        #page-comparison { display: none; }
     </style>
 </head>
 <body>
@@ -117,136 +101,144 @@
     <div class="navbar-header">
         <h1 class="main-brand-title">SiberCimri Mega Engine</h1>
         <div class="navbar-controls">
-            <input type="text" id="mainSearchInput" class="search-input-field" placeholder="İğneden ipliğe her şeyi arayın...">
+            <input type="text" id="mainSearchInput" class="search-input-field" placeholder="Entegrasyon havuzunda akıllı arama yapın...">
             <div class="user-status-badge">👑 EMRE ADIGÜZEL</div>
         </div>
     </div>
 
-    <div class="main-container">
-        <div class="sidebar-categories" id="sidebarMenu">
-            <h3>🗂️ İğneden İpliğe Sektörler</h3>
-            </div>
+    <div class="page-navigation-tabs">
+        <button class="tab-btn active" id="tab-btn-1" onclick="switchPage(1)">📋 Ana Envanter Havuzu</button>
+        <button class="tab-btn" id="tab-btn-2" onclick="switchPage(2)">📊 2. Sayfa: Canlı Fiyat Karşılaştırma</button>
+    </div>
 
+    <div id="page-inventory" class="main-container">
+        <div class="sidebar-categories" id="sidebarMenu">
+            <h3>🗂️ API Sektörleri</h3>
+            </div>
         <div class="inventory-display-area">
             <div class="panel-section-title">
-                <span id="panelViewTitle">📋 Aktif Pazar Yeri Veri Tabanı (Tüm Envanter)</span>
-                <span style="font-size:12px; color:#ff007f;" id="lblResultCount">0 ürün</span>
+                <span>📋 Mağaza API Entegrasyon Havuzu</span>
+                <span style="font-size:12px; color:#ff007f;" id="lblResultCount">0 Ürün</span>
             </div>
             <div id="productsWrapper"></div>
         </div>
     </div>
 
-    <div class="ai-chat-widget">
-        <div class="ai-chat-header">
-            <span>🤖 SiberCimri AI Smart Assistant</span>
-            <span style="font-size: 10px; background: #00ffaa; color: #000; padding: 2px 6px; border-radius: 10px; font-weight: bold;">AKTİF</span>
-        </div>
-        <div class="ai-chat-messages" id="aiChatBox">
-            <div class="msg ai">SiberCimri Canavar Engine sistemine hoş geldiniz Emre Bey! İğneden ipliğe tüm envanter aktiftir.</div>
-        </div>
-        <div class="ai-chat-input-area">
-            <input type="text" id="aiInputField" class="ai-chat-input" placeholder="Yapay zekaya sorun...">
-            <button class="ai-send-btn" id="btnAiSend">GÖNDER</button>
+    <div id="page-comparison" class="main-container">
+        <div class="inventory-display-area" style="width: 100%;">
+            <div class="panel-section-title">
+                <span>📊 Detaylı Pazar Analizi ve En Ucuz Mağaza Yönlendirmesi</span>
+            </div>
+            <div id="comparisonWrapper">
+                </div>
         </div>
     </div>
 
     <script>
-        // DEVASA VE HATASIZ VERİ MATRİSİ
-        const UltimateSonsuzDatabase = [
-            { title: "Apple iPhone 16 Pro Max 512 GB", sector: "Elektronik", vendor: "Amazon TR", price: "89.500 TL", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100" },
-            { title: "Asus ROG Strix RTX 4090 24GB Ekran Kartı", sector: "Elektronik", vendor: "İncehesap", price: "94.499 TL", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=100" },
-            { title: "Altın Başak Renkli Dikiş İpliği Seti (24'lü)", sector: "Hırdavat & Tuhafiye", vendor: "Hepsiburada", price: "245 TL", img: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=100" },
-            { title: "Singer Çelik Dikiş İğnesi Seti", sector: "Hırdavat & Tuhafiye", vendor: "Trendyol", price: "89 TL", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=100" },
-            { title: "3 Fazlı Sanayi Tipi Sütunlu Matkap Tezgahı", sector: "Ağır Sanayi", vendor: "SanayiBurada", price: "45.000 TL", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=100" },
-            { title: "Siemens Entegre Kaçak Akım Şalt Panosu", sector: "Ağır Sanayi", vendor: "Karaköy Elektrik", price: "27.300 TL", img: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=100" },
-            { title: "Premium Slim Fit Erkek Kaşe Kaban", sector: "Giyim & Mağaza", vendor: "Boyner", price: "4.299 TL", img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100" },
-            { title: "Nike Air Max Apex Koşu Ayakkabısı", sector: "Ayakkabı", vendor: "Nike Resmi", price: "6.590 TL", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=100" },
-            { title: "Prima Premium Care Bebek Bezi 4 Numara", sector: "Bebek & Çocuk", vendor: "Ebebek", price: "749 TL", img: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=100" },
-            { title: "Komili Sızma Zeytinyağı 5 L", sector: "Süpermarket", vendor: "Migros", price: "1.390 TL", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=100" },
-            { title: "Dior Sauvage EDP 100 ML Erkek Parfümü", sector: "Kozmetik", vendor: "Sephora", price: "5.450 TL", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=100" },
-            { title: "Lüks Kadife L Koltuk Takımı", sector: "Ev & Yaşam", vendor: "Vivense", price: "24.900 TL", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=100" },
-            { title: "Michelin Primacy 4+ Yazlık Lastik", sector: "Otomotiv", vendor: "Lastikcim", price: "2.850 TL", img: "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=100" },
-            { title: "Harry Potter Tüm Seri Kutulu Özel Set", sector: "Hobi & Kitap", vendor: "D&R", price: "1.250 TL", img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=100" }
+        // TRENDYOL, HEPSİBURADA, TEKNOSA VE VATAN BİLGİSAYAR AKILLI VERİ SİMÜLASYON HAVUZU
+        const UnifiedApiDatabase = [
+            {
+                title: "Apple iPhone 16 Pro Max 512 GB",
+                sector: "Elektronik",
+                img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100",
+                prices: [
+                    { platform: "Trendyol", price: 89500, url: "https://www.trendyol.com" },
+                    { platform: "Hepsiburada", price: 88900, url: "https://www.hepsiburada.com" },
+                    { platform: "Teknosa", price: 89900, url: "https://www.teknosa.com" },
+                    { platform: "Vatan Bilgisayar", price: 88490, url: "https://www.vatanbilgisayar.com", cheapest: true }
+                ]
+            },
+            {
+                title: "Asus ROG Strix RTX 4090 24GB",
+                sector: "Elektronik",
+                img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=100",
+                prices: [
+                    { platform: "Trendyol", price: 95400, url: "https://www.trendyol.com" },
+                    { platform: "Hepsiburada", price: 94200, url: "https://www.hepsiburada.com", cheapest: true },
+                    { platform: "Vatan Bilgisayar", price: 96000, url: "https://www.vatanbilgisayar.com" }
+                ]
+            },
+            {
+                title: "Altın Başak Renkli Dikiş İpliği Seti",
+                sector: "Hırdavat & Tuhafiye",
+                img: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=100",
+                prices: [
+                    { platform: "Trendyol", price: 245, url: "https://www.trendyol.com", cheapest: true },
+                    { platform: "Hepsiburada", price: 260, url: "https://www.hepsiburada.com" }
+                ]
+            }
         ];
 
         let currentSector = "hepsi";
 
-        // DONMAYI ÖNLEYEN GÜVENLİ EVENT LISTENER ALTYAPISI
         document.addEventListener("DOMContentLoaded", function() {
             buildSidebarMenu();
-            renderProducts();
-
-            // Arama çubuğu dinleyicisi
-            document.getElementById("mainSearchInput").addEventListener("input", renderProducts);
-
-            // Yapay zeka buton dinleyicisi
-            document.getElementById("btnAiSend").addEventListener("click", sendToAI);
-            document.getElementById("aiInputField").addEventListener("keypress", function(e) {
-                if(e.key === "Enter") sendToAI();
+            renderInventoryPage();
+            renderComparisonPage();
+            document.getElementById("mainSearchInput").addEventListener("input", function() {
+                renderInventoryPage();
+                renderComparisonPage();
             });
         });
 
-        // SOL MENÜYÜ DİNAMİK İNŞA ETME
+        // 1. VE 2. SAYFA ARASINDA GEÇİŞ YAPMA FONKSİYONU
+        function switchPage(pageId) {
+            document.getElementById("tab-btn-1").classList.remove("active");
+            document.getElementById("tab-btn-2").classList.remove("active");
+            document.getElementById("page-inventory").style.display = "none";
+            document.getElementById("page-comparison").style.display = "none";
+
+            if (pageId === 1) {
+                document.getElementById("tab-btn-1").classList.add("active");
+                document.getElementById("page-inventory").style.display = "flex";
+            } else {
+                document.getElementById("tab-btn-2").classList.add("active");
+                document.getElementById("page-comparison").style.display = "flex";
+            }
+        }
+
+        // SOL MENÜ İNŞASI
         function buildSidebarMenu() {
             const sidebar = document.getElementById("sidebarMenu");
             const sectors = [
-                { id: "hepsi", name: "🌟 Sonsuz Envanter", filter: "hepsi" },
-                { id: "elektronik", name: "💻 Elektronik & PC Gamer", filter: "Elektronik" },
-                { id: "hirdavat", name: "🪡 İğne, İplik & Hırdavat", filter: "Hırdavat & Tuhafiye" },
-                { id: "sanayi", name: "⚙️ Ağır Sanayi & Elektrik", filter: "Ağır Sanayi" },
-                { id: "magaza", name: "👕 Mağaza Giyim & Tekstil", filter: "Giyim & Mağaza" },
-                { id: "ayakkabi", name: "👟 Ayakkabı Dünyası", filter: "Ayakkabı" },
-                { id: "cocuk", name: "👶 Anne, Bebek & Çocuk", filter: "Bebek & Çocuk" },
-                { id: "market", name: "🍏 Süpermarket & Gıda", filter: "Süpermarket" },
-                { id: "kozmetik", name: "💄 Kozmetik & Bakım", filter: "Kozmetik" },
-                { id: "ev", name: "🛋️ Ev, Mobilya & Yaşam", filter: "Ev & Yaşam" },
-                { id: "oto", name: "🚗 Otomotiv & Parça", filter: "Otomotiv" },
-                { id: "kitap", name: "📚 Kitap, Kırtasiye & Hobi", filter: "Hobi & Kitap" }
+                { id: "hepsi", name: "🌟 Tüm Mağazalar", filter: "hepsi" },
+                { id: "elektronik", name: "💻 Elektronik & PC", filter: "Elektronik" },
+                { id: "hirdavat", name: "🪡 İğne & İplik", filter: "Hırdavat & Tuhafiye" }
             ];
-
-            sidebar.innerHTML = "<h3>🗂️ İğneden İpliğe Sektörler</h3>";
-
+            sidebar.innerHTML = "<h3>🗂️ API Sektörleri</h3>";
             sectors.forEach(sec => {
-                const count = sec.filter === "hepsi" ? UltimateSonsuzDatabase.length : UltimateSonsuzDatabase.filter(p => p.sector === sec.filter).length;
-                
                 const btn = document.createElement("button");
                 btn.className = "category-btn" + (sec.id === "hepsi" ? " active" : "");
-                btn.id = "btn-" + sec.id;
-                btn.innerHTML = `${sec.name} <span class="badge-count">${count}</span>`;
-                
+                btn.innerText = sec.name;
                 btn.onclick = function() {
                     document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
                     btn.classList.add("active");
                     currentSector = sec.filter;
-                    document.getElementById("panelViewTitle").innerText = `📋 Aktif Pazar Yeri Veri Tabanı (${sec.filter === 'hepsi' ? 'Tüm Envanter' : sec.filter})`;
-                    document.getElementById("mainSearchInput").value = "";
-                    renderProducts();
+                    renderInventoryPage();
                 };
-
                 sidebar.appendChild(btn);
             });
         }
 
-        // ENVANTER FİLTRELEME VE EKRANA BASMA (ASLA KİLİTLENMEZ)
-        function renderProducts() {
+        // SAYFA 1: GENEL LİSTELEME MOTORU
+        function renderInventoryPage() {
             const wrapper = document.getElementById("productsWrapper");
             const searchVal = document.getElementById("mainSearchInput").value.toLowerCase().trim();
             wrapper.innerHTML = "";
 
-            const filtered = UltimateSonsuzDatabase.filter(p => {
+            const filtered = UnifiedApiDatabase.filter(p => {
                 const matchSector = (currentSector === "hepsi" || p.sector === currentSector);
-                const matchKeyword = p.title.toLowerCase().includes(searchVal) || p.sector.toLowerCase().includes(searchVal);
+                const matchKeyword = p.title.toLowerCase().includes(searchVal);
                 return matchSector && matchKeyword;
             });
 
-            document.getElementById("lblResultCount").innerText = `${filtered.length} ürün listelendi`;
-
-            if(filtered.length === 0) {
-                wrapper.innerHTML = `<p style="color:#a0aec0; text-align:center; padding:40px;">⚠️ Kriterlere uygun envanter bulunamadı.</p>`;
-                return;
-            }
+            document.getElementById("lblResultCount").innerText = `${filtered.length} Ürün`;
 
             filtered.forEach(item => {
+                // En ucuz fiyatı bulma algoritmaları
+                const sortedPrices = [...item.prices].sort((a,b) => a.price - b.price);
+                const bestDeal = sortedPrices[0];
+
                 const row = document.createElement("div");
                 row.className = "product-row";
                 row.innerHTML = `
@@ -254,42 +246,67 @@
                         <div class="product-image-box"><img src="${item.img}" alt="img"></div>
                         <div>
                             <h3 class="product-title-text">${item.title}</h3>
-                            <span class="product-tag-text">${item.sector}</span>
+                            <span style="color:#00d2ff; font-size:12px;">En Ucuz: ${bestDeal.platform}</span>
                         </div>
                     </div>
-                    <div class="product-price-block">
-                        <span class="vendor-name">${item.vendor}</span>
-                        <span class="price-text-highlight">${item.price}</span>
-                        <button class="btn-action-git" onclick="alert('${item.title} için yönlendiriliyorsunuz...')">GİT</button>
+                    <div style="display:flex; align-items:center; gap:20px;">
+                        <span style="color:#00ffaa; font-weight:bold; font-size:18px;">${bestDeal.price.toLocaleString('tr-TR')} TL</span>
+                        <button class="btn-action-git" onclick="window.open('${bestDeal.url}', '_blank')">UCUZA GİT</button>
                     </div>
                 `;
                 wrapper.appendChild(row);
             });
         }
 
-        // GÜVENLİ CHATBOT AKIŞI
-        async function sendToAI() {
-            const inputEl = document.getElementById("aiInputField");
-            const userText = inputEl.value.trim();
-            if (!userText) return;
+        // SAYFA 2: DETAYLI TABLO VE DOĞRUDAN EN UCUZ LİNKE BAĞLAMA MOTORU
+        function renderComparisonPage() {
+            const wrapper = document.getElementById("comparisonWrapper");
+            const searchVal = document.getElementById("mainSearchInput").value.toLowerCase().trim();
+            wrapper.innerHTML = "";
 
-            const chatBox = document.getElementById("aiChatBox");
-            chatBox.innerHTML += `<div class="msg user">${userText}</div>`;
-            inputEl.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
+            const filtered = UnifiedApiDatabase.filter(p => p.title.toLowerCase().includes(searchVal));
 
-            const loadingId = "load-" + Date.now();
-            chatBox.innerHTML += `<div class="msg ai" id="${loadingId}">Düşünüyor...</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
+            filtered.forEach(item => {
+                const block = document.createElement("div");
+                block.style.marginBottom = "40px";
+                block.style.backgroundColor = "#0b0d13";
+                block.style.padding = "20px";
+                block.style.borderRadius = "12px";
 
-            // Simülasyon / API Köprüsü
-            setTimeout(() => {
-                const loadEl = document.getElementById(loadingId);
-                if(loadEl) {
-                    loadEl.innerText = "SiberCimri Canavar Altyapısı yayında! Aradığınız tüm iğne, iplik, sanayi ekipmanları ve elektronik fiyat analizleri belleğe başarıyla işlendi.";
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                }
-            }, 800);
+                let tableRows = "";
+                // Fiyatları en ucuzdan en pahalıya sırala
+                const sorted = [...item.prices].sort((a,b) => a.price - b.price);
+
+                sorted.forEach((p, index) => {
+                    tableRows += `
+                        <tr>
+                            <td style="font-weight:bold; color:${index === 0 ? '#00ffaa' : '#ffffff'}">${p.platform} ${index === 0 ? '<span class="cheapest-badge">EN UCUZ</span>' : ''}</td>
+                            <td style="color:#00ffaa; font-weight:bold;">${p.price.toLocaleString('tr-TR')} TL</td>
+                            <td><button class="btn-action-git" style="background:${index === 0 ? 'linear-gradient(90deg, #00ffaa, #00b377)' : '#2b303c'}; color:${index === 0 ? '#000000' : '#ffffff'}" onclick="window.open('${p.url}', '_blank')">SİTEYE BAĞLAN</button></td>
+                        </tr>
+                    `;
+                });
+
+                block.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
+                        <img src="${item.img}" style="width:40px; height:40px; object-fit:contain; background:#fff; padding:3px; border-radius:6px;">
+                        <h3 style="margin:0; font-size:18px; color:#00d2ff;">${item.title} Canlı Fiyat Endeksi</h3>
+                    </div>
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Satıcı Platform</th>
+                                <th>Anlık Fiyat</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableRows}
+                        </tbody>
+                    </table>
+                `;
+                wrapper.appendChild(block);
+            });
         }
     </script>
 </body>
