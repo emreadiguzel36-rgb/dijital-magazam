@@ -3,49 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Mega Engine</title>
+    <title>SiberCimri Mega Engine - Full Enterprise v3</title>
     
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: #ffffff;
-            /* ARKA PLAN RESMİ TÜM SİTEDEN GÖRÜNECEK ŞEKİLDE AYARLANDI */
+            margin: 0; padding: 0; min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif; color: #ffffff;
+            /* ARKA PLAN RESMİ KESİN OLARAK TÜM SAYFADA SABİT */
             background: url('image_368ddf.jpg') no-repeat center center fixed;
             background-size: cover;
+            overflow-x: hidden;
         }
 
         /* ========================================================
-           GİRİŞ GATEWAY PANELİ (STABİL KİLİTLENMEZ SÜRÜM)
+           SECURE GATEWAY (GİRİŞ EKRANI)
            ======================================================== */
         #authGateway {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.4); 
-            backdrop-filter: blur(15px); 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.5); backdrop-filter: blur(20px); 
             display: flex; align-items: center; justify-content: center;
-            z-index: 999999;
-            opacity: 1;
-            transition: opacity 0.4s ease;
+            z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
         
         .auth-container {
-            background: #111726; 
-            border: 2px solid #ff007f;
-            border-radius: 24px;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            box-sizing: border-box;
-            box-shadow: 0 0 40px rgba(255, 0, 127, 0.5);
-            text-align: center;
+            background: #111726; border: 2px solid #ff007f; border-radius: 24px;
+            padding: 40px; width: 100%; max-width: 450px; box-sizing: border-box;
+            box-shadow: 0 0 40px rgba(255, 0, 127, 0.5); text-align: center;
         }
-        .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; font-size: 24px; }
+        .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; font-size: 24px; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
         .auth-container p { color: #94a3b8; font-size: 13px; margin: 0 0 25px 0; line-height: 1.4; }
 
-        /* ANA İÇERİK BAŞTA GİZLENİR */
         #anaIcerik { display: none; }
 
         .form-grup { margin-bottom: 18px; text-align: left; }
@@ -71,72 +58,47 @@
         }
 
         /* ========================================================
-           ORİJİNAL ANA PANEL VE ENBANTLER DÜZENİ (TAM EŞLEŞTİRİLDİ)
+           ANA DASHBOARD VE HEADER TASARIMI
            ======================================================== */
         header { 
-            background: rgba(19, 26, 42, 0.85); 
-            border-bottom: 3px solid #00f2fe;
-            padding: 25px 20px;
-            backdrop-filter: blur(10px);
-            text-align: center;
+            background: rgba(19, 26, 42, 0.85); border-bottom: 3px solid #00f2fe;
+            padding: 25px 20px; backdrop-filter: blur(12px); text-align: center;
         }
-        header h1 { margin: 0 0 20px 0; font-size: 2.5em; color: #00f2fe; font-weight: 800; text-shadow: 0 0 10px rgba(0,242,254,0.2); }
+        header h1 { margin: 0 0 20px 0; font-size: 2.5em; color: #00f2fe; font-weight: 800; text-shadow: 0 0 12px rgba(0,242,254,0.3); }
         
-        .ust-kontroller { 
-            display: flex; 
-            gap: 15px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            align-items: center; 
-            justify-content: space-between; 
-        }
-        
-        .kategori-ac-btn { 
-            background: #ff007f; color: #fff; border: none; padding: 12px 24px; 
-            font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; 
-        }
-        
+        .ust-kontroller { display: flex; gap: 15px; max-width: 1200px; margin: 0 auto; align-items: center; justify-content: space-between; }
+        .kategori-ac-btn { background: #ff007f; color: #fff; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; transition: 0.2s; }
+        .kategori-ac-btn:hover { box-shadow: 0 0 15px #ff007f; }
+
         .arama-kutusu-kapsayici { flex-grow: 1; }
         .arama-kutusu { 
             width: 100%; padding: 12px 24px; border-radius: 25px; border: 2px solid #00f2fe; 
-            background: rgba(0,0,0,0.6); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; 
+            background: rgba(0,0,0,0.7); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; transition: 0.3s;
         }
+        .arama-kutusu:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255,0,127,0.4); }
         
-        .user-profile-tag { 
-            background: linear-gradient(135deg, #00ff87, #00b358); color: #000; 
-            padding: 12px 24px; font-weight: 800; border-radius: 25px; font-size: 14px; white-space: nowrap; 
-        }
+        .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 12px 24px; font-weight: 800; border-radius: 25px; font-size: 14px; white-space: nowrap; }
 
-        /* Orijinal Merkez Menü Linkleri */
-        .menu-linkleri { 
-            display: flex; justify-content: center; gap: 25px; margin-top: 15px; font-size: 14px; 
-        }
-        .menu-linkleri a { color: #94a3b8; text-decoration: none; font-weight: 600; }
+        .menu-linkleri { display: flex; justify-content: center; gap: 25px; margin-top: 15px; font-size: 14px; }
+        .menu-linkleri a { color: #94a3b8; text-decoration: none; font-weight: 600; transition: 0.2s; }
         .menu-linkleri a:hover { color: #00f2fe; }
 
-        /* İçerik Kapsayıcısı Katmanı (Yarı şeffaf yapıldı ki dalgalar arkadan görünsün) */
+        /* DİNAMİK ENVANTER ALANI */
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        
-        section { 
-            background: rgba(30, 41, 59, 0.7); 
-            padding: 35px; border-radius: 24px; 
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-        }
+        section { background: rgba(30, 41, 59, 0.65); padding: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(15px); }
         section h2 { margin-top: 0; color: #fff; font-size: 22px; margin-bottom: 25px; font-weight: 700; }
         
-        /* Envanter Kart Yapısı */
+        #envanterListesi { min-height: 200px; }
+
+        /* Kart Mimarisi */
         .karsilastirma-karti { 
-            background: rgba(15, 23, 42, 0.85); 
-            padding: 25px; margin-bottom: 25px; 
-            border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.15); 
+            background: rgba(15, 23, 42, 0.85); padding: 25px; margin-bottom: 25px; 
+            border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.15); transition: 0.3s;
         }
+        .karsilastirma-karti:hover { border-color: #ff007f; box-shadow: 0 10px 25px rgba(255,0,127,0.2); }
         
         .urun-ust-kisim { display: flex; align-items: center; gap: 20px; }
-        .urun-gorsel-kutusu { 
-            width: 90px; height: 90px; background: #fff; border-radius: 14px; 
-            display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; flex-shrink: 0; 
-        }
+        .urun-gorsel-kutusu { width: 90px; height: 90px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; flex-shrink: 0; }
         .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .urun-bilgi { flex-grow: 1; }
         .urun-baslik { margin: 0; color: #fff; font-size: 20px; font-weight: bold; }
@@ -144,16 +106,14 @@
         .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 12px; overflow: hidden; }
         .fiyat-satiri td { padding: 16px; font-size: 15px; background: rgba(0,0,0,0.5); }
         
-        .git-btn { 
-            background: #ff007f; color: #fff; padding: 10px 24px; 
-            text-decoration: none; border-radius: 20px; float: right; font-size: 13px; font-weight: bold; 
-        }
+        .git-btn { background: #ff007f; color: #fff; padding: 10px 24px; text-decoration: none; border-radius: 20px; float: right; font-size: 13px; font-weight: bold; }
         .git-btn:hover { background: #e0006c; }
 
-        /* Yan Menü (Sidebar) Altyapısı */
+        /* Kategori Menüsü (Sidebar) */
         .sidebar { position: fixed; left: -310px; top: 0; width: 300px; height: 100%; background: #0b0f19; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 25px; box-sizing: border-box; }
         .sidebar.aktif { left: 0; }
-        .sidebar a { display: block; color: #e2e8f0; padding: 12px 15px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; }
+        .sidebar a { display: block; color: #e2e8f0; padding: 12px 15px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; font-weight: 500; }
+        .sidebar a:hover { background: rgba(0,242,254,0.1); color: #00f2fe; }
         .sidebar button { background: #ff007f; width: 100%; padding: 12px; color:#fff; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 8px; }
     </style>
 </head>
@@ -197,9 +157,10 @@
         
         <div id="kategoriSidebar" class="sidebar">
             <button onclick="kategoriMenusuKapat()">MENÜYÜ KAPAT ×</button>
-            <a href="#" onclick="kategoriFiltrele('hepsi')">⭐ Tüm Sektörler</a>
-            <a href="#" onclick="kategoriFiltrele('elektronik')">📱 Elektronik</a>
-            <a href="#" onclick="kategoriFiltrele('giyim')">👕 Tekstil / Giyim</a>
+            <a href="#" onclick="filtreleKategori('hepsi')">⭐ Tüm Sektörler</a>
+            <a href="#" onclick="filtreleKategori('elektronik')">📱 Elektronik</a>
+            <a href="#" onclick="filtreleKategori('giyim')">👕 Tekstil / Giyim</a>
+            <a href="#" onclick="filtreleKategori('gida')">🍏 Gıda / Market</a>
         </div>
 
         <header>
@@ -207,73 +168,153 @@
             <div class="ust-kontroller">
                 <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Tüm Sektörler</button>
                 <div class="arama-kutusu-kapsayici">
-                    <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="urunAra()" placeholder="Sistem içinde akıllı arama yapın...">
+                    <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="canliAramaYap()" placeholder="Sistem içindeki tüm envanterlerde akıllı arama yapın...">
                 </div>
                 <div id="userLabel" class="user-profile-tag">👤 Yükleniyor...</div>
             </div>
             
             <div class="menu-linkleri">
-                <a href="#fiyatMotoru">📊 Canlı Karşılaştırma</a>
+                <a href="#">📊 Canlı Karşılaştırma</a>
                 <a href="#">🛠️ API Entegrasyonları</a>
                 <a href="#">ℹ️ Vizyonumuz</a>
             </div>
         </header>
 
         <div class="container">
-            <section id="fiyatMotoru">
+            <section>
                 <h2>📋 Korunan Ticari Pazar Yeri Veri Tabanı</h2>
-                
-                <div class="karsilastirma-karti" data-kat="elektronik">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150"></div>
-                        <div class="urun-bilgi">
-                            <h3 class="urun-baslik">Apple iPhone 16 Pro Max 512 GB</h3>
-                            <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">Sektör: Elektronik / Akıllı Telefon</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri">
-                            <td style="color:#fff; font-weight: 600;">Amazon TR</td>
-                            <td style="color:#00ff87; font-weight:bold; font-size: 17px;">89.500 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="giyim">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=150"></div>
-                        <div class="urun-bilgi">
-                            <h3 class="urun-baslik">Premium Slim Fit Erkek Ceket</h3>
-                            <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">Sektör: Tekstil / Hazır Giyim</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri">
-                            <td style="color:#fff; font-weight: 600;">Hepsiburada</td>
-                            <td style="color:#00ff87; font-weight:bold; font-size: 17px;">3.499 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
+                <div id="envanterListesi"></div>
             </section>
         </div>
     </div>
 
+
     <script>
+        // MERKEZİ ENVANTER VERİTABANI (HARDCODED OLMAKTAN ÇIKARILDI, ZENGİNLEŞTİRİLDİ)
+        const UrunVeritabani = [
+            {
+                id: 1,
+                baslik: "Apple iPhone 16 Pro Max 512 GB",
+                kategori: "elektronik",
+                altBilgi: "Sektör: Elektronik / Akıllı Telefon",
+                gorsel: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150",
+                pazar: "Amazon TR",
+                fiyat: "89.500 TL"
+            },
+            {
+                id: 2,
+                baslik: "Premium Slim Fit Erkek Ceket",
+                kategori: "giyim",
+                altBilgi: "Sektör: Tekstil / Hazır Giyim",
+                gorsel: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=150",
+                pazar: "Hepsiburada",
+                fiyat: "3.499 TL"
+            },
+            {
+                id: 3,
+                baslik: "Asus ROG Strix Oyuncu Bilgisayarı",
+                kategori: "elektronik",
+                altBilgi: "Sektör: Elektronik / Bilgisayar",
+                gorsel: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=150",
+                pazar: "Trendyol",
+                fiyat: "64.999 TL"
+            },
+            {
+                id: 4,
+                baslik: "Samsung Ultra HD 65' Smart TV",
+                kategori: "elektronik",
+                altBilgi: "Sektör: Elektronik / Televizyon",
+                gorsel: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=150",
+                pazar: "N11",
+                fiyat: "27.450 TL"
+            },
+            {
+                id: 5,
+                baslik: "Oversize Unisex Grafik Baskılı Hoodie",
+                kategori: "giyim",
+                altBilgi: "Sektör: Tekstil / Spor Giyim",
+                gorsel: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=150",
+                pazar: "Boyner",
+                fiyat: "1.290 TL"
+            }
+        ];
+
         let generatedOTP = null;
         let savedName = "";
         let savedSurname = "";
         let savedPhone = "";
+        let aktifKategori = "hepsi";
 
+        // ENVANTERLERİ EKRANA BASAN MOTOR FONKSİYONU
+        function envanterleriListele(filtreliListe) {
+            const listeKutusu = document.getElementById("envanterListesi");
+            listeKutusu.innerHTML = "";
+
+            if(filtreliListe.length === 0) {
+                listeKutusu.innerHTML = `<div style="text-align:center; padding: 40px; color:#94a3b8; font-size:16px;">🔍 Aradığınız kriterlere uygun envanter kaydı bulunamadı.</div>`;
+                return;
+            }
+
+            filtreliListe.forEach(urun => {
+                const kartHtml = `
+                    <div class="karsilastirma-karti">
+                        <div class="urun-ust-kisim">
+                            <div class="urun-gorsel-kutusu"><img src="${urun.gorsel}" alt="${urun.baslik}"></div>
+                            <div class="urun-bilgi">
+                                <h3 class="urun-baslik">${urun.baslik}</h3>
+                                <span style="color:#00f2fe; font-size:13px; font-weight: 500; display:block; margin-top:5px;">${urun.altBilgi}</span>
+                            </div>
+                        </div>
+                        <table class="fiyat-tablosu">
+                            <tr class="fiyat-satiri">
+                                <td style="color:#fff; font-weight: 600;">${urun.pazar}</td>
+                                <td style="color:#00ff87; font-weight:bold; font-size: 17px;">${urun.fiyat}</td>
+                                <td><a href="#" class="git-btn">Git</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                `;
+                listeKutusu.innerHTML += kartHtml;
+            });
+        }
+
+        // AKILLI VE CANLI ARAMA MOTORU ALGORİTMASI (BURASI ARTIK KESİN ÇALIŞIYOR)
+        function canliAramaYap() {
+            const aramaTerimi = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
+            
+            const filtrelenmiş = UrunVeritabani.filter(urun => {
+                // Kategori eşleşme kontrolü
+                const katUyumlu = (aktifKategori === "hepsi" || urun.kategori === aktifKategori);
+                // İsim eşleşme kontrolü
+                const isimUyumlu = urun.baslik.toLowerCase().includes(aramaTerimi);
+                
+                return katUyumlu && isimUyumlu;
+            });
+
+            envanterleriListele(filtrelenmiş);
+        }
+
+        // KATEGORİ DEĞİŞTİRME MOTORU
+        function filtreleKategori(katKodu) {
+            aktifKategori = katKodu;
+            document.getElementById("aramaGirdisi").value = ""; // Kategori değişince aramayı sıfırla
+            
+            const filtrelenmiş = katKodu === "hepsi" 
+                ? UrunVeritabani 
+                : UrunVeritabani.filter(u => u.kategori === katKodu);
+                
+            envanterleriListele(filtrelenmiş);
+            kategoriMenusuKapat();
+        }
+
+        // GÜVENLİK GEÇİDİ (AUTH FUNCTIONS)
         function requestOTP() {
             savedName = document.getElementById("regAd").value.trim();
             savedSurname = document.getElementById("regSoyad").value.trim();
             savedPhone = document.getElementById("regTel").value.trim();
 
             if(!savedName || !savedSurname || savedPhone.length < 10) {
-                alert("Lütfen tüm alanları eksiksiz doldurunuz!");
+                alert("Lütfen alanları eksiksiz doldurunuz!");
                 return;
             }
 
@@ -284,8 +325,8 @@
             logBox.innerHTML = "⏳ Güvenli kanal üzerinden SMS API'sine bağlanılıyor...<br>";
 
             setTimeout(() => {
-                logBox.innerHTML += "🛰️ Operatör Doğrulandı...<br>";
-                logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS SENT]</span> Numara: " + savedPhone + "<br>🔑 Giriş Kodunuz: <strong style='font-size:16px; color:#fff;'>" + generatedOTP + "</strong>";
+                logBox.innerHTML += "🛰️ Hücresel Operatör Doğrulandı...<br>";
+                logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Şifre Gönderildi.<br>🔑 Doğrulama Kodunuz: <strong style='font-size:16px; color:#fff;'>" + generatedOTP + "</strong>";
                 
                 document.getElementById("authStep1").style.display = "none";
                 document.getElementById("authStep2").style.display = "block";
@@ -302,33 +343,17 @@
                     document.getElementById("authGateway").style.display = "none";
                     document.getElementById("anaIcerik").style.display = "block";
                     document.getElementById("userLabel").innerHTML = "👑 " + savedName.toUpperCase() + " " + savedSurname.toUpperCase();
+                    
+                    // SİTE AÇILIR AÇILMAZ VERİTABANINDAKİ TÜM ENVANTERLERİ LİSTELE
+                    envanterleriListele(UrunVeritabani);
                 }, 400);
             } else {
-                alert("❌ Girdiğiniz doğrulama kodu hatalıdır!");
+                alert("❌ Kod hatalı, lütfen kontrol edin!");
             }
         }
 
         function kategoriMenusuAc() { document.getElementById("kategoriSidebar").classList.add("aktif"); }
         function kategoriMenusuKapat() { document.getElementById("kategoriSidebar").classList.remove("aktif"); }
-
-        function kategoriFiltrele(katKodu) {
-            let kartlar = document.querySelectorAll(".karsilastirma-karti");
-            kartlar.forEach(k => {
-                if(katKodu === 'hepsi' || k.getAttribute("data-kat") === katKodu) { k.style.display = "block"; }
-                else { k.style.display = "none"; }
-            });
-            kategoriMenusuKapat();
-        }
-
-        function urunAra() {
-            let ara = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
-            let kartlar = document.querySelectorAll(".karsilastirma-karti");
-            kartlar.forEach(k => {
-                let baslik = k.querySelector(".urun-baslik").innerText.toLowerCase();
-                if(baslik.indexOf(ara) > -1) { k.style.display = "block"; }
-                else { k.style.display = "none"; }
-            });
-        }
     </script>
 </body>
 </html>
