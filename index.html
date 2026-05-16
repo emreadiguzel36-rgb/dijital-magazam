@@ -2,259 +2,260 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>SiberCimri Pro - Dev Envanter Sürümü</title>
+    <title>SiberCimri MEGA ENGINE - Tüm Sektörler Tek Sayfada</title>
     
     <style>
         html { scroll-behavior: smooth; }
         body { 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #0f172a, #1e1b4b, #2e1065);
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #090d16, #111827, #1e1b4b);
             margin: 0; padding: 0; color: #ffffff; overflow-x: hidden; min-height: 100vh;
         }
         header { 
-            background: rgba(15, 23, 42, 0.95); border-bottom: 2px solid #00f2fe;
-            padding: 20px; text-align: center; position: sticky; top: 0; z-index: 999;
+            background: rgba(17, 24, 39, 0.95); border-bottom: 3px solid #00f2fe;
+            padding: 25px 20px; text-align: center; position: sticky; top: 0; z-index: 999;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
         }
-        header h1 { margin: 0; font-size: 2.2em; color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
+        header h1 { margin: 0; font-size: 2.5em; color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
         
-        .ust-kontroller { display: flex; gap: 10px; max-width: 700px; margin: 15px auto; align-items: center; justify-content: center; }
-        .kategori-ac-btn { background: #ff007f; color: #000; border: none; padding: 10px 18px; font-weight: bold; cursor: pointer; border-radius: 20px; white-space: nowrap; }
-        .arama-kutusu { width: 100%; padding: 11px 15px; border-radius: 20px; border: 1px solid #00f2fe; background: #000; color: #fff; outline: none; font-size: 14px; }
-        .menu { margin-top: 10px; }
-        .menu a { color: #00f2fe; text-decoration: none; margin: 0 10px; font-weight: bold; font-size: 14px; }
+        .ust-kontroller { display: flex; gap: 12px; max-width: 800px; margin: 15px auto; align-items: center; justify-content: center; }
+        .kategori-ac-btn { background: #ff007f; color: #000; border: none; padding: 12px 20px; font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; font-size: 14px; box-shadow: 0 0 10px rgba(255, 0, 127, 0.3); }
+        .kategori-ac-btn:hover { background: #fff; color: #000; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        section { background: rgba(30, 41, 59, 0.7); padding: 25px; margin-bottom: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        h2 { color: #ff007f; margin-top: 0; }
+        .arama-kutusu { width: 100%; padding: 12px 20px; border-radius: 25px; border: 1px solid #00f2fe; background: #000; color: #fff; outline: none; font-size: 15px; box-shadow: 0 0 10px rgba(0, 242, 254, 0.1); }
+        .arama-kutusu:focus { border-color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); }
+
+        .menu { margin-top: 12px; }
+        .menu a { color: #cbd5e1; text-decoration: none; margin: 0 12px; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .menu a:hover { color: #00f2fe; text-shadow: 0 0 8px #00f2fe; }
         
-        .karsilastirma-karti { background: rgba(15, 23, 42, 0.75); padding: 20px; margin-bottom: 20px; border-radius: 12px; border: 1px solid rgba(0, 242, 254, 0.2); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        section { background: rgba(31, 41, 55, 0.6); padding: 30px; margin-bottom: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.04); backdrop-filter: blur(10px); }
+        h2 { color: #ff007f; margin-top: 0; font-size: 24px; letter-spacing: 1px; }
+        
+        .karsilastirma-karti { background: rgba(17, 24, 39, 0.85); padding: 22px; margin-bottom: 25px; border-radius: 15px; border: 1px solid rgba(0, 242, 254, 0.15); transition: 0.3s; }
+        .karsilastirma-karti:hover { border-color: #ff007f; box-shadow: 0 5px 20px rgba(255, 0, 127, 0.15); }
+        
         .urun-ust-kisim { display: flex; align-items: center; gap: 20px; margin-bottom: 15px; }
-        .urun-gorsel-kutusu { width: 75px; height: 75px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px; flex-shrink: 0; }
+        .urun-gorsel-kutusu { width: 80px; height: 80px; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; flex-shrink: 0; }
         .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .urun-baslik { margin: 0; color: #fff; font-size: 18px; text-transform: uppercase; }
-        .urun-detay-bilgi { font-size: 12px; color: #00f2fe; display: block; margin-top: 4px; }
+        .urun-baslik { margin: 0; color: #fff; font-size: 19px; font-weight: bold; }
+        .urun-detay-bilgi { font-size: 12px; color: #00f2fe; display: block; margin-top: 5px; font-weight: 500; }
         
         .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .fiyat-satiri { background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .fiyat-satiri:hover { background: rgba(255,255,255,0.05); }
-        .fiyat-satiri td { padding: 12px; font-size: 14px; }
-        .en-ucuz-rozet { background: #00ff87; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; display: none; margin-left: 5px; }
-        .git-btn { background: #ff007f; color: #fff; padding: 6px 14px; text-decoration: none; border-radius: 15px; float: right; font-size: 12px; font-weight: bold; }
+        .fiyat-satiri { background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.2s; }
+        .fiyat-satiri:hover { background: rgba(255, 255, 255, 0.04); }
+        .fiyat-satiri td { padding: 14px; font-size: 14px; }
         
-        #sonucBulunamadi { display: none; text-align: center; color: #ff007f; font-weight: bold; padding: 20px; font-size: 18px; }
+        .en-ucuz-rozet { background: #00ff87; color: #000; padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: bold; display: none; margin-left: 8px; box-shadow: 0 0 8px #00ff87; }
+        .git-btn { background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; padding: 7px 16px; text-decoration: none; border-radius: 20px; float: right; font-size: 12px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .git-btn:hover { box-shadow: 0 0 12px #ff007f; }
         
-        /* Sidebar */
-        .sidebar { position: fixed; left: -280px; top: 0; width: 270px; height: 100%; background: #0f172a; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+        #sonucBulunamadi { display: none; text-align: center; color: #ff007f; font-weight: bold; padding: 30px; font-size: 20px; border: 2px dashed rgba(255, 0, 127, 0.3); border-radius: 15px; background: rgba(0,0,0,0.2); }
+        
+        /* Gelişmiş Sidebar */
+        .sidebar { position: fixed; left: -310px; top: 0; width: 300px; height: 100%; background: #0b0f19; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 25px; box-sizing: border-box; overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.5); }
         .sidebar.aktif { left: 0; }
-        .sidebar a { display: block; color: #fff; padding: 10px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.04); border-radius: 5px; font-size: 14px; }
-        .sidebar a:hover { background: rgba(0, 242, 254, 0.2); color: #00f2fe; }
-        .sidebar button { background: #ff007f; width: 100%; padding: 10px; color:#000; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 5px; }
+        .sidebar h3 { color: #ff007f; margin-top: 0; font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .sidebar a { display: block; color: #e2e8f0; padding: 11px 14px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; font-size: 13px; font-weight: 500; transition: 0.2s; }
+        .sidebar a:hover { background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding-left: 20px; }
+        .sidebar button { background: #ff007f; width: 100%; padding: 11px; color:#000; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 8px; font-size: 14px; }
 
         /* Form */
         .form-grup { margin-bottom: 15px; }
-        .form-grup label { display: block; margin-bottom: 5px; color: #00f2fe; }
-        .form-grup input, .form-grup textarea { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.1); background: #000; color: #fff; box-sizing: border-box; }
-        .btn-gonder { background: #00f2fe; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .form-grup label { display: block; margin-bottom: 5px; color: #00f2fe; font-size: 14px; }
+        .form-grup input, .form-grup textarea { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #000; color: #fff; box-sizing: border-box; }
+        .btn-gonder { background: #00f2fe; color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 15px; }
     </style>
 </head>
 <body>
 
     <div id="kategoriSidebar" class="sidebar">
-        <button onclick="kategoriMenusuKapat()">KAPAT ×</button>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('hepsi')">🌐 Tüm Envanter</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('iphone')">📱 iPhone Modelleri</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('laptop-pc')">💻 Laptop & Hazır PC</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('surucu-driver')">💾 Sürücüler / Driverlar</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('oyun')">🎮 Dijital Oyunlar</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('ayakkabi-erkek')">👟 Erkek Ayakkabı & Bot</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('ayakkabi-kadin')">👠 Kadın Ayakkabı & Bot</a>
-        <a href="#kararsilastirmaAlani" onclick="kategoriFiltrele('parfum-kadin')">💄 Kadın Parfümleri</a>
+        <button onclick="kategoriMenusuKapat()">MENÜYÜ KAPAT ×</button>
+        <h3>🌐 Genel Sektörler</h3>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('hepsi')">⭐ Tüm Yasal Ürünler</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('elektronik')">📱 Elektronik & Telefon & PC</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('moda')">👕 Giyim & Ayakkabı & Bot</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('kozmetik')">💄 Kozmetik & Kadın Parfüm</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('supermarket')">🛒 Süpermarket & Bebek & Ev</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('otomotiv')">🚗 Oto Aksesuar & Yağ & Parça</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('spor')">🏋️ Spor & Takviye Gıdaları</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('evcil')">🐱 Evcil Hayvan Dünyası</a>
+        <a href="#fiyatMotoru" onclick="kategoriFiltrele('dijital')">🎮 Oyun & Driver & Yazılım</a>
     </div>
 
     <header>
-        <h1>SiberCimri Pro</h1>
+        <h1>SiberCimri Mega Engine</h1>
         <div class="ust-kontroller">
-            <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Kategoriler</button>
-            <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="urunAra()" placeholder="Model, numara, driver, cinsiyet veya marka ara... (Örn: 38, rtx, nvidia, iphone 16, bot)">
+            <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Tüm Sektörler</button>
+            <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="urunAra()" placeholder="Ne aramıştınız? (Örn: iphone 16, 38 numara, kedi maması, rtx, şanzıman, protein, bot)">
         </div>
         <div class="menu">
-            <a href="#kararsilastirmaAlani">🏠 Fiyat Motoru</a>
-            <a href="#hizmetlerimiz">🛠️ Hizmetler</a>
-            <a href="#hakkimizda">ℹ️ Hakkımızda</a>
-            <a href="#iletisim">📧 Mağaza Girişi</a>
+            <a href="#fiyatMotoru">📊 Canlı Karşılaştırma</a>
+            <a href="#hizmetlerimiz">🛠️ Entegrasyonlar</a>
+            <a href="#hakkimizda">ℹ️ Vizyonumuz</a>
+            <a href="#iletisim">📧 Mağaza Mağaza Ekle</a>
         </div>
     </header>
 
     <div class="container">
         
-        <section id="kararsilastirmaAlani">
-            <h2>📊 Merkezî Siber Fiyat Envanteri</h2>
-            <div id="sonucBulunamadi">🔍 Kriterlerinize uygun hiçbir model, numara veya sürücü bulunamadı!</div>
+        <section id="fiyatMotoru">
+            <h2>📊 Türkiye'nin Ortak Pazar Yeri Veri Tabanı</h2>
+            <div id="sonucBulunamadi">🔍 Aradığınız kelimeye ait yasal hiçbir pazar yeri kaydı bulunamadı! Başka bir kelime deneyin.</div>
 
             <div class="urun-kapsayici">
                 
-                <div class="karsilastirma-karti" data-kat="iphone">
+                <div class="karsilastirma-karti" data-kat="elektronik">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=200"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150"></div>
                         <div>
                             <h3 class="urun-baslik">Apple iPhone 16 Pro Max 512 GB</h3>
-                            <span class="urun-detay-bilgi">Kategori: Akıllı Telefon / iOS / En Yeni Sürüm</span>
+                            <span class="urun-detay-bilgi">Sektör: Elektronik / Akıllı Telefon / Apple Türkiye Garantili</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="89500"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">89.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="91000"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">91.000 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="89500"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>89.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="91200"><td>Teknosa <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>91.200 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="89200"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>89.200 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-kat="iphone">
+                <div class="karsilastirma-karti" data-kat="elektronik">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=200"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=150"></div>
                         <div>
-                            <h3 class="urun-baslik">Apple iPhone 15 Pro 128 GB</h3>
-                            <span class="urun-detay-bilgi">Kategori: Akıllı Telefon / Apple</span>
+                            <h3 class="urun-baslik">Asus ROG Strix RTX 4060 Oyun Bilgisayarı Laptop</h3>
+                            <span class="urun-detay-bilgi">Sektör: Elektronik / Bilgisayar / Dizüstü / Gaming PC Intel i7</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="64000"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">64.000 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="63500"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">63.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="43900"><td>Teknosa <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>43.900 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="44500"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>44.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-kat="iphone">
+                <div class="karsilastirma-karti" data-kat="moda">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=200"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=150"></div>
                         <div>
-                            <h3 class="urun-baslik">Apple iPhone 14 128 GB Siyah</h3>
-                            <span class="urun-detay-bilgi">Kategori: Akıllı Telefon / Ekonomik Fiyat</span>
+                            <h3 class="urun-baslik">Nike Air Force Erkek Spor Ayakkabı</h3>
+                            <span class="urun-detay-bilgi">Sektör: Giyim & Moda / Erkek Ayakkabı / Numaralar: 40, 41, 42, 43, 44</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="42000"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">42.000 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="3200"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>3.200 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="3150"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>3.150 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-kat="laptop-pc">
+                <div class="karsilastirma-karti" data-kat="moda">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=200"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=150"></div>
                         <div>
-                            <h3 class="urun-baslik">ASUS ROG Strix G16 Gaming Laptop</h3>
-                            <span class="urun-detay-bilgi">Kategori: Bilgisayar / Intel i7 / RTX 4060 / 16GB RAM</span>
+                            <h3 class="urun-baslik">Adidas Superstar Kadın Beyaz Ayakkabı</h3>
+                            <span class="urun-detay-bilgi">Sektör: Giyim & Moda / Kadın Ayakkabı / Numaralar: 36, 37, 38, 39</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="44500"><td>Vatan Bilgisayar <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">44.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="45200"><td>Teknosa <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">45.200 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="2450"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>2.450 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-kat="laptop-pc">
+                <div class="karsilastirma-karti" data-kat="moda">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?q=80&w=200"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=150"></div>
                         <div>
-                            <h3 class="urun-baslik">Siber-X RTX 4070 Hazır Oyuncu Masaüstü PC</h3>
-                            <span class="urun-detay-bilgi">Kategori: Hazır PC / AMD Ryzen 5 / Oyuncu Bilgisayarı</span>
+                            <h3 class="urun-baslik">Harley Davidson Su Geçirmez Deri Kışlık Bot</h3>
+                            <span class="urun-detay-bilgi">Sektör: Giyim & Moda / Kışlık Bot / Unisex / Numaralar: 38, 39, 41, 42, 43</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="33000"><td>İncehesap <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">33.000 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="32500"><td>Sinerji Bilgisayar <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">32.500 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="2890"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>2.890 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="2750"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>2.750 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
                     </table>
                 </div>
 
-                <div class="karsilastirma-karti" data-kat="surucu-driver">
+                <div class="karsilastirma-karti" data-kat="kozmetik">
                     <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">NVIDIA GeForce WHQL WHQL Grafik Sürücüsü (Driver)</h3>
-                            <span class="urun-detay-bilgi">Kategori: Donanım Yazılımı / RTX ve GTX Ekran Kartları İçin Sürücü</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="0"><td>Resmi NVIDIA Sitesi <span class="en-ucuz-rozet">🔥 Ücretsiz</span></td><td style="color:#00f2fe; font-weight:bold;">ÜCRETSİZ / İNDİR</td><td><a href="https://www.nvidia.com" target="_blank" class="git-btn">İndir</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="oyun">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">Grand Theft Auto V Premium PC Edition (GTA 5)</h3>
-                            <span class="urun-detay-bilgi">Kategori: PC Oyunu / Rockstar Games / Dijital Kod</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="450"><td>Steam Global <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">450 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="390"><td>Epic Games TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">390 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="ayakkabi-erkek">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">Nike Air Force 07 Erkek Spor Ayakkabı (Numara: 40 41 42 43 44)</h3>
-                            <span class="urun-detay-bilgi">Kategori: Erkek Giyim / Ayakkabı / Spor / Numaralar: 40, 41, 42, 43, 44</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="3400"><td>Trendyol Mağaza <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">3.400 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="3250"><td>Nike Resmi Mağaza <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">3.250 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="ayakkabi-erkek">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">Harley Davidson Deri Erkek Kışlık Bot (Numara: 41 42 43 44 45)</h3>
-                            <span class="urun-detay-bilgi">Kategori: Erkek Giyim / Deri Bot / Kışlık / Numaralar: 41, 42, 43, 44, 45</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="2800"><td>Boyner TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">2.800 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="2950"><td>Hepsiburada Satıcı <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">2.950 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="ayakkabi-kadin">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">Adidas Superstar Kadın Beyaz Spor Ayakkabı (Numara: 36 37 38 39)</h3>
-                            <span class="urun-detay-bilgi">Kategori: Kadın Giyim / Ayakkabı / Orijinal / Numaralar: 36, 37, 38, 39</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="2400"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">2.400 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="2550"><td>Barçın Spor <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">2.550 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="ayakkabi-kadin">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=200"></div>
-                        <div>
-                            <h3 class="urun-baslik">Süet Nubuk Kadın Kışlık Bot (Numara: 36 37 38 39 40)</h3>
-                            <span class="urun-detay-bilgi">Kategori: Kadın Giyim / Topuklu Bot / Kışlık / Numaralar: 36, 37, 38, 39, 40</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="1450"><td>Flo Mağazacılık <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">1.450 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="parfum-kadin">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300"></div>
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=150"></div>
                         <div>
                             <h3 class="urun-baslik">Lancome La Vie Est Belle EDP 100 ml Kadın Parfümü</h3>
-                            <span class="urun-detay-bilgi">Kategori: Kadın Kozmetik / Parfüm / Çiçeksi Kokular</span>
+                            <span class="urun-detay-bilgi">Sektör: Kozmetik / Kadın Parfümleri / Kalıcı Kaliteli Koku</span>
                         </div>
                     </div>
                     <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="3900"><td>Sephora TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">3.900 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
-                        <tr class="fiyat-satiri" data-fiyat="3850"><td>Beymen Online <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td style="color:#00f2fe; font-weight:bold;">3.850 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="3950"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>3.950 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="3800"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>3.800 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="supermarket">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">Prima Aktif Bebek Bezi 4 Numara Maxi 120 Adet</h3>
+                            <span class="urun-detay-bilgi">Sektör: Süpermarket / Bebek Bakım / Çocuk Bezi</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="620"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>620 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="599"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>599 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="otomotiv">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">Castrol Edge 5W-30 Tam Sentetik Motor / Şanzıman Yağı 4L</h3>
+                            <span class="urun-detay-bilgi">Sektör: Oto Aksesuar / Motor Yağları / Şanzıman ve Bakım Parçaları</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="1250"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>1.250 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="1190"><td>Trendyol Oto <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>1.190 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="spor">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">Hardline Whey 3 Matrix 2300 gr Çikolatalı Protein Tozu</h3>
+                            <span class="urun-detay-bilgi">Sektör: Spor & Outdoor / Fitness / Supplement / Takviye Gıda</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="2100"><td>Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>2.100 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="1980"><td>Amazon TR <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>1.980 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="evcil">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">Whiskas Tavuklu Yetişkin Kedi Maması 14 KG</h3>
+                            <span class="urun-detay-bilgi">Sektör: Evcil Hayvan Dünyası / Kuru Kedi Maması / Ekonomik Paket</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="1650"><td>Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>1.650 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                        <tr class="fiyat-satiri" data-fiyat="1580"><td>Trendyol Pet <span class="en-ucuz-rozet">🔥 En Ucuz</span></td><td>1.580 TL</td><td><a href="#" class="git-btn">Git</a></td></tr>
+                    </table>
+                </div>
+
+                <div class="karsilastirma-karti" data-kat="dijital">
+                    <div class="urun-ust-kisim">
+                        <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=150"></div>
+                        <div>
+                            <h3 class="urun-baslik">NVIDIA GeForce WHQL WHQL Grafik Sürücüsü (Driver)</h3>
+                            <span class="urun-detay-bilgi">Sektör: Dijital / Yazılım / Sürücüler / Donanım Güncelleme</span>
+                        </div>
+                    </div>
+                    <table class="fiyat-tablosu">
+                        <tr class="fiyat-satiri" data-fiyat="0"><td>Resmi Nvidia <span class="en-ucuz-rozet">🔥 Bedava</span></td><td>ÜCRETSİZ İNDİR</td><td><a href="#" class="git-btn">İndir</a></td></tr>
                     </table>
                 </div>
 
@@ -262,21 +263,21 @@
         </section>
 
         <section id="hizmetlerimiz">
-            <h2>🛠️ Profesyonel Hizmet Modüllerimiz</h2>
-            <p>SiberCimri Pro veri entegrasyonu, ayakkabı numarası stok takibi, driver güncelliği doğrulaması ve dijital kod pazar yerlerini saniyeler içerisinde sizin için tarar.</p>
+            <h2>🛠️ Tek Sayfadan Tüm Türkiye'ye Entegrasyon</h2>
+            <p>SiberCimri Mega Engine pazar yerlerinin yasal API ve XML sistemlerini tek potada eritir. Evcil hayvan sektöründen otomotive kadar her datayı anlık eşleştirir.</p>
         </section>
 
         <section id="hakkimizda">
-            <h2>ℹ️ Hakkımızda</h2>
-            <p>E-ticaret hacmini siber optimizasyon kuralları ile güçlendiren Türkiye'nin en gelişmiş tek sayfa (One-Page) karşılaştırma motoru platformu.</p>
+            <h2>ℹ️ Büyük Vizyonumuz</h2>
+            <p>İnternetteki yasal ticaret ekosisteminin tamamını, karmaşık sayfalar arasında kaybolmadan tek bir arama çubuğuyla kullanıcıya ulaştırmayı hedefleyen devrimsel pazar yeri rehberi projesi.</p>
         </section>
 
         <section id="iletisim">
-            <h2>📧 Kurumsal XML & Mağaza Entegrasyonu Girişi</h2>
+            <h2>📧 Kurumsal Pazar Yeri & Mağaza Entegre Etme Başvurusu</h2>
             <form action="https://formspree.io/f/xbjnrdpq" method="POST">
-                <div class="form-grup"><label>Şirket E-Posta:</label><input type="email" name="email" required></div>
-                <div class="form-grup"><label>Entegrasyon Yapılacak Ürün Stoğu/Kategorisi:</label><textarea name="message" rows="3" required></textarea></div>
-                <button type="submit" class="btn-gonder">Başvuru Modülünü Gönder</button>
+                <div class="form-grup"><label>Şirket Resmi E-Postası:</label><input type="email" name="email" placeholder="ornek@sirketadi.com" required></div>
+                <div class="form-grup"><label>Entegre Edilecek Yasal Ürün Sektörleriniz:</label><textarea name="message" rows="3" placeholder="Süpermarket, Otomotiv, Giyim vb. stok verilerinizi yazın..." required></textarea></div>
+                <button type="submit" class="btn-gonder">Mağaza Entegrasyon Başvurusunu Tamamla</button>
             </form>
         </section>
 
@@ -286,19 +287,19 @@
         function kategoriMenusuAc() { document.getElementById("kategoriSidebar").classList.add("aktif"); }
         function kategoriMenusuKapat() { document.getElementById("kategoriSidebar").classList.remove("aktif"); }
 
-        function kategoriFiltrele(kat) {
+        function kategoriFiltrele(katKodu) {
             document.getElementById("aramaGirdisi").value = "";
             document.getElementById("sonucBulunamadi").style.display = "none";
             let kartlar = document.querySelectorAll(".karsilastirma-karti");
             
             kartlar.forEach(k => {
-                if(kat === 'hepsi' || k.getAttribute("data-kat") === kat) { k.style.display = "block"; }
+                if(katKodu === 'hepsi' || k.getAttribute("data-kat") === katKodu) { k.style.display = "block"; }
                 else { k.style.display = "none"; }
             });
             kategoriMenusuKapat();
         }
 
-        // AKILLI SÜZME MOTORU: Kullanıcı "38" yazarsa sadece 38 numara ayakkabılar kalır, "bot" yazarsa botlar kalır.
+        // ULTRA SEARCH ENGINE: Kelimenin nerede geçtiğine bakmaksızın milisaniyede süzme yapar
         function urunAra() {
             let ara = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
             let kartlar = document.querySelectorAll(".karsilastirma-karti");
@@ -308,7 +309,6 @@
                 let baslik = k.querySelector(".urun-baslik").innerText.toLowerCase();
                 let detay = k.querySelector(".urun-detay-bilgi").innerText.toLowerCase();
                 
-                // Hem başlıkta hem de altındaki numara/detay etiketlerinde eş zamanlı arama yapar
                 if(baslik.indexOf(ara) > -1 || detay.indexOf(ara) > -1) {
                     k.style.display = "block";
                     sayac++;
@@ -320,14 +320,14 @@
             document.getElementById("sonucBulunamadi").style.display = (sayac === 0) ? "block" : "none";
         }
 
-        // OTOMATİK EN UCUZ FİYAT HESAPLAMA MOTORU
+        // EN UCUZ FİYATI SEÇEN AKILLI SİSTEM
         window.onload = function() {
             document.querySelectorAll(".karsilastirma-karti").forEach(kart => {
                 let satirlar = kart.querySelectorAll(".fiyat-satiri");
                 let eDusuk = Infinity; let eSatir = null;
                 satirlar.forEach(s => {
                     let f = parseFloat(s.getAttribute("data-fiyat"));
-                    if(f < eDusuk) { eDusuk = f; eSatir = s; }
+                    if(f > 0 && f < eDusuk) { eDusuk = f; eSatir = s; }
                 });
                 if(eSatir) { eSatir.querySelector(".en-ucuz-rozet").style.display = "inline-block"; }
             });
