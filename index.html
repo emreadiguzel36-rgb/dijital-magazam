@@ -3,56 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri - MediaMarkt Style Enterprise v6</title>
+    <title>SiberCimri - MediaMarkt Enterprise v8</title>
     
     <style>
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif; 
-            color: #191919; /* MediaMarkt tarzı koyu gri ana font */
-            background: #f4f4f4; /* Temiz teknoloji marketi arka planı */
+            color: #191919;
+            background: #f4f4f4;
             overflow-x: hidden;
         }
 
         /* ========================================================
-           SECURE GATEWAY (GİRİŞ EKRANI)
+           GİRİŞ EKRANI (AÇILIŞ PANELİ)
            ======================================================== */
         #authGateway {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); 
+            background: rgba(40, 40, 40, 0.85); backdrop-filter: blur(8px); 
             display: flex; align-items: center; justify-content: center;
             z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
         .auth-container {
             background: #ffffff; border-top: 8px solid #df0000; border-radius: 4px;
-            padding: 30px; width: 100%; max-width: 400px; box-sizing: border-box;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center;
+            padding: 35px; width: 100%; max-width: 420px; box-sizing: border-box;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center;
         }
-        .auth-container h2 { color: #df0000; margin: 0 0 8px 0; font-size: 22px; font-weight: 800; }
-        .auth-container p { color: #666; font-size: 13px; margin: 0 0 20px 0; }
-        #anaIcerik { display: none; }
-        .form-grup { margin-bottom: 14px; text-align: left; }
-        .form-grup label { display: block; margin-bottom: 6px; color: #333; font-size: 12px; font-weight: 700; }
+        .auth-container h2 { color: #df0000; margin: 0 0 8px 0; font-size: 24px; font-weight: 800; }
+        .auth-container p { color: #666; font-size: 13px; margin: 0 0 25px 0; line-height: 1.5; }
+        
+        .form-grup { margin-bottom: 16px; text-align: left; }
+        .form-grup label { display: block; margin-bottom: 6px; color: #191919; font-size: 13px; font-weight: 700; }
         .form-grup input { 
-            width: 100%; padding: 10px 14px; border-radius: 4px; 
+            width: 100%; padding: 12px 14px; border-radius: 4px; 
             border: 1px solid #ccc; background: #fff; 
             color: #000; box-sizing: border-box; font-size: 14px; outline: none;
         }
-        .form-grup input:focus { border-color: #df0000; }
+        .form-grup input:focus { border-color: #df0000; box-shadow: 0 0 0 2px rgba(223,0,0,0.1); }
+        
         .btn-auth { 
             background: #df0000; color: #fff; border: none; 
-            padding: 12px; width: 100%; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 14px;
-            text-transform: uppercase; transition: background 0.2s;
+            padding: 14px; width: 100%; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 14px;
+            text-transform: uppercase; transition: background 0.2s; margin-top: 10px;
         }
         .btn-auth:hover { background: #b30000; }
+        
         .sistem-log-kutusu { 
             background: #191919; border-left: 4px solid #00f2fe; border-radius: 4px; 
-            padding: 10px; margin: 12px 0; font-family: monospace; font-size: 11px; color: #00ff87; text-align: left; display: none;
+            padding: 12px; margin: 15px 0; font-family: monospace; font-size: 12px; color: #00ff87; text-align: left; display: none;
         }
 
         /* ========================================================
-           HEADER & DİL SEÇİM ALANI (MEDIAMARKT RED)
+           ANA SİTE ARKA PLANI VE DİZAYNI
            ======================================================== */
+        #anaIcerik { display: none; }
+        
         header { 
             background: #df0000; color: #ffffff;
             padding: 15px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -74,9 +78,6 @@
         }
         .user-profile-tag { background: #191919; color: #ffffff; padding: 11px 20px; font-weight: 700; border-radius: 4px; font-size: 12px; white-space: nowrap; }
 
-        /* ========================================================
-           ANA SİTE MİMARİSİ
-           ======================================================== */
         .main-wrapper {
             display: flex; max-width: 1400px; margin: 20px auto 80px auto; padding: 0 20px; gap: 20px; align-items: flex-start;
         }
@@ -98,7 +99,7 @@
         .panel-baslik-sol { color: #ffffff; background: #191919; padding: 10px; margin-top: 0; font-size: 14px; text-transform: uppercase; font-weight: 800; border-radius: 4px; text-align: center; }
         .panel-baslik-sag { color: #ffffff; background: #df0000; padding: 10px; margin-top: 0; font-size: 14px; text-transform: uppercase; font-weight: 800; border-radius: 4px; text-align: center; }
 
-        /* PRODUCT CARDS (MEDIA MARKT COMPACT STYLE) */
+        /* ÜRÜN KARTLARI DİZAYNI */
         .karsilastirma-karti { 
             background: #ffffff; padding: 15px; margin-bottom: 15px; 
             border-radius: 4px; border: 1px solid #e0e0e0; transition: border-color 0.2s;
@@ -117,23 +118,15 @@
         .git-btn { background: #df0000; color: #fff; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; }
         .git-btn:hover { background: #b30000; }
 
-        /* ========================================================
-           CANLI DÖVİZ / KURLAR BARI (SABİT ALT BAND)
-           ======================================================== */
+        /* CANLI GÜNCEL KURLAR (ALT BANT) */
         .canli-kur-bandi {
             position: fixed; bottom: 0; left: 0; width: 100%; background: #191919; color: #ffffff;
-            padding: 10px 0; font-size: 12px; font-weight: bold; z-index: 99999; border-top: 3px solid #df0000;
+            padding: 12px 0; font-size: 12px; font-weight: bold; z-index: 99999; border-top: 3px solid #df0000;
             box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
         }
-        .marquee-kapsayici {
-            display: flex; width: 100%; overflow: hidden; white-space: nowrap;
-        }
-        .marquee-icerik {
-            display: inline-block; padding-left: 100%; animation: kaydirici 25s linear infinite;
-        }
-        .kur-item {
-            display: inline-block; margin-right: 40px;
-        }
+        .marquee-kapsayici { display: flex; width: 100%; overflow: hidden; white-space: nowrap; }
+        .marquee-icerik { display: inline-block; padding-left: 100%; animation: kaydirici 25s linear infinite; }
+        .kur-item { display: inline-block; margin-right: 40px; }
         .kur-yukselis { color: #00ff87; margin-left: 4px; }
         .kur-dusus { color: #ff3b30; margin-left: 4px; }
 
@@ -142,9 +135,8 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* SOSYAL MEDYA BUTONLARI */
-        .sabit-iletisim-kutusu { position: fixed; bottom: 55px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100000; }
-        .iletisim-buton { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color: #fff; font-size: 16px; text-decoration: none; font-weight: bold; }
+        .sabit-iletisim-kutusu { position: fixed; bottom: 65px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100000; }
+        .iletisim-buton { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color: #fff; font-size: 14px; text-decoration: none; font-weight: bold; }
         .wp-btn { background: #25D366; }
         .tg-btn { background: #0088cc; }
     </style>
@@ -153,8 +145,8 @@
 
     <div id="authGateway">
         <div class="auth-container">
-            <h2 id="lblGatewayTitle">SiberCimri Secure Gateway</h2>
-            <p id="lblGatewayDesc">Ticari veri tabanına erişmek için kimlik doğrulaması yapın.</p>
+            <h2 id="lblGatewayTitle">SiberCimri Portal Gateway</h2>
+            <p id="lblGatewayDesc">Lütfen test paneline erişmek için bilgilerinizi giriniz.</p>
             
             <div id="authStep1">
                 <div class="form-grup">
@@ -169,7 +161,7 @@
                     <label id="lblFormPhone">Telefon Numaranız GSM:</label>
                     <input type="tel" id="regTel" placeholder="05xx xxx xx xx" required>
                 </div>
-                <button type="button" class="btn-auth" id="btnRequestSms" onclick="requestOTP()">SMS KODU İSTE</button>
+                <button type="button" class="btn-auth" id="btnRequestSms" onclick="requestOTP()">SMS KODU ÜRET</button>
             </div>
 
             <div id="systemLog" class="sistem-log-kutusu"></div>
@@ -183,7 +175,6 @@
             </div>
         </div>
     </div>
-
 
     <div id="anaIcerik">
         <header>
@@ -216,20 +207,20 @@
                 <a href="#" id="lnkAll" onclick="filtreleSektor('hepsi')">⭐ Tüm Envanter</a>
                 <a href="#" id="lnkTech" onclick="filtreleSektor('Teknoloji')">📱 Teknoloji / Cihaz</a>
                 <a href="#" id="lnkWear" onclick="filtreleSektor('Giyim')">👕 Hazır Giyim</a>
-                <a href="#" id="lnkGame" onclick="filtreleSektor('Oyun')">🎮 Oyun & Konsol</a>
-                <a href="#" id="lnkFood" onclick="filtreleSektor('Yemek')">🍏 Gıda & Yemek</a>
+                <a href="#" id="lnkGame" onclick="filtreleSektor('Oyun')">🎮 Oyun &amp; Konsol</a>
+                <a href="#" id="lnkFood" onclick="filtreleSektor('Yemek')">🍏 Gıda &amp; Yemek</a>
                 <a href="#" id="lnkInd" onclick="filtreleSektor('Sanayi')">⚙️ Ağır Sanayi</a>
-                <a href="#" id="lnkCom" onclick="filtreleSektor('Ticari')">💼 Ticari & Ofis</a>
+                <a href="#" id="lnkCom" onclick="filtreleSektor('Ticari')">💼 Ticari &amp; Ofis</a>
             </div>
 
             <div class="paneller-konteyner">
                 <div class="cinsiyet-paneli">
-                    <h2 class="panel-baslik-sol" id="lblLeftPanel">👨 ERKEK & ENDÜSTRİYEL REYONU</h2>
+                    <h2 class="panel-baslik-sol" id="lblLeftPanel">👨 ERKEK &amp; ENDÜSTRİYEL REYONU</h2>
                     <div id="solEnvanterAlani"></div>
                 </div>
 
                 <div class="cinsiyet-paneli">
-                    <h2 class="panel-baslik-sag" id="lblRightPanel">👩 KADIN & GLOBAL REYONU</h2>
+                    <h2 class="panel-baslik-sag" id="lblRightPanel">👩 KADIN &amp; GLOBAL REYONU</h2>
                     <div id="sagEnvanterAlani"></div>
                 </div>
             </div>
@@ -254,11 +245,14 @@
         <a href="https://t.me/siber_cimri" target="_blank" class="iletisim-buton tg-btn">TG</a>
     </div>
 
-
     <script>
-        // 10 DİL ÇEVİRİ MATRİSİ
+        // Dil Paketi Tanımlamaları
         const DilPaketi = {
-            tr: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Ticari veri tabanına erişmek için kimlik doğrulaması yapın.", formName: "Adınız:", formSurname: "Soyadınız:", formPhone: "Telefon:", requestSms: "SMS KODU İSTE", formOtp: "Doğrulama Kodu:", verify: "GİRİŞ YAP", searchPlaceholder: "Tüm reyon ve sektörlerde akıllı arama yapın...", sectorsTitle: "🏢 Sektörler", lnkAll: "⭐ Tüm Envanter", lnkTech: "📱 Teknoloji / Cihaz", lnkWear: "👕 Hazır Giyim", lnkGame: "🎮 Oyun & Konsol", lnkFood: "🍏 Gıda & Yemek", lnkInd: "⚙️ Ağır Sanayi", lnkCom: "💼 Ticari & Ofis", leftPanel: "👨 ERKEK & ENDÜSTRİYEL REYONU", rightPanel: "👩 KADIN & GLOBAL REYONU", go: "Git" },
-            en: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authenticate to access the commercial database.", formName: "First Name:", formSurname: "Last Name:", formPhone: "Phone Number:", requestSms: "REQUEST SMS CODE", formOtp: "Verification Code:", verify: "LOGIN SYSTEM", searchPlaceholder: "Smart search across all global sectors...", sectorsTitle: "🏢 Sectors", lnkAll: "⭐ All Inventory", lnkTech: "📱 Technology", lnkWear: "👕 Apparel", lnkGame: "🎮 Gaming & Console", lnkFood: "🍏 Food & Grocery", lnkInd: "⚙️ Heavy Industry", lnkCom: "💼 Commercial & Office", leftPanel: "👨 MEN & INDUSTRIAL ZONE", rightPanel: "👩 WOMEN & GLOBAL ZONE", go: "Go" },
-            de: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authentifizieren Sie sich, um auf die Datenbank zuzugreifen.", formName: "Vorname:", formSurname: "Nachname:", formPhone: "Telefonnummer:", requestSms: "SMS-CODE ANFORDERN", formOtp: "Verifizierungscode:", verify: "EINLOGGEN", searchPlaceholder: "Intelligente Suche in allen Sektoren...", sectorsTitle: "🏢 Sektoren", lnkAll: "⭐ Alle Bestände", lnkTech: "📱 Technologie", lnkWear: "👕 Bekleidung", lnkGame: "🎮 Gaming", lnkFood: "🍏 Lebensmittel", lnkInd: "⚙️ Schwerindustrie", lnkCom: "💼 Gewerbe & Büro", leftPanel: "👨 HERREN & INDUSTRIEBEREICH", rightPanel: "👩 DAMEN & GLOBALER BEREICH", go: "Los" },
-            fr: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authentifiez-vous pour accéder à la base de données.", formName: "Prénom:", formSurname: "
+            tr: { gatewayTitle: "SiberCimri Portal Gateway", gatewayDesc: "Lütfen test paneline erişmek için bilgilerinizi giriniz.", formName: "Adınız:", formSurname: "Soyadınız:", formPhone: "Telefon:", requestSms: "SMS KODU ÜRET", formOtp: "Doğrulama Kodu:", verify: "SİSTEME GİRİŞ YAP", searchPlaceholder: "Tüm global ve ulusal envanterlerde akıllı arama yapın...", sectorsTitle: "🏢 Sektörler", lnkAll: "⭐ Tüm Envanter", lnkTech: "📱 Teknoloji / Cihaz", lnkWear: "👕 Hazır Giyim", lnkGame: "🎮 Oyun & Konsol", lnkFood: "🍏 Gıda & Yemek", lnkInd: "⚙️ Ağır Sanayi", lnkCom: "💼 Ticari & Ofis", leftPanel: "👨 ERKEK & ENDÜSTRİYEL REYONU", rightPanel: "👩 KADIN & GLOBAL REYONU", go: "Git" },
+            en: { gatewayTitle: "SiberCimri Portal Gateway", gatewayDesc: "Please enter your details to access the preview dashboard.", formName: "First Name:", formSurname: "Last Name:", formPhone: "Phone Number:", requestSms: "GENERATE SMS CODE", formOtp: "Verification Code:", verify: "LOGIN SYSTEM", searchPlaceholder: "Smart search across all global sectors...", sectorsTitle: "🏢 Sectors", lnkAll: "⭐ All Inventory", lnkTech: "📱 Technology", lnkWear: "👕 Apparel", lnkGame: "🎮 Gaming & Console", lnkFood: "🍏 Food & Grocery", lnkInd: "⚙️ Heavy Industry", lnkCom: "💼 Commercial & Office", leftPanel: "👨 MEN & INDUSTRIAL ZONE", rightPanel: "👩 WOMEN & GLOBAL ZONE", go: "Go" }
+        };
+
+        // Geniş Ürün Listesi
+        const MegaVeritabani = [
+            { panel: "sol", sekyor: "Teknoloji", baslik: "Apple iPhone 16 Pro Max 512 GB", gorsel: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100", fiyatlar: [{ s: "MediaMarkt", f: "89.499 TL" }, { s: "Amazon TR", f: "89.500 TL" }] },
+            { panel: "sol", sekyor: "Teknoloji", baslik: "Asus ROG Strix RTX409
