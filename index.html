@@ -2,9 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Gelişmiş Dijital Mağazam</title>
+    <title>Premium Dijital Mağazam</title>
     
     <style>
+        /* Genel Tasarım */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             background-color: #f4f6f9; 
@@ -12,144 +13,246 @@
             padding: 20px; 
             color: #333;
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
+        header { 
+            background-color: #2c3e50; 
+            color: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        .menu { margin-top: 10px; }
+        .menu a { 
+            color: #3498db; 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin: 0 15px; 
+            padding: 5px 10px; 
+            border-radius: 5px; 
+            transition: 0.3s; 
+        }
+        .menu a:hover { background-color: #34495e; color: #2ecc71; }
+        
+        /* Kartlar ve Bölümler */
+        #panel, #fiyatlar, #envanter, #iletisim, #girisEkrani { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin-bottom: 20px; 
+        }
+        
+        /* Giriş Ekranı Özel Tasarımı */
+        #girisEkrani {
+            max-width: 400px;
+            margin: 50px auto;
             text-align: center;
-            margin-bottom: 20px;
+            border-top: 5px solid #3498db;
         }
-        #panel, #fiyatlar, #envanter, #iletisim {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .bakiye-kutusu {
-            font-size: 20px;
-            color: #27ae60;
-            font-weight: bold;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #f8f9fa;
-            margin: 10px 0;
-            padding: 15px;
-            border-left: 5px solid #e67e22;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
+
+        .bakiye-kutusu { font-size: 20px; color: #27ae60; font-weight: bold; }
+        ul { padding: 0; }
+        
+        /* Ürün Kartları (Görsel Geliştirme) */
+        .urun-listesi li { 
+            background-color: #fff; 
+            margin: 15px 0; 
+            padding: 20px; 
+            border-left: 5px solid #e67e22; 
+            border-radius: 8px; 
+            display: flex; 
+            justify-content: space-between; 
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        button, .btn-gonder {
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
+        .urun-detay { display: flex; align-items: center; gap: 15px; }
+        .urun-ikon { font-size: 30px; background: #f8f9fa; padding: 10px; border-radius: 5px; }
+
+        /* Butonlar */
+        button, .btn-gonder { 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            color: white; 
+            transition: 0.2s;
         }
         .btn-satin-al { background-color: #e67e22; }
         .btn-satin-al:hover { background-color: #d35400; }
-        
-        .btn-bakiye-yukle { 
-            background-color: #2ecc71; 
-            margin-top: 10px;
-            padding: 10px 20px;
-        }
+        .btn-bakiye-yukle { background-color: #2ecc71; margin-top: 10px; }
         .btn-bakiye-yukle:hover { background-color: #27ae60; }
+        .btn-giris { background-color: #3498db; width: 100%; padding: 12px; margin-top: 10px; }
+        .btn-giris:hover { background-color: #2980b9; }
 
-        .envanter-item {
-            border-left: 5px solid #3498db;
-            background-color: #e8f4f8;
-        }
-
-        /* YENI: İletişim Formu Tasarım Ayarları */
-        .form-grup {
-            margin-bottom: 15px;
-        }
-        .form-grup label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-grup input, .form-grup textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
+        /* Envanter İçeriği */
+        .envanter-item { 
+            border-left: 5px solid #3498db; 
+            background-color: #e8f4f8; 
+            margin: 10px 0;
+            padding: 15px;
             border-radius: 5px;
-            box-sizing: border-box; /* Taşmayı önler */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-        .btn-gonder {
-            background-color: #34495e;
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
+        .lisans-kodu {
+            font-family: monospace;
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 5px;
         }
-        .btn-gonder:hover { background-color: #2c3e50; }
+
+        /* Formlar */
+        .form-grup { margin-bottom: 15px; text-align: left; }
+        .form-grup label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-grup input, .form-grup textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-gonder { background-color: #34495e; width: 100%; padding: 12px; }
+        
+        /* Mağaza İçeriğini Gizlemek İçin */
+        .gizli { display: none !important; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Dijital Mağazam</h1>
+        <h1>Premium Dijital Mağazam</h1>
+        <div class="menu">
+            <a href="index.html">🏠 Ana Sayfa</a>
+            <a href="hizmetler.html">🛠️ Hizmetlerimiz</a>
+            <a href="hakkimizda.html">ℹ️ Hakkımızda</a>
+        </div>
     </header>
 
-    <section id="panel">
-        <h2>Kullanıcı Paneli</h2>
-        <p>Hoş geldin, <strong>Ziyaretçi!</strong></p>
-        <p>Mevcut Bakiyeniz: <span class="bakiye-kutusu" id="bakiyeMiktari">500.00 TL</span></p>
-        <button class="btn-bakiye-yukle" onclick="bakiyeYukle()">➕ 100 TL Bakiye Yükle</button>
+    <section id="girisEkrani">
+        <h2>🔒 Kullanıcı Girişi</h2>
+        <p style="color: #7f8c8d; font-size: 14px;">Demo Bilgileri: Kullanıcı: <b>admin</b> / Şifre: <b>1234</b></p>
+        <div class="form-grup">
+            <label>Kullanıcı Adı:</label>
+            <input type="text" id="kullaniciAdiInput" placeholder="Kullanıcı adınızı yazın">
+        </div>
+        <div class="form-grup">
+            <label>Şifre:</label>
+            <input type="password" id="sifreInput" placeholder="••••••••">
+        </div>
+        <button class="btn-giris" onclick="sistemeGirisYap()">Giriş Yap</button>
     </section>
 
-    <section id="fiyatlar">
-        <h2>Ürünlerimiz & Fiyatlar</h2>
-        <ul>
-            <li>
-                <span>📦 Gümüş Paket (50 TL)</span> 
-                <button class="btn-satin-al" onclick="paketSatinAl(50, '📦 Gümüş Paket')">Satın Al</button>
-            </li>
-            <li>
-                <span>🚀 Altın Paket (150 TL)</span> 
-                <button class="btn-satin-al" onclick="paketSatinAl(150, '🚀 Altın Paket')">Satın Al</button>
-            </li>
-        </ul>
-    </section>
+    <div id="magazaIcerigi" class="gizli">
+        
+        <section id="panel">
+            <h2>Kullanıcı Paneli</h2>
+            <p>Hoş geldin, <strong id="kullaniciAdiYazisi">Ziyaretçi</strong>! 👋</p>
+            <p>Mevcut Bakiyeniz: <span class="bakiye-kutusu" id="bakiyeMiktari">500.00 TL</span></p>
+            <button class="btn-bakiye-yukle" onclick="bakiyeYukle()">➕ 100 TL Bakiye Yükle</button>
+            <button style="background-color: #e74c3c; margin-left: 10px;" onclick="sistemdenCikisYap()">🚪 Çıkış Yap</button>
+        </section>
 
-    <section id="envanter">
-        <h2>Satın Alınan Paketler</h2>
-        <p id="bosMesaji">Henüz hiçbir paket satın almadınız.</p>
-        <ul id="envanterListesi"></ul>
-    </section>
+        <section id="fiyatlar">
+            <h2>🔥 Dijital Ürünlerimiz & Paketler</h2>
+            <ul class="urun-listesi">
+                <li>
+                    <div class="urun-detay">
+                        <div class="urun-ikon">📦</div>
+                        <div>
+                            <strong>Gümüş Paket</strong><br>
+                            <span style="color: #7f8c8d; font-size: 14px;">Başlangıç seviyesi dijital kod paketi.</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold; margin-right: 15px; font-size: 18px;">50 TL</span>
+                        <button class="btn-satin-al" onclick="paketSatinAl(50, '📦 Gümüş Paket')">Satın Al</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="urun-detay">
+                        <div class="urun-ikon">🚀</div>
+                        <div>
+                            <strong>Altın Paket</strong><br>
+                            <span style="color: #7f8c8d; font-size: 14px;">Premium özellikler içeren üst düzey paket.</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold; margin-right: 15px; font-size: 18px;">150 TL</span>
+                        <button class="btn-satin-al" onclick="paketSatinAl(150, '🚀 Altın Paket')">Satın Al</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
-    <section id="iletisim">
-        <h2>Bizimle İletişime Geçin</h2>
-        <form action="https://formspree.io/f/xykvgznk" method="POST">
-            <div class="form-grup">
-                <label>E-Posta Adresiniz:</label>
-                <input type="email" name="email" placeholder="ornek@mail.com" required>
-            </div>
-            <div class="form-grup">
-                <label>Mesajınız:</label>
-                <textarea name="message" rows="5" placeholder="Mesajınızı buraya yazın..." required></textarea>
-            </div>
-            <button type="submit" class="btn-gonder">📧 Mesajı Gönder</button>
-        </form>
-    </section>
+        <section id="envanter">
+            <h2>🔑 Satın Alınan Paketler & Lisans Anahtarları</h2>
+            <p id="bosMesaji">Henüz hiçbir paket satın almadınız. Satın aldığınız dijital kodlar anında burada belirecektir.</p>
+            <div id="envanterListesi"></div>
+        </section>
+
+        <section id="iletisim">
+            <h2>Bizimle İletişime Geçin</h2>
+            <form action="https://formspree.io/f/FORM_ID_BURAYA" method="POST">
+                <div class="form-grup">
+                    <label>E-Posta Adresiniz:</label>
+                    <input type="email" name="email" placeholder="ornek@mail.com" required>
+                </div>
+                <div class="form-grup">
+                    <label>Mesajınız:</label>
+                    <textarea name="message" rows="5" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                </div>
+                <button type="submit" class="btn-gonder">📧 Mesajı Gönder</button>
+            </form>
+        </section>
+
+    </div>
 
     <script>
         let mevcutBakiye = 500;
 
+        // 1. FONKSİYON: GİRİŞ KONTROLÜ
+        function sistemeGirisYap() {
+            let kAdi = document.getElementById("kullaniciAdiInput").value;
+            let sifre = document.getElementById("sifreInput").value;
+
+            // Basit bir kullanıcı adı şifre doğrulaması yapıyoruz
+            if (kAdi === "admin" && sifre === "1234") {
+                document.getElementById("girisEkrani").classList.add("gizli"); // Giriş formunu gizle
+                document.getElementById("magazaIcerigi").classList.remove("gizli"); // Mağazayı göster
+                document.getElementById("kullaniciAdiYazisi").innerText = kAdi.toUpperCase(); // İsmi yaz
+            } else {
+                alert("Hatalı kullanıcı adı veya şifre! (Kullanıcı: admin / Şifre: 1234)");
+            }
+        }
+
+        function sistemdenCikisYap() {
+            document.getElementById("girisEkrani").classList.remove("gizli");
+            document.getElementById("magazaIcerigi").classList.add("gizli");
+            document.getElementById("kullaniciAdiInput").value = "";
+            document.getElementById("sifreInput").value = "";
+        }
+
+        // 2. FONKSİYON: BAKİYE YÜKLEME
         function bakiyeYukle() {
             mevcutBakiye = mevcutBakiye + 100;
             document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
         }
 
+        // 3. FONKSİYON: RASTGELE LİSANS KODU ÜRETİCİ (OTOMATİK TESLİMAT)
+        function lisansKoduUret() {
+            let karakterler = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let kod = "KEY-";
+            for (let i = 0; i < 4; i++) {
+                kod += karakterler.charAt(Math.floor(Math.random() * karakterler.length));
+            }
+            kod += "-";
+            for (let i = 0; i < 4; i++) {
+                kod += karakterler.charAt(Math.floor(Math.random() * karakterler.length));
+            }
+            return kod;
+        }
+
+        // 4. FONKSİYON: GELİŞMİŞ SATIN ALMA
         function paketSatinAl(fiyat, paketAdi) {
             if (mevcutBakiye >= fiyat) {
                 mevcutBakiye = mevcutBakiye - fiyat;
@@ -157,18 +260,26 @@
                 
                 document.getElementById("bosMesaji").style.display = "none";
 
-                let liste = document.getElementById("envanterListesi");
-                let yeniUrun = document.createElement("li");
-                yeniUrun.className = "envanter-item";
-                yeniUrun.innerHTML = "<span>" + paketAdi + "</span> <strong>Aktif</strong>";
-                liste.appendChild(yeniUrun);
+                // Otomatik lisans kodu üretelim
+                let yeniKod = lisansKoduUret();
 
-                alert("Tebrikler! " + paketAdi + " başarıyla satın alındı.");
+                // Envantere yeni lüks kutuyu ekleyelim
+                let liste = document.getElementById("envanterListesi");
+                let urunKutusu = document.createElement("div");
+                urunKutusu.className = "envanter-item";
+                urunKutusu.innerHTML = `
+                    <strong>${paketAdi} Satın Alındı</strong>
+                    <span style="font-size: 13px; color: #7f8c8d;">Durum: <b style="color: #2ecc71;">Aktif/Kullanıma Hazır</b></span>
+                    <div>Teslim Edilen Dijital Kodunuz:</div>
+                    <div class="lisans-kodu">${yeniKod}</div>
+                `;
+                liste.appendChild(urunKutusu);
+
+                alert("Satın alma başarılı! Dijital ürün kodunuz envantere teslim edildi.");
             } else {
-                alert("Yetersiz bakiye! Lütfen bakiye yükleyin.");
+                alert("Yetersiz bakiye! Lütfen cüzdanınıza bakiye yükleyin.");
             }
         }
     </script>
-
 </body>
 </html>
