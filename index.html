@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Mega Engine</title>
+    <title>SiberCimri Mega Engine - Tüm Sektörler</title>
     <style>
-        /* GÖNDERDİĞİN EKRAN GÖRÜNTÜLERİNDEKİ ORİJİNAL NEON VE KOYU TEMA RENKLERİ */
+        /* GÖNDERDİĞİN EKRAN GÖRÜNTÜLERİNDEKİ ORİJİNAL KOYU TEMA */
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,7 +27,7 @@
             align-items: center; justify-content: space-between; gap: 15px;
         }
         
-        /* GÖRÜNTÜDEKİ BUTONLAR VE INPUT STİLLERİ */
+        /* ORİJİNAL BUTON VE INPUT STİLLERİ */
         .btn-sektörler {
             background-color: #ff007f; color: #ffffff; border: none;
             padding: 14px 28px; font-weight: bold; border-radius: 25px;
@@ -62,9 +62,9 @@
             padding: 0 20px; gap: 20px;
         }
 
-        /* SOL SEKTÖR LİSTESİ */
+        /* SOL PANEL: TÜM SEKTÖRLERİN LİSTESİ */
         .sidebar-sectors {
-            width: 280px; background-color: #13161f; border-radius: 12px;
+            width: 290px; background-color: #13161f; border-radius: 12px;
             padding: 20px; flex-shrink: 0; height: fit-content;
         }
         .sidebar-sectors h3 {
@@ -72,8 +72,9 @@
         }
         .sector-link {
             display: block; width: 100%; text-align: left; background: transparent;
-            border: none; color: #a0aec0; padding: 12px 15px; font-size: 14px;
+            border: none; color: #a0aec0; padding: 12px 15px; font-size: 13px;
             font-weight: bold; cursor: pointer; border-radius: 8px; margin-bottom: 5px;
+            transition: all 0.2s;
         }
         .sector-link.active, .sector-link:hover {
             background-color: #ff007f; color: #ffffff;
@@ -88,7 +89,7 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* ÜRÜN SATIR YAPISI - GÖRÜNTÜDEKİ REPLİKA */
+        /* ÜRÜN SATIR YAPISI */
         .product-row-item {
             background-color: #13161f; border-radius: 12px; padding: 20px;
             display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;
@@ -99,7 +100,8 @@
             display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;
         }
         .product-img-frame img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .product-name-text { font-size: 18px; font-weight: bold; margin: 0 0 5px 0; color: #ffffff; }
+        .product-name-text { font-size: 17px; font-weight: bold; margin: 0 0 5px 0; color: #ffffff; }
+        .product-sector-tag { font-size: 11px; color: #00ffff; background: rgba(0, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px; font-weight: bold; }
         
         .price-tag-neon { color: #00ffaa; font-weight: 800; font-size: 20px; margin-right: 20px; }
         .btn-ucuza-git {
@@ -127,8 +129,8 @@
     <div class="navbar-header">
         <h1 class="main-brand-title">SiberCimri Mega Engine</h1>
         <div class="navbar-controls">
-            <button class="btn-sektörler">☰ Tüm Sektörler</button>
-            <input type="text" id="engineSearchBox" class="search-input-field" placeholder="Entegrasyon havuzunda akıllı arama yapın...">
+            <button class="btn-sektörler" onclick="filterBySector('hepsi')">💥 Tüm Sektörler</button>
+            <input type="text" id="engineSearchBox" class="search-input-field" placeholder="İstediğiniz ürünü, parçayı veya sektörü yazın (Örn: lastik, ceket, iphone)...">
             <div class="user-status-badge">👑 EMRE ADIGÜZEL</div>
         </div>
     </div>
@@ -141,15 +143,18 @@
     <div id="view-page-1" class="main-container">
         <div class="sidebar-sectors">
             <h3>📁 API SEKTÖRLERİ</h3>
-            <button class="sector-link active" id="sec-all" onclick="filterBySector('hepsi')">💥 Tüm Mağazalar</button>
-            <button class="sector-link" id="sec-elec" onclick="filterBySector('Elektronik')">💻 Elektronik &amp; PC</button>
-            <button class="sector-link" id="sec-textile" onclick="filterBySector('Tekstil')">👕 İğne &amp; İplik / Giyim</button>
+            <button class="sector-link active" id="sec-all" onclick="filterBySector('hepsi')">💥 Tüm Sektörler Havuzu</button>
+            <button class="sector-link" id="sec-auto" onclick="filterBySector('Araç Parçaları')">🚗 Araç Parçaları &amp; Oto</button>
+            <button class="sector-link" id="sec-giyim" onclick="filterBySector('Giyim &amp; Mağaza')">👕 Giyim &amp; Mağaza</button>
+            <button class="sector-link" id="sec-tech" onclick="filterBySector('Teknoloji &amp; Elektronik')">💻 Teknoloji &amp; Elektronik</button>
+            <button class="sector-link" id="sec-elec" onclick="filterBySector('Elektrik &amp; Enerji')">⚡ Elektrik &amp; Enerji</button>
+            <button class="sector-link" id="sec-hirdavat" onclick="filterBySector('Hırdavat &amp; Tuhafiye')">🪡 İğne, İplik &amp; Hırdavat</button>
         </div>
 
         <div class="inventory-display-card">
             <div class="card-main-title">
-                <span>📋 Mağaza API Entegrasyon Havuzu</span>
-                <span style="font-size: 14px; color: #ff007f;" id="productCounterText">3 Ürün</span>
+                <span>📋 Entegre Mağaza Ürün Havuzu</span>
+                <span style="font-size: 14px; color: #ff007f;" id="productCounterText">0 Ürün</span>
             </div>
             <div id="inventoryWrapper">
                 </div>
@@ -159,7 +164,7 @@
     <div id="view-page-2" class="main-container">
         <div class="inventory-display-card" style="width: 100%;">
             <div class="card-main-title">
-                <span>📊 API Havuzundaki En Ucuz Mağazaya Doğrudan Bağlantı Paneli</span>
+                <span>📊 Pazaryerleri Fiyat Karşılaştırma ve En Ucuz Mağaza Bağlantısı</span>
             </div>
             <div id="comparisonWrapper">
                 </div>
@@ -167,11 +172,51 @@
     </div>
 
     <script>
-        // TRENDYOL, HEPSİBURADA, TEKNOSA VE VATAN BİLGİSAYAR DOĞAL ENTEGRASYON HAVUZU
+        // İSTEDİĞİN TÜM SEKTÖRLERİ İÇEREN DEVASA ENTEGRASYON MATRİSİ
         const MasterDatabasePool = [
+            // 1. SEKTÖR: ARAÇ PARÇALARI
+            {
+                title: "Michelin Primacy 4+ 205/55 R16 Yaz Lastiği",
+                sector: "Araç Parçaları",
+                img: "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 2950, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 2850, url: "https://www.hepsiburada.com" },
+                    { name: "Vatan Bilgisayar", price: 3100, url: "https://www.vatanbilgisayar.com" }
+                ]
+            },
+            {
+                title: "Bosch Aerotwin Silecek Takımı (Astra/Golf Uyumlu)",
+                sector: "Araç Parçaları",
+                img: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 620, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 590, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            // 2. SEKTÖR: GİYİM & MAĞAZA
+            {
+                title: "Premium Slim Fit Erkek Kaşe Kaban",
+                sector: "Giyim & Mağaza",
+                img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 2499, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 2550, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            {
+                title: "Oversize Unisex Grafik Baskılı Sweatshirt",
+                sector: "Giyim & Mağaza",
+                img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 450, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 480, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            // 3. SEKTÖR: TEKNOLOJİ & ELEKTRONİK
             {
                 title: "Apple iPhone 16 Pro Max 512 GB",
-                sector: "Elektronik",
+                sector: "Teknoloji & Elektronik",
                 img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100",
                 platforms: [
                     { name: "Vatan Bilgisayar", price: 88490, url: "https://www.vatanbilgisayar.com" },
@@ -181,8 +226,8 @@
                 ]
             },
             {
-                title: "Asus ROG Strix RTX 4090 24GB",
-                sector: "Elektronik",
+                title: "Asus ROG Strix RTX 4090 24GB Ekran Kartı",
+                sector: "Teknoloji & Elektronik",
                 img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=100",
                 platforms: [
                     { name: "Hepsiburada", price: 94200, url: "https://www.hepsiburada.com" },
@@ -191,22 +236,35 @@
                     { name: "Teknosa", price: 96500, url: "https://www.teknosa.com" }
                 ]
             },
+            // 4. SEKTÖR: ELEKTRİK & ENERJİ
             {
-                title: "Altın Başak Renkli Dikiş İpliği Seti",
-                sector: "Tekstil",
+                title: "Siemens 3 Fazlı Otomatik Kaçak Akım Rölesi",
+                sector: "Elektrik & Enerji",
+                img: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 1450, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 1390, url: "https://www.hepsiburada.com" },
+                    { name: "Vatan Bilgisayar", price: 1500, url: "https://www.vatanbilgisayar.com" }
+                ]
+            },
+            {
+                title: "Philips Smart LED Ampul 9W E27 Renkli",
+                sector: "Elektrik & Enerji",
+                img: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=100",
+                platforms: [
+                    { name: "Teknosa", price: 649, url: "https://www.teknosa.com" },
+                    { name: "Trendyol", price: 599, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 580, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            // 5. SEKTÖR: HIRDAVAT & TUHAFİYE
+            {
+                title: "Altın Başak Renkli Dikiş İpliği Seti (24'lü)",
+                sector: "Hırdavat & Tuhafiye",
                 img: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=100",
                 platforms: [
                     { name: "Trendyol", price: 245, url: "https://www.trendyol.com" },
                     { name: "Hepsiburada", price: 260, url: "https://www.hepsiburada.com" }
-                ]
-            },
-            {
-                title: "Premium Slim Fit Erkek Ceket",
-                sector: "Tekstil",
-                img: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100",
-                platforms: [
-                    { name: "Trendyol", price: 1850, url: "https://www.trendyol.com" },
-                    { name: "Hepsiburada", price: 1900, url: "https://www.hepsiburada.com" }
                 ]
             }
         ];
@@ -217,14 +275,14 @@
             refreshInventoryScreen();
             refreshComparisonScreen();
             
-            // Arama filtresi dinleyicisi
+            // Canlı Arama Çubuğu Algoritması
             document.getElementById("engineSearchBox").addEventListener("input", function() {
                 refreshInventoryScreen();
                 refreshComparisonScreen();
             });
         });
 
-        // SAYFA DEĞİŞTİRME MEKANİZMASI (ASLA ÇÖKMEZ)
+        // 1. VE 2. SAYFA ARASI GEÇİŞ MOTORU
         function executePageSwitch(pageNumber) {
             document.getElementById("tab1").classList.remove("active");
             document.getElementById("tab2").classList.remove("active");
@@ -240,19 +298,22 @@
             }
         }
 
-        // SEKTÖR FİLTRELEME MOTORU
+        // SEKTÖR BUTONLARI FİLTRESİ
         function filterBySector(sectorName) {
             selectedSectorFilter = sectorName;
             document.querySelectorAll(".sector-link").forEach(btn => btn.classList.remove("active"));
             
             if(sectorName === 'hepsi') document.getElementById("sec-all").classList.add("active");
-            else if(sectorName === 'Elektronik') document.getElementById("sec-elec").classList.add("active");
-            else if(sectorName === 'Tekstil') document.getElementById("sec-textile").classList.add("active");
+            else if(sectorName === 'Araç Parçaları') document.getElementById("sec-auto").classList.add("active");
+            else if(sectorName === 'Giyim & Mağaza') document.getElementById("sec-giyim").classList.add("active");
+            else if(sectorName === 'Teknoloji & Elektronik') document.getElementById("sec-tech").classList.add("active");
+            else if(sectorName === 'Elektrik & Enerji') document.getElementById("sec-elec").classList.add("active");
+            else if(sectorName === 'Hırdavat & Tuhafiye') document.getElementById("sec-hirdavat").classList.add("active");
 
             refreshInventoryScreen();
         }
 
-        // SAYFA 1 DİNAMİK YÜKLEYİCİ
+        // ANA SAYFA LİSTELEYİCİ
         function refreshInventoryScreen() {
             const container = document.getElementById("inventoryWrapper");
             const query = document.getElementById("engineSearchBox").value.toLowerCase().trim();
@@ -260,14 +321,18 @@
 
             const targetData = MasterDatabasePool.filter(item => {
                 const isSectorMatch = (selectedSectorFilter === "hepsi" || item.sector === selectedSectorFilter);
-                const isQueryMatch = item.title.toLowerCase().includes(query);
+                const isQueryMatch = item.title.toLowerCase().includes(query) || item.sector.toLowerCase().includes(query);
                 return isSectorMatch && isQueryMatch;
             });
 
-            document.getElementById("productCounterText").innerText = `${targetData.length} Ürün`;
+            document.getElementById("productCounterText").innerText = `${targetData.length} Ürün Listelendi`;
+
+            if(targetData.length === 0) {
+                container.innerHTML = `<p style="color:#a0aec0; text-align:center; padding:30px;">⚠️ Aradığınız kriterde ürün envanteri bulunamadı.</p>`;
+                return;
+            }
 
             targetData.forEach(prod => {
-                // Fiyatları en küçüğe göre dizip en ucuzunu bulma
                 const sorted = [...prod.platforms].sort((a,b) => a.price - b.price);
                 const cheapestOffer = sorted[0];
 
@@ -278,7 +343,8 @@
                         <div class="product-img-frame"><img src="${prod.img}" alt="SiberCimri"></div>
                         <div>
                             <h3 class="product-name-text">${prod.title}</h3>
-                            <span style="color:#00ffff; font-size:12px; font-weight:bold;">En Ucuz Mağaza: ${cheapestOffer.name}</span>
+                            <span class="product-sector-tag">${prod.sector}</span>
+                            <span style="color:#00ffff; font-size:12px; font-weight:bold; margin-left:10px;">En Ucuz: ${cheapestOffer.name}</span>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center;">
@@ -290,13 +356,13 @@
             });
         }
 
-        // SAYFA 2 DİNAMİK KARŞILAŞTIRMA VE LİSTELEME TABLOSU
+        // 2. SAYFA FİYAT ENDEKS TABLOSU LİSTELEYİCİ
         function refreshComparisonScreen() {
             const container = document.getElementById("comparisonWrapper");
             const query = document.getElementById("engineSearchBox").value.toLowerCase().trim();
             container.innerHTML = "";
 
-            const targetData = MasterDatabasePool.filter(item => item.title.toLowerCase().includes(query));
+            const targetData = MasterDatabasePool.filter(item => item.title.toLowerCase().includes(query) || item.sector.toLowerCase().includes(query));
 
             targetData.forEach(prod => {
                 const wrapperBlock = document.createElement("div");
@@ -304,7 +370,6 @@
                 wrapperBlock.style.borderBottom = "2px dashed #2b303c";
                 wrapperBlock.style.paddingBottom = "20px";
 
-                // Fiyat listesini ucuzdan pahalıya sıralıyoruz
                 const sortedOffers = [...prod.platforms].sort((a,b) => a.price - b.price);
 
                 let rowsHtml = "";
@@ -330,7 +395,10 @@
                 wrapperBlock.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
                         <img src="${prod.img}" style="width: 45px; height: 45px; object-fit: contain; background: #fff; padding: 2px; border-radius: 6px;">
-                        <h3 style="margin: 0; font-size: 19px; color: #00ffff;">${prod.title} Fiyat Endeksi</h3>
+                        <div>
+                            <h3 style="margin: 0; font-size: 19px; color: #00ffff;">${prod.title}</h3>
+                            <span style="font-size:12px; color:#ff007f; font-weight:bold;">Sektör: ${prod.sector}</span>
+                        </div>
                     </div>
                     <table class="compare-data-table">
                         <thead>
