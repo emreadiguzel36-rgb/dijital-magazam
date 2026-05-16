@@ -9,36 +9,35 @@
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             margin: 0; padding: 0; color: #ffffff; overflow-x: hidden; min-height: 100vh;
-            /* ARKA PLAN RESMİ BURAYA SABİTLENDİ */
+            /* DALGALI ARKA PLAN RESMİ KUSURSUZ SABİTLENDİ */
             background: url('image_368ddf.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
         /* ========================================================
-           %100 KİLİTLİ GİRİŞ EKRANI (FORM GERİ GETİRİLDİ VE SABİTLENDİ)
+           %100 GARANTİLİ ÇALIŞAN GİRİŞ GATEWAY PANELİ
            ======================================================== */
         #authGateway {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(9, 13, 22, 0.4); /* Arka plan resmi net görünsün diye hafif transparan karartma */
-            backdrop-filter: blur(8px); /* Dalgaları pürüzsüz gösteren premium flu efekti */
+            background: rgba(9, 13, 22, 0.35); 
+            backdrop-filter: blur(12px); 
             display: flex; align-items: center; justify-content: center;
-            z-index: 999999; opacity: 1; transition: opacity 0.5s ease;
+            z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
         
         .auth-container {
-            background: #111726; /* Boşluğu engelleyen koyu asil siber panel rengi */
+            background: #111726; 
             border: 2px solid #ff007f; border-radius: 24px;
             padding: 40px; width: 100%; max-width: 450px; box-sizing: border-box;
             box-shadow: 0 0 40px rgba(255, 0, 127, 0.45); text-align: center;
-            z-index: 1000000; position: relative;
+            position: relative;
         }
         .auth-container h2 { color: #00f2fe; margin: 0 0 8px 0; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3); font-size: 24px; }
         .auth-container p { color: #94a3b8; font-size: 13px; margin: 0 0 25px 0; line-height: 1.4; }
 
-        /* Ana İçerik Giriş Yapılana Kadar Tamamen Gizli */
+        /* SİTE İÇERİĞİ BAŞTA KESİNLİKLE GİZLİ */
         #anaIcerik { display: none; }
 
-        /* Form Elemanları Tasarımı */
         .form-grup { margin-bottom: 18px; text-align: left; }
         .form-grup label { display: block; margin-bottom: 8px; color: #cbd5e1; font-size: 13px; font-weight: 600; }
         .form-grup input { 
@@ -51,44 +50,44 @@
         .btn-auth { 
             background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; border: none; 
             padding: 15px; width: 100%; font-weight: bold; border-radius: 12px; 
-            cursor: pointer; font-size: 15px; letter-spacing: 0.5px; transition: 0.3s; margin-top: 10px;
+            cursor: pointer; font-size: 15px; letter-spacing: 0.5px; transition: 0.2s; margin-top: 10px;
         }
         .btn-auth:hover { box-shadow: 0 0 20px #ff007f; transform: translateY(-1px); }
 
         .sistem-log-kutusu { 
-            background: rgba(0,0,0,0.8); border: 1px solid #00f2fe; border-radius: 10px; 
+            background: rgba(0,0,0,0.85); border: 1px solid #00f2fe; border-radius: 10px; 
             padding: 14px; margin: 15px 0; font-family: monospace; font-size: 13px; 
             color: #00ff87; text-align: left; display: none; line-height: 1.6; 
         }
 
         /* ========================================================
-           SİTE İÇİ PANELI VE HEADER DÜZENİ
+           PREMIUM PANEL VE HEADER ALTYAPISI
            ======================================================== */
         header { 
-            background: rgba(15, 23, 42, 0.75); border-bottom: 3px solid #00f2fe;
+            background: rgba(15, 23, 42, 0.8); border-bottom: 3px solid #00f2fe;
             padding: 20px; backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 999;
         }
         header h1 { margin: 0 0 15px 0; font-size: 2.2em; color: #00f2fe; text-align: center; font-weight: 800; }
         .ust-kontroller { display: flex; gap: 15px; max-width: 1200px; margin: 0 auto; align-items: center; justify-content: space-between; }
         .kategori-ac-btn { background: #ff007f; color: #fff; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 25px; white-space: nowrap; }
         .arama-kutusu-kapsayici { flex-grow: 1; }
-        .arama-kutusu { width: 100%; padding: 12px 24px; border-radius: 25px; border: 2px solid #00f2fe; background: rgba(0,0,0,0.6); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; }
+        .arama-kutusu { width: 100%; padding: 12px 24px; border-radius: 25px; border: 2px solid #00f2fe; background: rgba(0,0,0,0.7); color: #fff; outline: none; font-size: 15px; box-sizing: border-box; }
+        
         .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 12px 24px; font-weight: 800; border-radius: 25px; font-size: 14px; white-space: nowrap; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
-        section { background: rgba(15, 23, 42, 0.7); padding: 35px; margin-bottom: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
-        .karsilastirma-karti { background: rgba(30, 41, 59, 0.75); padding: 25px; margin-bottom: 25px; border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.2); }
+        section { background: rgba(15, 23, 42, 0.75); padding: 35px; margin-bottom: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+        .karsilastirma-karti { background: rgba(30, 41, 59, 0.8); padding: 25px; margin-bottom: 25px; border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.2); }
         .urun-ust-kisim { display: flex; align-items: center; gap: 25px; }
         .urun-gorsel-kutusu { width: 90px; height: 90px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; }
+        .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .urun-baslik { margin: 0; color: #fff; font-size: 22px; font-weight: bold; }
         .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 12px; overflow: hidden; }
-        .fiyat-satiri td { padding: 16px; font-size: 15px; background: rgba(0,0,0,0.4); }
+        .fiyat-satiri td { padding: 16px; font-size: 15px; background: rgba(0,0,0,0.5); }
         .git-btn { background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; padding: 10px 24px; text-decoration: none; border-radius: 20px; float: right; font-size: 13px; font-weight: bold; text-transform: uppercase; }
-        .menu-linkleri { display: flex; justify-content: center; gap: 25px; margin-top: 15px; }
-        .menu-linkleri a { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 14px; }
+        
         .sidebar { position: fixed; left: -310px; top: 0; width: 300px; height: 100%; background: #0b0f19; border-right: 2px solid #00f2fe; z-index: 10000; transition: 0.3s; padding: 25px; box-sizing: border-box; }
         .sidebar.aktif { left: 0; }
-        .sidebar a { display: block; color: #e2e8f0; padding: 12px 15px; text-decoration: none; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; }
         .sidebar button { background: #ff007f; width: 100%; padding: 12px; color:#000; font-weight:bold; border:none; margin-bottom:20px; cursor:pointer; border-radius: 8px; }
     </style>
 </head>
@@ -129,32 +128,21 @@
 
 
     <div id="anaIcerik">
-        <div id="kategoriSidebar" class="sidebar">
-            <button onclick="kategoriMenusuKapat()">MENÜYÜ KAPAT ×</button>
-            <a href="#" onclick="kategoriFiltrele('hepsi')">⭐ Tüm Sektörler</a>
-            <a href="#" onclick="kategoriFiltrele('elektronik')">📱 Elektronik</a>
-        </div>
-
         <header>
             <h1>SiberCimri Mega Engine</h1>
             <div class="ust-kontroller">
-                <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Tüm Sektörler</button>
+                <button class="kategori-ac-btn" onclick="document.getElementById('kategoriSidebar').classList.add('aktif')">☰ Tüm Sektörler</button>
                 <div class="arama-kutusu-kapsayici">
                     <input type="text" id="aramaGirdisi" class="arama-kutusu" oninput="urunAra()" placeholder="Sistem içinde akıllı arama yapın...">
                 </div>
                 <div id="userLabel" class="user-profile-tag">👤 Yükleniyor...</div>
-            </div>
-            <div class="menu-linkleri">
-                <a href="#fiyatMotoru">📊 Canlı Karşılaştırma</a>
-                <a href="#">🛠️ API Entegrasyonları</a>
-                <a href="#">ℹ️ Vizyonumuz</a>
             </div>
         </header>
 
         <div class="container">
             <section id="fiyatMotoru">
                 <h2>📋 Korunan Ticari Pazar Yeri Veri Tabanı</h2>
-                <div class="karsilastirma-karti" data-kat="elektronik">
+                <div class="karsilastirma-karti">
                     <div class="urun-ust-kisim">
                         <div class="urun-gorsel-kutusu"><img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=150"></div>
                         <div>
@@ -181,18 +169,66 @@
         let savedPhone = "";
 
         function requestOTP() {
-            savedName = document.getElementById("regAd").value.trim();
-            savedSurname = document.getElementById("regSoyad").value.trim();
-            savedPhone = document.getElementById("regTel").value.trim();
+            // Değerleri alırken hata oluşmasını önlemek için try-catch güvencesi
+            try {
+                savedName = document.getElementById("regAd").value.trim();
+                savedSurname = document.getElementById("regSoyad").value.trim();
+                savedPhone = document.getElementById("regTel").value.trim();
 
-            if(!savedName || !savedSurname || savedPhone.length < 10) {
-                alert("Lütfen Ad, Soyad ve Telefon alanlarını eksiksiz doldurunuz!");
-                return;
+                if(!savedName || !savedSurname || savedPhone.length < 10) {
+                    alert("Lütfen tüm alanları eksiksiz doldurunuz!");
+                    return;
+                }
+
+                // Rastgele kod üretimi
+                generatedOTP = Math.floor(1000 + Math.random() * 9000);
+                
+                let logBox = document.getElementById("systemLog");
+                logBox.style.display = "block";
+                logBox.innerHTML = "⏳ SMS API ağ geçidine bağlanılıyor...<br>";
+
+                setTimeout(() => {
+                    logBox.innerHTML += "🛰️ Operatör Onayı Alındı...<br>";
+                    logBox.innerHTML += "📬 <span style='color:#ff007f;'>[SMS BAŞARILI]</span> Numara: " + savedPhone + "<br>🔑 Telefon Kodu: <strong style='font-size:16px; color:#fff;'>" + generatedOTP + "</strong>";
+                    
+                    // Adımları kesin olarak değiştir
+                    document.getElementById("authStep1").style.display = "none";
+                    document.getElementById("authStep2").style.display = "block";
+                }, 800);
+
+            } catch (err) {
+                console.error("Sistem hatası:", err);
+                alert("Bir hata oluştu, lütfen sayfayı yenileyip tekrar deneyin.");
             }
+        }
 
-            // Güvenli 4 haneli şifre üretimi
-            generatedOTP = Math.floor(1000 + Math.random() * 9000);
-            
-            let logBox = document.getElementById("systemLog");
-            logBox.style.display = "block";
-            logBox.innerHTML
+        function verifyOTP() {
+            let enteredCode = document.getElementById("smsInputCode").value.trim();
+
+            if(enteredCode == generatedOTP) {
+                // Kilidi aç animasyonu
+                document.getElementById("authGateway").style.opacity = "0";
+                
+                setTimeout(() => {
+                    document.getElementById("authGateway").style.display = "none";
+                    document.getElementById("anaIcerik").style.display = "block";
+                    // İsmi üst panele hatasız aktarır
+                    document.getElementById("userLabel").innerHTML = "👑 " + savedName.toUpperCase() + " " + savedSurname.toUpperCase();
+                }, 400);
+            } else {
+                alert("❌ Hatalı şifre girdiniz!");
+            }
+        }
+
+        function urunAra() {
+            let ara = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
+            let kartlar = document.querySelectorAll(".karsilastirma-karti");
+            kartlar.forEach(k => {
+                let baslik = k.querySelector(".urun-baslik").innerText.toLowerCase();
+                if(baslik.indexOf(ara) > -1) { k.style.display = "block"; }
+                else { k.style.display = "none"; }
+            });
+        }
+    </script>
+</body>
+</html>
