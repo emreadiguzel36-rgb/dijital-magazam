@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Global Engine - Ultimate Database v5</title>
+    <title>SiberCimri - MediaMarkt Style Enterprise v6</title>
     
     <style>
         html, body {
             margin: 0; padding: 0; min-height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif; color: #ffffff;
-            background: url('image_368ddf.jpg') no-repeat center center fixed;
-            background-size: cover;
+            font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif; 
+            color: #191919; /* MediaMarkt tarzı koyu gri ana font */
+            background: #f4f4f4; /* Temiz teknoloji marketi arka planı */
             overflow-x: hidden;
         }
 
@@ -19,97 +19,132 @@
            ======================================================== */
         #authGateway {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 15, 25, 0.5); backdrop-filter: blur(20px); 
+            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); 
             display: flex; align-items: center; justify-content: center;
             z-index: 999999; opacity: 1; transition: opacity 0.4s ease;
         }
         .auth-container {
-            background: #111726; border: 2px solid #ff007f; border-radius: 20px;
+            background: #ffffff; border-top: 8px solid #df0000; border-radius: 4px;
             padding: 30px; width: 100%; max-width: 400px; box-sizing: border-box;
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.5); text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center;
         }
+        .auth-container h2 { color: #df0000; margin: 0 0 8px 0; font-size: 22px; font-weight: 800; }
+        .auth-container p { color: #666; font-size: 13px; margin: 0 0 20px 0; }
         #anaIcerik { display: none; }
         .form-grup { margin-bottom: 14px; text-align: left; }
-        .form-grup label { display: block; margin-bottom: 6px; color: #cbd5e1; font-size: 12px; font-weight: 600; }
+        .form-grup label { display: block; margin-bottom: 6px; color: #333; font-size: 12px; font-weight: 700; }
         .form-grup input { 
-            width: 100%; padding: 10px 14px; border-radius: 8px; 
-            border: 1px solid rgba(255,255,255,0.15); background: #000; 
-            color: #fff; box-sizing: border-box; font-size: 14px; outline: none;
+            width: 100%; padding: 10px 14px; border-radius: 4px; 
+            border: 1px solid #ccc; background: #fff; 
+            color: #000; box-sizing: border-box; font-size: 14px; outline: none;
         }
+        .form-grup input:focus { border-color: #df0000; }
         .btn-auth { 
-            background: linear-gradient(135deg, #ff007f, #b91c1c); color: #fff; border: none; 
-            padding: 12px; width: 100%; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;
+            background: #df0000; color: #fff; border: none; 
+            padding: 12px; width: 100%; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 14px;
+            text-transform: uppercase; transition: background 0.2s;
         }
+        .btn-auth:hover { background: #b30000; }
         .sistem-log-kutusu { 
-            background: rgba(0,0,0,0.85); border: 1px solid #00f2fe; border-radius: 8px; 
+            background: #191919; border-left: 4px solid #00f2fe; border-radius: 4px; 
             padding: 10px; margin: 12px 0; font-family: monospace; font-size: 11px; color: #00ff87; text-align: left; display: none;
         }
 
         /* ========================================================
-           HEADER & DİL SEÇİM ALANI
+           HEADER & DİL SEÇİM ALANI (MEDIAMARKT RED)
            ======================================================== */
         header { 
-            background: rgba(19, 26, 42, 0.9); border-bottom: 2px solid #00f2fe;
-            padding: 15px 20px; backdrop-filter: blur(10px);
+            background: #df0000; color: #ffffff;
+            padding: 15px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .ust-ust-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto 10px auto; }
-        header h1 { margin: 0; font-size: 1.8em; color: #00f2fe; font-weight: 800; text-shadow: 0 0 10px rgba(0,242,254,0.3); }
+        header h1 { margin: 0; font-size: 2em; font-weight: 900; font-style: italic; letter-spacing: -1px; }
         
-        /* 10 DİL SEÇENEKLİ SELEKTÖR */
         .dil-secici {
-            background: #000; color: #00f2fe; border: 1px solid #00f2fe;
-            padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none; cursor: pointer;
+            background: #ffffff; color: #df0000; border: none;
+            padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; outline: none; cursor: pointer;
         }
 
         .ust-kontroller { display: flex; gap: 15px; max-width: 1400px; margin: 0 auto; align-items: center; }
         .arama-kutusu-kapsayici { flex-grow: 1; }
         .arama-kutusu { 
-            width: 100%; padding: 10px 20px; border-radius: 20px; border: 2px solid #00f2fe; 
-            background: rgba(0,0,0,0.7); color: #fff; outline: none; font-size: 13px; box-sizing: border-box;
+            width: 100%; padding: 12px 20px; border-radius: 4px; border: none; 
+            background: #ffffff; color: #191919; outline: none; font-size: 14px; box-sizing: border-box;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
-        .user-profile-tag { background: linear-gradient(135deg, #00ff87, #00b358); color: #000; padding: 10px 20px; font-weight: 800; border-radius: 20px; font-size: 12px; white-space: nowrap; }
+        .user-profile-tag { background: #191919; color: #ffffff; padding: 11px 20px; font-weight: 700; border-radius: 4px; font-size: 12px; white-space: nowrap; }
 
         /* ========================================================
            ANA SİTE MİMARİSİ
            ======================================================== */
         .main-wrapper {
-            display: flex; max-width: 1400px; margin: 20px auto; padding: 0 20px; gap: 20px; align-items: flex-start;
+            display: flex; max-width: 1400px; margin: 20px auto 80px auto; padding: 0 20px; gap: 20px; align-items: flex-start;
         }
         .sol-kategori-bar {
-            width: 230px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 15px; box-sizing: border-box; backdrop-filter: blur(10px); flex-shrink: 0;
+            width: 240px; background: #ffffff; border: 1px solid #dee2e6;
+            border-radius: 4px; padding: 15px; box-sizing: border-box; flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .sol-kategori-bar h3 { font-size: 13px; text-transform: uppercase; color: #00f2fe; margin-top: 0; margin-bottom: 12px; }
-        .sol-kategori-bar a { display: block; color: #cbd5e1; padding: 8px 12px; text-decoration: none; font-size: 12px; border-radius: 6px; margin-bottom: 4px; background: rgba(255,255,255,0.02); }
-        .sol-kategori-bar a:hover { background: rgba(0,242,254,0.15); color: #00f2fe; }
+        .sol-kategori-bar h3 { font-size: 14px; text-transform: uppercase; color: #191919; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #df0000; padding-bottom: 5px; }
+        .sol-kategori-bar a { display: block; color: #333; padding: 10px 12px; text-decoration: none; font-size: 13px; border-radius: 4px; margin-bottom: 4px; font-weight: 600; transition: 0.2s; }
+        .sol-kategori-bar a:hover { background: #df0000; color: #ffffff; }
 
-        .paneller-konteyner { display: flex; flex-grow: 1; gap: 20px; width: calc(100% - 250px); }
+        .paneller-konteyner { display: flex; flex-grow: 1; gap: 20px; width: calc(100% - 260px); }
         .cinsiyet-paneli {
-            flex: 1; background: rgba(30, 41, 59, 0.65); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px; padding: 20px; backdrop-filter: blur(15px); box-sizing: border-box;
+            flex: 1; background: #ffffff; border: 1px solid #dee2e6;
+            border-radius: 4px; padding: 20px; box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .panel-baslik-sol { color: #00f2fe; border-bottom: 2px solid #00f2fe; padding-bottom: 8px; margin-top: 0; font-size: 15px; text-transform: uppercase; }
-        .panel-baslik-sag { color: #ff007f; border-bottom: 2px solid #ff007f; padding-bottom: 8px; margin-top: 0; font-size: 15px; text-transform: uppercase; }
+        .panel-baslik-sol { color: #ffffff; background: #191919; padding: 10px; margin-top: 0; font-size: 14px; text-transform: uppercase; font-weight: 800; border-radius: 4px; text-align: center; }
+        .panel-baslik-sag { color: #ffffff; background: #df0000; padding: 10px; margin-top: 0; font-size: 14px; text-transform: uppercase; font-weight: 800; border-radius: 4px; text-align: center; }
 
-        /* KARTLAR VE TABLOLAR */
+        /* PRODUCT CARDS (MEDIA MARKT COMPACT STYLE) */
         .karsilastirma-karti { 
-            background: rgba(15, 23, 42, 0.9); padding: 12px; margin-bottom: 15px; 
-            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff; padding: 15px; margin-bottom: 15px; 
+            border-radius: 4px; border: 1px solid #e0e0e0; transition: border-color 0.2s;
         }
+        .karsilastirma-karti:hover { border-color: #df0000; }
         .urun-ust-kisim { display: flex; align-items: center; gap: 12px; }
-        .urun-gorsel-kutusu { width: 50px; height: 50px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px; flex-shrink: 0; }
+        .urun-gorsel-kutusu { width: 60px; height: 60px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px; flex-shrink: 0; border: 1px solid #eee; }
         .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .urun-baslik { margin: 0; color: #fff; font-size: 13px; font-weight: bold; }
-        .urun-kategori-etiket { color: #94a3b8; font-size: 11px; display: block; margin-top: 2px; }
+        .urun-baslik { margin: 0; color: #191919; font-size: 13px; font-weight: 700; }
+        .urun-kategori-etiket { color: #7f7f7f; font-size: 11px; display: block; margin-top: 2px; font-weight: bold; text-transform: uppercase; }
         
-        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 10px; border-radius: 8px; overflow: hidden; font-size: 11px; }
-        .fiyat-satiri td { padding: 8px 10px; background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .fiyat-tablosu { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+        .fiyat-satiri td { padding: 8px 10px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; color: #333; }
+        .fiyat-satiri:hover td { background: #f1f1f1; }
         
-        .git-btn { background: #ff007f; color: #fff; padding: 4px 10px; text-decoration: none; border-radius: 4px; font-size: 10px; font-weight: bold; }
+        .git-btn { background: #df0000; color: #fff; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline-block; }
+        .git-btn:hover { background: #b30000; }
+
+        /* ========================================================
+           CANLI DÖVİZ / KURLAR BARI (SABİT ALT BAND)
+           ======================================================== */
+        .canli-kur-bandi {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: #191919; color: #ffffff;
+            padding: 10px 0; font-size: 12px; font-weight: bold; z-index: 99999; border-top: 3px solid #df0000;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+        }
+        .marquee-kapsayici {
+            display: flex; width: 100%; overflow: hidden; white-space: nowrap;
+        }
+        .marquee-icerik {
+            display: inline-block; padding-left: 100%; animation: kaydirici 25s linear infinite;
+        }
+        .kur-item {
+            display: inline-block; margin-right: 40px;
+        }
+        .kur-yukselis { color: #00ff87; margin-left: 4px; }
+        .kur-dusus { color: #ff3b30; margin-left: 4px; }
+
+        @keyframes kaydirici {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
 
         /* SOSYAL MEDYA BUTONLARI */
-        .sabit-iletisim-kutusu { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100000; }
-        .iletisim-buton { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5); color: #fff; font-size: 18px; text-decoration: none; font-weight: bold; }
+        .sabit-iletisim-kutusu { position: fixed; bottom: 55px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100000; }
+        .iletisim-buton { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color: #fff; font-size: 16px; text-decoration: none; font-weight: bold; }
         .wp-btn { background: #25D366; }
         .tg-btn { background: #0088cc; }
     </style>
@@ -144,7 +179,7 @@
                     <label id="lblFormOtp">Doğrulama Kodu:</label>
                     <input type="number" id="smsInputCode" placeholder="••••" style="text-align: center; font-size: 20px; letter-spacing: 4px;" required>
                 </div>
-                <button type="button" class="btn-auth" id="btnVerify" style="background: #00b358;" onclick="verifyOTP()">SİSTEME GİRİŞ YAP</button>
+                <button type="button" class="btn-auth" id="btnVerify" style="background: #25D366;" onclick="verifyOTP()">SİSTEME GİRİŞ YAP</button>
             </div>
         </div>
     </div>
@@ -153,7 +188,7 @@
     <div id="anaIcerik">
         <header>
             <div class="ust-ust-bar">
-                <h1>SiberCimri Mega Engine</h1>
+                <h1>SiberCimri</h1>
                 <select id="dilSecici" class="dil-secici" onchange="dilDegistir()">
                     <option value="tr">TR - Türkçe</option>
                     <option value="en">EN - English</option>
@@ -201,6 +236,19 @@
         </div>
     </div>
 
+    <div class="canli-kur-bandi">
+        <div class="marquee-kapsayici">
+            <div class="marquee-icerik">
+                <div class="kur-item">🇺🇸 USD/TRY: <span style="color:#fff;">36.42</span><span class="kur-yukselis">▲ %0.12</span></div>
+                <div class="kur-item">🇪🇺 EUR/TRY: <span style="color:#fff;">39.18</span><span class="kur-dusus">▼ %0.04</span></div>
+                <div class="kur-item">🇬🇧 GBP/TRY: <span style="color:#fff;">45.64</span><span class="kur-yukselis">▲ %0.21</span></div>
+                <div class="kur-item">🟡 ONS ALTIN: <span style="color:#fff;">$2,412.50</span><span class="kur-yukselis">▲ %0.45</span></div>
+                <div class="kur-item">🪙 GRAM ALTIN: <span style="color:#fff;">2,825.10 TL</span><span class="kur-yukselis">▲ %0.38</span></div>
+                <div class="kur-item">₿ BITCOIN (BTC): <span style="color:#fff;">$94,150</span><span class="kur-yukselis">▲ %1.85</span></div>
+            </div>
+        </div>
+    </div>
+
     <div class="sabit-iletisim-kutusu">
         <a href="https://wa.me/905000000000" target="_blank" class="iletisim-buton wp-btn">WP</a>
         <a href="https://t.me/siber_cimri" target="_blank" class="iletisim-buton tg-btn">TG</a>
@@ -213,161 +261,4 @@
             tr: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Ticari veri tabanına erişmek için kimlik doğrulaması yapın.", formName: "Adınız:", formSurname: "Soyadınız:", formPhone: "Telefon:", requestSms: "SMS KODU İSTE", formOtp: "Doğrulama Kodu:", verify: "GİRİŞ YAP", searchPlaceholder: "Tüm reyon ve sektörlerde akıllı arama yapın...", sectorsTitle: "🏢 Sektörler", lnkAll: "⭐ Tüm Envanter", lnkTech: "📱 Teknoloji / Cihaz", lnkWear: "👕 Hazır Giyim", lnkGame: "🎮 Oyun & Konsol", lnkFood: "🍏 Gıda & Yemek", lnkInd: "⚙️ Ağır Sanayi", lnkCom: "💼 Ticari & Ofis", leftPanel: "👨 ERKEK & ENDÜSTRİYEL REYONU", rightPanel: "👩 KADIN & GLOBAL REYONU", go: "Git" },
             en: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authenticate to access the commercial database.", formName: "First Name:", formSurname: "Last Name:", formPhone: "Phone Number:", requestSms: "REQUEST SMS CODE", formOtp: "Verification Code:", verify: "LOGIN SYSTEM", searchPlaceholder: "Smart search across all global sectors...", sectorsTitle: "🏢 Sectors", lnkAll: "⭐ All Inventory", lnkTech: "📱 Technology", lnkWear: "👕 Apparel", lnkGame: "🎮 Gaming & Console", lnkFood: "🍏 Food & Grocery", lnkInd: "⚙️ Heavy Industry", lnkCom: "💼 Commercial & Office", leftPanel: "👨 MEN & INDUSTRIAL ZONE", rightPanel: "👩 WOMEN & GLOBAL ZONE", go: "Go" },
             de: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authentifizieren Sie sich, um auf die Datenbank zuzugreifen.", formName: "Vorname:", formSurname: "Nachname:", formPhone: "Telefonnummer:", requestSms: "SMS-CODE ANFORDERN", formOtp: "Verifizierungscode:", verify: "EINLOGGEN", searchPlaceholder: "Intelligente Suche in allen Sektoren...", sectorsTitle: "🏢 Sektoren", lnkAll: "⭐ Alle Bestände", lnkTech: "📱 Technologie", lnkWear: "👕 Bekleidung", lnkGame: "🎮 Gaming", lnkFood: "🍏 Lebensmittel", lnkInd: "⚙️ Schwerindustrie", lnkCom: "💼 Gewerbe & Büro", leftPanel: "👨 HERREN & INDUSTRIEBEREICH", rightPanel: "👩 DAMEN & GLOBALER BEREICH", go: "Los" },
-            fr: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authentifiez-vous pour accéder à la base de données.", formName: "Prénom:", formSurname: "Nom:", formPhone: "Téléphone:", requestSms: "DEMANDER LE CODE", formOtp: "Code de Validation:", verify: "CONNEXION", searchPlaceholder: "Recherche intelligente dans tous les secteurs...", sectorsTitle: "🏢 Secteurs", lnkAll: "⭐ Tout l'inventaire", lnkTech: "📱 Technologie", lnkWear: "👕 Vêtements", lnkGame: "🎮 Jeux Vidéo", lnkFood: "🍏 Alimentation", lnkInd: "⚙️ Industrie Lourde", lnkCom: "💼 Commercial & Bureau", leftPanel: "👨 REYON HOMMES & INDUSTRIE", rightPanel: "👩 REYON FEMMES & GLOBAL", go: "Voir" },
-            ru: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Пройдите аутентификацию для доступа к коммерческой базе данных.", formName: "Имя:", formSurname: "Фамилия:", formPhone: "Телефон:", requestSms: "ЗАПРОСИТЬ СМС", formOtp: "Код подтверждения:", verify: "ВОЙТИ В СИСТЕМУ", searchPlaceholder: "Умный поиск по всем секторам...", sectorsTitle: "🏢 Секторы", lnkAll: "⭐ Весь инвентарь", lnkTech: "📱 Технологии", lnkWear: "👕 Одежда", lnkGame: "🎮 Игры и Консоли", lnkFood: "🍏 Еда и Продукты", lnkInd: "⚙️ Тяжелая промышленность", lnkCom: "💼 Коммерция и Офис", leftPanel: "👨 МУЖСКОЙ И ПРОМЫШЛЕННЫЙ РАЗДЕЛ", rightPanel: "👩 ЖЕНСКИЙ И ГЛОБАЛЬНЫЙ РАЗДЕЛ", go: "Перейти" },
-            ar: { gatewayTitle: "بوابة سبركيمري الآمنة", gatewayDesc: "يرجى تسجيل الدخول للوصول إلى قاعدة البيانات التجارية.", formName: "الاسم الأول:", formSurname: "الاسم الأخير:", formPhone: "رقم الهاتف:", requestSms: "طلب رمز التحقق", formOtp: "رمز التأكيد:", verify: "دخول النظام", searchPlaceholder: "البحث الذكي في جميع القطاعات...", sectorsTitle: "🏢 القطاعات", lnkAll: "⭐ كل المخزون", lnkTech: "📱 التكنولوجيا", lnkWear: "👕 الملابس الجاهزة", lnkGame: "🎮 الألعاب والكونسول", lnkFood: "🍏 الأغذية والمأكولات", lnkInd: "⚙️ الصناعات الثقيلة", lnkCom: "💼 التجاري والمكاتب", leftPanel: "👨 قسم الرجال والصناعة", rightPanel: "👩 قسم النساء والعالمي", go: "ذهاب" },
-            es: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Autentíquese para acceder a la base de datos comercial.", formName: "Nombre:", formSurname: "Apellido:", formPhone: "Teléfono:", requestSms: "SOLICITAR SMS", formOtp: "Código de Verificación:", verify: "INGRESAR", searchPlaceholder: "Búsqueda inteligente en todos los sectores...", sectorsTitle: "🏢 Sectores", lnkAll: "⭐ Todo el Inventario", lnkTech: "📱 Tecnología", lnkWear: "👕 Ropa y Textil", lnkGame: "🎮 Juegos y Consolas", lnkFood: "🍏 Alimentos", lnkInd: "⚙️ Industria Pesada", lnkCom: "💼 Comercial y Oficina", leftPanel: "👨 ZONA DE HOMBRES E INDUSTRIAL", rightPanel: "👩 ZONA DE MUJERES Y GLOBAL", go: "Ir" },
-            it: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Autenticarsi per accedere al database commerciale.", formName: "Nome:", formSurname: "Cognome:", formPhone: "Telefono:", requestSms: "RICHIEDI CODICE SMS", formOtp: "Codice di Verifica:", verify: "ACCEDI", searchPlaceholder: "Ricerca intelligente in tutti i settori...", sectorsTitle: "🏢 Settori", lnkAll: "⭐ Tutto l'inventario", lnkTech: "📱 Tecnologia", lnkWear: "👕 Abbigliamento", lnkGame: "🎮 Giochi e Console", lnkFood: "🍏 Alimentari", lnkInd: "⚙️ Industria Pesante", lnkCom: "💼 Commerciale e Ufficio", leftPanel: "👨 REPARTO UOMO E INDUSTRIALE", rightPanel: "👩 REPARTO DONNA E GLOBALE", go: "Vai" },
-            zh: { gatewayTitle: "SiberCimri 安全网关", gatewayDesc: "请验证身份以访问商业数据库。", formName: "名字:", formSurname: "姓氏:", formPhone: "电话号码:", requestSms: "获取短信验证码", formOtp: "验证码:", verify: "登录系统", searchPlaceholder: "全行业智能库存搜索...", sectorsTitle: "🏢 行业板块", lnkAll: "⭐ 所有库存", lnkTech: "📱 科技电子", lnkWear: "👕 服装面料", lnkGame: "🎮 游戏主机", lnkFood: "🍏 食品餐饮", lnkInd: "⚙️ 重工业制造", lnkCom: "💼 商业及办公", leftPanel: "👨 男士与工业专区", rightPanel: "👩 女士与全球专区", go: "前往" },
-            az: { gatewayTitle: "SiberCimri Təhlükəsiz Giriş", gatewayDesc: "Kommersiya məlumat bazasına daxil olmaq üçün təsdiqləmədən keçin.", formName: "Adınız:", formSurname: "Soyadınız:", formPhone: "Telefon:", requestSms: "SMS KODU İSTƏ", formOtp: "Təsdiq Kodu:", verify: "DAXİL OL", searchPlaceholder: "Bütün sektorlarda ağıllı axtarış...", sectorsTitle: "🏢 Sektorlar", lnkAll: "⭐ Bütün İnventar", lnkTech: "📱 Texnologiya / Cihaz", lnkWear: "👕 Hazır Geyim", lnkGame: "🎮 Oyun & Konsol", lnkFood: "🍏 Qida & Yemək", lnkInd: "⚙️ Ağır Sənaye", lnkCom: "💼 Kommersiya & Ofis", leftPanel: "👨 KİŞİ VƏ SƏNAYE REYONU", rightPanel: "👩 QADIN VƏ QLOBAL REYON", go: "Get" }
-        };
-
-        // DEVASA PAZAR YERİ VE SEKTÖR VERİTABANI (YASAL OLAN HER ŞEY)
-        const MegaVeritabani = [
-            // --- TEKNOLOJİ SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Teknoloji", baslik: "Apple iPhone 16 Pro Max 512 GB", gorsel: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=100", fiyatlar: [{ s: "Amazon TR", f: "89.500 TL" }, { s: "Trendyol", f: "89.900 TL" }, { s: "Hepsiburada", f: "90.100 TL" }] },
-            { panel: "sol", sekyor: "Teknoloji", baslik: "Asus ROG Strix RTX4090 Oyuncu Bilgisayarı", gorsel: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=100", fiyatlar: [{ s: "İncehesap", f: "124.500 TL" }, { s: "Hepsiburada", f: "126.000 TL" }] },
-            
-            // --- GİYİM SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Giyim", baslik: "Premium Slim Fit Erkek Kaşe Ceket", gorsel: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=100", fiyatlar: [{ s: "Trendyol", f: "3.499 TL" }, { s: "Hepsiburada", f: "3.550 TL" }] },
-            { panel: "sag", sekyor: "Giyim", baslik: "Kuşaklı Kadın Kaşe Kaban / Uzun Palto", gorsel: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100", fiyatlar: [{ s: "Trendyol Mill", f: "2.199 TL" }, { s: "Amazon TR", f: "2.250 TL" }] },
-
-            // --- OYUN SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Oyun", baslik: "Sony PlayStation 5 Pro 1 TB Konsol", gorsel: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=100", fiyatlar: [{ s: "Hepsiburada", f: "31.450 TL" }, { s: "N11", f: "30.999 TL" }] },
-            { panel: "sag", sekyor: "Oyun", baslik: "Nintendo Switch OLED Edition Taşınabilir Konsol", gorsel: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=100", fiyatlar: [{ s: "Amazon TR", f: "14.200 TL" }, { s: "Trendyol", f: "14.500 TL" }] },
-
-            // --- YEMEK & GIDA SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Yemek", baslik: "Tam Otomatik Espresso Kahve Makinesi", gorsel: "https://images.unsplash.com/photo-1517256064527-09c53b2d0c6b?q=80&w=100", fiyatlar: [{ s: "Amazon TR", f: "18.400 TL" }, { s: "Trendyol", f: "18.900 TL" }] },
-            { panel: "sag", sekyor: "Yemek", baslik: "Sızma Zeytinyağı 5 Litre Teneke - Ege", gorsel: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=100", fiyatlar: [{ s: "Hepsiburada", f: "1.850 TL" }, { s: "Trendyol", f: "1.790 TL" }] },
-
-            // --- AĞIR SANAYİ SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Sanayi", baslik: "İnverter Çantalı Gazaltı Kaynak Makinesi 200A", gorsel: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=100", fiyatlar: [{ s: "Sanayi Burada", f: "14.500 TL" }, { s: "N11", f: "15.100 TL" }] },
-            { panel: "sol", sekyor: "Sanayi", baslik: "Sessiz Yağsız Hava Kompresörü 50 Litre", gorsel: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=100", fiyatlar: [{ s: "Hepsiburada", f: "7.800 TL" }, { s: "Trendyol", f: "7.650 TL" }] },
-
-            // --- TİCARİ & OFİS SEKTÖRÜ ---
-            { panel: "sol", sekyor: "Ticari", baslik: "Kablosuz Karekod Barkod Okuyucu El Terminali", gorsel: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=100", fiyatlar: [{ s: "N11", f: "2.450 TL" }, { s: "Hepsiburada", f: "2.390 TL" }] },
-            { panel: "sag", sekyor: "Ticari", baslik: "Termal Barkod ve Etiket Yazıcı Masaüstü", gorsel: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=100", fiyatlar: [{ s: "Trendyol", f: "4.100 TL" }, { s: "Amazon TR", f: "3.950 TL" }] }
-        ];
-
-        let generatedOTP = null;
-        let currentSektor = "hepsi";
-        let currentLang = "tr";
-
-        // DİL MOTORU FONKSİYONU
-        function dilDegistir() {
-            currentLang = document.getElementById("dilSecici").value;
-            const trans = DilPaketi[currentLang];
-
-            // Gateway Çevirileri
-            document.getElementById("lblGatewayTitle").innerText = trans.gatewayTitle;
-            document.getElementById("lblGatewayDesc").innerText = trans.gatewayDesc;
-            document.getElementById("lblFormName").innerText = trans.formName;
-            document.getElementById("lblFormSurname").innerText = trans.formSurname;
-            document.getElementById("lblFormPhone").innerText = trans.formPhone;
-            document.getElementById("btnRequestSms").innerText = trans.requestSms;
-            document.getElementById("lblFormOtp").innerText = trans.formOtp;
-            document.getElementById("btnVerify").innerText = trans.verify;
-
-            // Dashboard Çevirileri
-            document.getElementById("aramaGirdisi").placeholder = trans.searchPlaceholder;
-            document.getElementById("lblSectorsTitle").innerText = trans.sectorsTitle;
-            document.getElementById("lnkAll").innerText = trans.lnkAll;
-            document.getElementById("lnkTech").innerText = trans.lnkTech;
-            document.getElementById("lnkWear").innerText = trans.lnkWear;
-            document.getElementById("lnkGame").innerText = trans.lnkGame;
-            document.getElementById("lnkFood").innerText = trans.lnkFood;
-            document.getElementById("lnkInd").innerText = trans.lnkInd;
-            document.getElementById("lnkCom").innerText = trans.lnkCom;
-            document.getElementById("lblLeftPanel").innerText = trans.leftPanel;
-            document.getElementById("lblRightPanel").innerText = trans.rightPanel;
-
-            canliAramaYap(); // Listeyi de o dilin "Git/Go" butonuna göre tazele
-        }
-
-        // MOTOR LİSTELEME SİSTEMİ
-        function reyonlariYazdir(liste) {
-            const solAlan = document.getElementById("solEnvanterAlani");
-            const sagAlan = document.getElementById("sagEnvanterAlani");
-            solAlan.innerHTML = ""; sagAlan.innerHTML = "";
-
-            const btnText = DilPaketi[currentLang].go;
-
-            liste.forEach(u => {
-                let tbl = u.fiyatlar.map(f => `
-                    <tr class="fiyat-satiri">
-                        <td style="color:#cbd5e1;">${f.s}</td>
-                        <td style="color:#00ff87; font-weight:bold; text-align:right;">${f.f}</td>
-                        <td style="text-align:right; width:40px;"><a href="#" class="git-btn">${btnText}</a></td>
-                    </tr>
-                `).join('');
-
-                const html = `
-                    <div class="karsilastirma-karti">
-                        <div class="urun-ust-kisim">
-                            <div class="urun-gorsel-kutusu"><img src="${u.gorsel}"></div>
-                            <div>
-                                <h3 class="urun-baslik">${u.baslik}</h3>
-                                <span class="urun-kategori-etiket">${u.sekyor}</span>
-                            </div>
-                        </div>
-                        <table class="fiyat-tablosu">${tbl}</table>
-                    </div>
-                `;
-
-                if(u.panel === "sol") solAlan.innerHTML += html;
-                else sagAlan.innerHTML += html;
-            });
-        }
-
-        // ARTIK KUSURSUZ OLAN AKILLI ARAMA ALGORİTMASI
-        function canliAramaYap() {
-            const ara = document.getElementById("aramaGirdisi").value.toLowerCase().trim();
-            const filtrelenmis = MegaVeritabani.filter(u => {
-                const sektorUyum = (currentSektor === "hepsi" || u.sekyor === currentSektor);
-                const isimUyum = u.baslik.toLowerCase().includes(ara);
-                return sektorUyum && isimUyum;
-            });
-            reyonlariYazdir(filtrelenmis);
-        }
-
-        // SIDEBAR SEKTÖR FİLTRELEME
-        function filtreleSektor(sektorKodu) {
-            currentSektor = sektorKodu;
-            document.getElementById("aramaGirdisi").value = "";
-            canliAramaYap();
-        }
-
-        // KİMLİK GEÇİDİ
-        function requestOTP() {
-            let n = document.getElementById("regAd").value.trim();
-            let s = document.getElementById("regSoyad").value.trim();
-            let p = document.getElementById("regTel").value.trim();
-
-            if(!n || !s || p.length < 10) { alert("Eksik bilgi!"); return; }
-
-            generatedOTP = Math.floor(1000 + Math.random() * 9000);
-            let log = document.getElementById("systemLog");
-            log.style.display = "block";
-            log.innerHTML = "⏳ API Tunnel Connecting...<br>";
-
-            setTimeout(() => {
-                log.innerHTML += "📬 <span style='color:#ff007f;'>[SMS SENT]</span> Code: <strong style='color:#fff; font-size:14px;'>" + generatedOTP + "</strong>";
-                document.getElementById("authStep1").style.display = "none";
-                document.getElementById("authStep2").style.display = "block";
-            }, 600);
-        }
-
-        function verifyOTP() {
-            if(document.getElementById("smsInputCode").value.trim() == generatedOTP) {
-                document.getElementById("authGateway").style.opacity = "0";
-                setTimeout(() => {
-                    document.getElementById("authGateway").style.display = "none";
-                    document.getElementById("anaIcerik").style.display = "block";
-                    document.getElementById("userLabel").innerHTML = "👑 " + document.getElementById("regAd").value.toUpperCase();
-                    reyonlariYazdir(MegaVeritabani);
-                }, 400);
-            } else { alert("Hatalı!"); }
-        }
-    </script>
-</body>
-</html>
+            fr: { gatewayTitle: "SiberCimri Secure Gateway", gatewayDesc: "Authentifiez-vous pour accéder à la base de données.", formName: "Prénom:", formSurname: "
