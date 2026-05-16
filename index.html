@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>SiberCimri Pro - Gerçek Karşılaştırma Motoru</title>
+    <title>SiberCimri Pro - Akıllı Arama Motorlu</title>
     
     <style>
         /* Siber Gece Teması */
@@ -36,23 +36,52 @@
             text-shadow: 0 0 10px #00f2fe, 0 0 20px #4facfe;
         }
 
+        /* Üst Kontroller: Kategori Butonu ve Arama Motoru Yan Yana */
+        .ust-kontroller {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Hamburger Kategori Butonu */
         .kategori-ac-btn {
-            position: absolute;
-            left: 20px;
-            top: 45px;
             background: rgba(255, 0, 127, 0.2);
             border: 1px solid #ff007f;
             color: #ff007f;
-            font-size: 18px;
-            padding: 10px 15px;
-            border-radius: 8px;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
             box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
             transition: 0.3s;
+            white-space: nowrap;
         }
         .kategori-ac-btn:hover { background: #ff007f; color: #000; box-shadow: 0 0 20px #ff007f; }
+
+        /* YENİ: Canlı Arama Motoru Giriş Alanı */
+        .arama-kutusu {
+            width: 100%;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+        }
+        .arama-kutusu:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+        }
 
         /* Yandan Açılan Kategori Penceresi (Sidebar) */
         .sidebar {
@@ -109,7 +138,6 @@
         
         .urun-ust-kisim { display: flex; align-items: center; gap: 25px; margin-bottom: 20px; }
         
-        /* GERÇEK RESİMLER İÇİN STİL */
         .urun-gorsel-kutusu {
             width: 90px;
             height: 90px;
@@ -121,11 +149,7 @@
             padding: 5px;
             border: 1px solid rgba(0, 242, 254, 0.2);
         }
-        .urun-gorsel-kutusu img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
+        .urun-gorsel-kutusu img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .urun-baslik { font-size: 22px; font-weight: bold; margin: 0; color: #fff; }
 
@@ -168,6 +192,16 @@
         .form-grup label { display: block; margin-bottom: 8px; font-weight: bold; color: #00f2fe; }
         .form-grup input, .form-grup textarea { width: 100%; padding: 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; box-sizing: border-box; background: rgba(0,0,0,0.3); color: white; }
         .btn-gonder { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #000; font-size: 16px; border: none; padding: 12px 28px; border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%; }
+        
+        /* Bulunamadı Mesajı */
+        #sonucBulunamadi {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #ff007f;
+            padding: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -187,8 +221,13 @@
     </div>
 
     <header>
-        <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Kategoriler</button>
         <h1>SiberCimri Pro</h1>
+        
+        <div class="ust-kontroller">
+            <button class="kategori-ac-btn" onclick="kategoriMenusuAc()">☰ Kategoriler</button>
+            <input type="text" id="aramaGirdisi" class="arama-kutusu" onkeyup="urunAra()" placeholder="Ürün adı veya kategori ara... (Örn: iPhone, Nike, VP)">
+        </div>
+
         <div class="menu">
             <a href="index.html">🏠 Ana Sayfa</a>
             <a href="hizmetler.html">🛠️ Hizmetlerimiz</a>
@@ -199,130 +238,13 @@
     <div class="container">
         
         <section id="kararsilastirmaAlani">
-            <h2>📊 Türkiye'nin En Çok Satan Ürünleri Fiyat Karşılaştırması</h2>
-            <p style="color: #a0aec0; margin-bottom: 30px;">Aradığın her şey burada! Gerçek görsellerle pazar yerlerindeki en dip fiyatlar otomatik taranır.</p>
+            <h2>📊 Fiyat Karşılaştırma Motoru</h2>
             
+            <div id="sonucBulunamadi">🔍 Aradığınız kriterlere uygun siber ürün bulunamadı!</div>
+
             <div class="urun-kapsayici">
 
                 <div class="karsilastirma-karti" data-kat="teknoloji">
                     <div class="urun-ust-kisim">
                         <div class="urun-gorsel-kutusu">
-                            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=300" alt="iPhone 15 Pro Max">
-                        </div>
-                        <div>
-                            <h3 class="urun-baslik">Apple iPhone 15 Pro Max 256 GB</h3>
-                            <span style="color: #4facfe; font-size: 14px;">Kategori: Teknoloji / Akıllı Telefon</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="76500">
-                            <td class="magaza-adi">🏪 Amazon Türkiye <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">76,500.00 TL</td>
-                            <td><a href="https://www.amazon.com.tr" target="_blank" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="75999">
-                            <td class="magaza-adi">🏪 Hepsiburada <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">75,999.00 TL</td>
-                            <td><a href="https://www.hepsiburada.com" target="_blank" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="77200">
-                            <td class="magaza-adi">🏪 Vatan Bilgisayar <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">77,200.00 TL</td>
-                            <td><a href="https://www.vatanbilgisayar.com" target="_blank" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="giyim">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu">
-                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=300" alt="Nike Air Force">
-                        </div>
-                        <div>
-                            <h3 class="urun-baslik">Nike Air Force '07 Erkek Spor Ayakkabı</h3>
-                            <span style="color: #4facfe; font-size: 14px;">Kategori: Giyim / Ayakkabı</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="3400">
-                            <td class="magaza-adi">🏪 Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">3,400.00 TL</td>
-                            <td><a href="https://www.trendyol.com" target="_blank" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="3250">
-                            <td class="magaza-adi">🏪 Nike Resmi Mağaza <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">3,250.00 TL</td>
-                            <td><a href="https://www.nike.com/tr" target="_blank" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="3500">
-                            <td class="magaza-adi">🏪 Boyner <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">3,500.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="kozmetik">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu">
-                            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300" alt="Perfume Bottle">
-                        </div>
-                        <div>
-                            <h3 class="urun-baslik">Bleu De Chanel EDP 100 ml Erkek Parfüm</h3>
-                            <span style="color: #4facfe; font-size: 14px;">Kategori: Kozmetik / Parfüm</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="4850">
-                            <td class="magaza-adi">🏪 Sephora <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">4,850.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="4990">
-                            <td class="magaza-adi">🏪 Beymen <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">4,990.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="4600">
-                            <td class="magaza-adi">🏪 Trendyol (Onaylı Satıcı) <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">4,600.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="karsilastirma-karti" data-kat="oyun">
-                    <div class="urun-ust-kisim">
-                        <div class="urun-gorsel-kutusu">
-                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300" alt="Gaming Screen">
-                        </div>
-                        <div>
-                            <h3 class="urun-baslik">Valorant 1200 VP (Valorant Puanı)</h3>
-                            <span style="color: #4facfe; font-size: 14px;">Kategori: Oyun / E-Pin</span>
-                        </div>
-                    </div>
-                    <table class="fiyat-tablosu">
-                        <tr class="fiyat-satiri" data-fiyat="210">
-                            <td class="magaza-adi">🏪 Kabasakal Online <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">210.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="195">
-                            <td class="magaza-adi">🏪 Trendyol <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">195.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                        <tr class="fiyat-satiri" data-fiyat="205">
-                            <td class="magaza-adi">🏪 Klasgame <span class="en-ucuz-rozet">🔥 En Ucuz</span></td>
-                            <td class="magaza-fiyat">205.00 TL</td>
-                            <td><a href="#" class="git-btn">Git</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="iletisim">
-            <h2>Sitenizi Karşılaştırma Listesine Ekleyin</h2>
-            <p>E-ticaret mağazanız
+                            <img src="
