@@ -20,7 +20,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        #panel, #fiyatlar, #envanter {
+        #panel, #fiyatlar, #envanter, #iletisim {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
@@ -46,7 +46,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        button {
+        button, .btn-gonder {
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -57,7 +57,6 @@
         .btn-satin-al { background-color: #e67e22; }
         .btn-satin-al:hover { background-color: #d35400; }
         
-        /* Bakiye Yükle Butonu İçin Yeşil Renk */
         .btn-bakiye-yukle { 
             background-color: #2ecc71; 
             margin-top: 10px;
@@ -65,11 +64,34 @@
         }
         .btn-bakiye-yukle:hover { background-color: #27ae60; }
 
-        /* Satın alınanlar listesinin özel stili */
         .envanter-item {
-            border-left: 5px solid #3498db; /* Satın alınanlar mavi görünsün */
+            border-left: 5px solid #3498db;
             background-color: #e8f4f8;
         }
+
+        /* YENI: İletişim Formu Tasarım Ayarları */
+        .form-grup {
+            margin-bottom: 15px;
+        }
+        .form-grup label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-grup input, .form-grup textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Taşmayı önler */
+        }
+        .btn-gonder {
+            background-color: #34495e;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+        }
+        .btn-gonder:hover { background-color: #2c3e50; }
     </style>
 </head>
 <body>
@@ -82,7 +104,6 @@
         <h2>Kullanıcı Paneli</h2>
         <p>Hoş geldin, <strong>Ziyaretçi!</strong></p>
         <p>Mevcut Bakiyeniz: <span class="bakiye-kutusu" id="bakiyeMiktari">500.00 TL</span></p>
-        
         <button class="btn-bakiye-yukle" onclick="bakiyeYukle()">➕ 100 TL Bakiye Yükle</button>
     </section>
 
@@ -103,34 +124,44 @@
     <section id="envanter">
         <h2>Satın Alınan Paketler</h2>
         <p id="bosMesaji">Henüz hiçbir paket satın almadınız.</p>
-        <ul id="envanterListesi">
-            </ul>
+        <ul id="envanterListesi"></ul>
+    </section>
+
+    <section id="iletisim">
+        <h2>Bizimle İletişime Geçin</h2>
+        <form action="https://formspree.io/f/xykvgznk" method="POST">
+            <div class="form-grup">
+                <label>E-Posta Adresiniz:</label>
+                <input type="email" name="email" placeholder="ornek@mail.com" required>
+            </div>
+            <div class="form-grup">
+                <label>Mesajınız:</label>
+                <textarea name="message" rows="5" placeholder="Mesajınızı buraya yazın..." required></textarea>
+            </div>
+            <button type="submit" class="btn-gonder">📧 Mesajı Gönder</button>
+        </form>
     </section>
 
     <script>
         let mevcutBakiye = 500;
 
-        // YENİ FONKSİYON: Bakiye Yükleme
         function bakiyeYukle() {
-            mevcutBakiye = mevcutBakiye + 100; // Bakiyeye 100 ekle
-            document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL"; // Ekranda güncelle
+            mevcutBakiye = mevcutBakiye + 100;
+            document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
         }
 
-        // GELİŞTİRİLMİŞ FONKSİYON: Satın Alma ve Listeye Ekleme
         function paketSatinAl(fiyat, paketAdi) {
             if (mevcutBakiye >= fiyat) {
                 mevcutBakiye = mevcutBakiye - fiyat;
                 document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
                 
-                // "Henüz paket almadınız" yazısını gizle
                 document.getElementById("bosMesaji").style.display = "none";
 
-                // Envanter listesini bul ve içine yeni bir satır (li) ekle
                 let liste = document.getElementById("envanterListesi");
                 let yeniUrun = document.createElement("li");
-                yeniUrun.className = "envanter-item"; // Mavi stilimizi uygulayalım
+                yeniUrun.className = "envanter-item";
                 yeniUrun.innerHTML = "<span>" + paketAdi + "</span> <strong>Aktif</strong>";
-                liste.appendChild(yeniUrun); // Yeni ürünü listenin sonuna ekle
+                liste.appendChild(yeniUrun);
 
                 alert("Tebrikler! " + paketAdi + " başarıyla satın alındı.");
             } else {
