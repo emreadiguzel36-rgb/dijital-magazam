@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gelişmiş Dijital Mağazam</title>
+    
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #f4f6f9; 
+            margin: 0; 
+            padding: 20px; 
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #panel, #fiyatlar, #envanter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .bakiye-kutusu {
+            font-size: 20px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid #e67e22;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+        .btn-satin-al { background-color: #e67e22; }
+        .btn-satin-al:hover { background-color: #d35400; }
+        
+        /* Bakiye Yükle Butonu İçin Yeşil Renk */
+        .btn-bakiye-yukle { 
+            background-color: #2ecc71; 
+            margin-top: 10px;
+            padding: 10px 20px;
+        }
+        .btn-bakiye-yukle:hover { background-color: #27ae60; }
+
+        /* Satın alınanlar listesinin özel stili */
+        .envanter-item {
+            border-left: 5px solid #3498db; /* Satın alınanlar mavi görünsün */
+            background-color: #e8f4f8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dijital Mağazam</h1>
+    </header>
+
+    <section id="panel">
+        <h2>Kullanıcı Paneli</h2>
+        <p>Hoş geldin, <strong>Ziyaretçi!</strong></p>
+        <p>Mevcut Bakiyeniz: <span class="bakiye-kutusu" id="bakiyeMiktari">500.00 TL</span></p>
+        
+        <button class="btn-bakiye-yukle" onclick="bakiyeYukle()">➕ 100 TL Bakiye Yükle</button>
+    </section>
+
+    <section id="fiyatlar">
+        <h2>Ürünlerimiz & Fiyatlar</h2>
+        <ul>
+            <li>
+                <span>📦 Gümüş Paket (50 TL)</span> 
+                <button class="btn-satin-al" onclick="paketSatinAl(50, '📦 Gümüş Paket')">Satın Al</button>
+            </li>
+            <li>
+                <span>🚀 Altın Paket (150 TL)</span> 
+                <button class="btn-satin-al" onclick="paketSatinAl(150, '🚀 Altın Paket')">Satın Al</button>
+            </li>
+        </ul>
+    </section>
+
+    <section id="envanter">
+        <h2>Satın Alınan Paketler</h2>
+        <p id="bosMesaji">Henüz hiçbir paket satın almadınız.</p>
+        <ul id="envanterListesi">
+            </ul>
+    </section>
+
+    <script>
+        let mevcutBakiye = 500;
+
+        // YENİ FONKSİYON: Bakiye Yükleme
+        function bakiyeYukle() {
+            mevcutBakiye = mevcutBakiye + 100; // Bakiyeye 100 ekle
+            document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL"; // Ekranda güncelle
+        }
+
+        // GELİŞTİRİLMİŞ FONKSİYON: Satın Alma ve Listeye Ekleme
+        function paketSatinAl(fiyat, paketAdi) {
+            if (mevcutBakiye >= fiyat) {
+                mevcutBakiye = mevcutBakiye - fiyat;
+                document.getElementById("bakiyeMiktari").innerText = mevcutBakiye + ".00 TL";
+                
+                // "Henüz paket almadınız" yazısını gizle
+                document.getElementById("bosMesaji").style.display = "none";
+
+                // Envanter listesini bul ve içine yeni bir satır (li) ekle
+                let liste = document.getElementById("envanterListesi");
+                let yeniUrun = document.createElement("li");
+                yeniUrun.className = "envanter-item"; // Mavi stilimizi uygulayalım
+                yeniUrun.innerHTML = "<span>" + paketAdi + "</span> <strong>Aktif</strong>";
+                liste.appendChild(yeniUrun); // Yeni ürünü listenin sonuna ekle
+
+                alert("Tebrikler! " + paketAdi + " başarıyla satın alındı.");
+            } else {
+                alert("Yetersiz bakiye! Lütfen bakiye yükleyin.");
+            }
+        }
+    </script>
+
+</body>
+</html>
