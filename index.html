@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiberCimri Mega Engine - Premium Ferah Sürüm</title>
+    <title>SiberCimri Mega Engine - Gelişmiş Premium Ferah Tema</title>
     <style>
         /* SEÇTİĞİN BEYAZ VE YEŞİLLİKLİ PREMIUM ARKA PLAN */
         html, body {
@@ -33,7 +33,7 @@
             align-items: center; justify-content: space-between; gap: 15px;
         }
         
-        /* PREMIUM BUTON VE ARMA KONTROLLERİ */
+        /* PREMIUM BUTON VE ARAMA STİLLERİ */
         .btn-sektörler {
             background-color: #2f855a; color: #ffffff; border: none;
             padding: 14px 28px; font-weight: bold; border-radius: 25px;
@@ -151,13 +151,13 @@
         .price-tag-neon { color: #2f855a; font-weight: 800; font-size: 24px; margin-right: 20px; }
         
         .btn-ucuza-git {
-            background-color: #dd6b20; color: #ffffff; border: none;
+            background-color: #ff007f; color: #ffffff; border: none;
             padding: 11px 26px; border-radius: 25px; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 12px rgba(221, 107, 32, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.2);
             transition: all 0.2s ease;
         }
         .btn-ucuza-git:hover { 
-            background-color: #c05621; 
+            background-color: #d00068; 
             transform: scale(1.03);
         }
 
@@ -199,7 +199,7 @@
         <h1 class="main-brand-title">🌿 SiberCimri Mega Engine</h1>
         <div class="navbar-controls">
             <button class="btn-sektörler" onclick="filterBySector('hepsi')">💥 Tüm Sektörler Havuzu</button>
-            <input type="text" id="engineSearchBox" class="search-input-field" placeholder="İstediğiniz parçayı, kıyafeti veya cihazı yazıp aratın...">
+            <input type="text" id="engineSearchBox" class="search-input-field" placeholder="İstediğiniz ürünü, parçayı veya sektörü yazın (Örn: lastik, ceket, iphone)...">
             <div class="user-status-badge">👑 EMRE ADIGÜZEL</div>
         </div>
     </div>
@@ -212,7 +212,7 @@
     <div id="view-page-1" class="main-container">
         <div class="sidebar-sectors">
             <h3>📁 API Sektörleri</h3>
-            <button class="sector-link active" id="sec-all" onclick="filterBySector('hepsi')">💥 Tüm Mağazalar</button>
+            <button class="sector-link active" id="sec-all" onclick="filterBySector('hepsi')">💥 Tüm Sektörler Havuzu</button>
             <button class="sector-link" id="sec-auto" onclick="filterBySector('Araç Parçaları')">🚗 Araç Parçaları &amp; Oto</button>
             <button class="sector-link" id="sec-giyim" onclick="filterBySector('Giyim &amp; Mağaza')">👕 Giyim &amp; Mağaza</button>
             <button class="sector-link" id="sec-tech" onclick="filterBySector('Teknoloji &amp; Elektronik')">💻 Teknoloji &amp; Elektronik</button>
@@ -223,7 +223,7 @@
         <div class="inventory-display-card">
             <div class="card-main-title">
                 <span>📋 Entegre Mağaza Ürün Havuzu</span>
-                <span style="font-size: 14px; color: #2f855a;" id="productCounterText">0 Ürün</span>
+                <span style="font-size: 14px; color: #ff007f;" id="productCounterText">0 Ürün</span>
             </div>
             <div id="inventoryWrapper"></div>
         </div>
@@ -232,7 +232,7 @@
     <div id="view-page-2" class="main-container">
         <div class="inventory-display-card" style="width: 100%;">
             <div class="card-main-title">
-                <span>📊 Canlı Fiyat Endeksi ve En Ucuz Platform Köprüsü</span>
+                <span>📊 Pazaryerleri Fiyat Karşılaştırma ve En Ucuz Mağaza Bağlantısı</span>
             </div>
             <div id="comparisonWrapper"></div>
         </div>
@@ -255,8 +255,9 @@
     </div>
 
     <script>
-        // TÜM SEKTÖRLERİ İÇEREN DOĞAL MASTER VERİ HAVUZU
+        // TÜM ORİJİNAL ENVANTERLER EKSİKSİZ GERİ GELDİ
         const MasterDatabasePool = [
+            // 1. SEKTÖR: ARAÇ PARÇALARI
             {
                 title: "Michelin Primacy 4+ 205/55 R16 Yaz Lastiği",
                 sector: "Araç Parçaları",
@@ -268,7 +269,7 @@
                 ]
             },
             {
-                title: "Bosch Aerotwin Silecek Takımı (Yüksek Performans)",
+                title: "Bosch Aerotwin Silecek Takımı (Astra/Golf Uyumlu)",
                 sector: "Araç Parçaları",
                 img: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=100",
                 platforms: [
@@ -276,6 +277,7 @@
                     { name: "Hepsiburada", price: 590, url: "https://www.hepsiburada.com" }
                 ]
             },
+            // 2. SEKTÖR: GİYİM & MAĞAZA
             {
                 title: "Premium Slim Fit Erkek Kaşe Kaban",
                 sector: "Giyim & Mağaza",
@@ -285,6 +287,16 @@
                     { name: "Hepsiburada", price: 2550, url: "https://www.hepsiburada.com" }
                 ]
             },
+            {
+                title: "Oversize Unisex Grafik Baskılı Sweatshirt",
+                sector: "Giyim & Mağaza",
+                img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=100",
+                platforms: [
+                    { name: "Trendyol", price: 450, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 480, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            // 3. SEKTÖR: TEKNOLOJİ & ELEKTRONİK
             {
                 title: "Apple iPhone 16 Pro Max 512 GB",
                 sector: "Teknoloji & Elektronik",
@@ -303,18 +315,32 @@
                 platforms: [
                     { name: "Hepsiburada", price: 94200, url: "https://www.hepsiburada.com" },
                     { name: "Trendyol", price: 95400, url: "https://www.trendyol.com" },
-                    { name: "Vatan Bilgisayar", price: 96000, url: "https://www.vatanbilgisayar.com" }
+                    { name: "Vatan Bilgisayar", price: 96000, url: "https://www.vatanbilgisayar.com" },
+                    { name: "Teknosa", price: 96500, url: "https://www.teknosa.com" }
                 ]
             },
+            // 4. SEKTÖR: ELEKTRIK & ENERJİ
             {
                 title: "Siemens 3 Fazlı Otomatik Kaçak Akım Rölesi",
                 sector: "Elektrik & Enerji",
                 img: "https://images.unsplash.com/photo-1534224039826-c7a0dea0e66a?q=80&w=100",
                 platforms: [
                     { name: "Trendyol", price: 1450, url: "https://www.trendyol.com" },
-                    { name: "Hepsiburada", price: 1390, url: "https://www.hepsiburada.com" }
+                    { name: "Hepsiburada", price: 1390, url: "https://www.hepsiburada.com" },
+                    { name: "Vatan Bilgisayar", price: 1500, url: "https://www.vatanbilgisayar.com" }
                 ]
             },
+            {
+                title: "Philips Smart LED Ampul 9W E27 Renkli",
+                sector: "Elektrik & Enerji",
+                img: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=100",
+                platforms: [
+                    { name: "Teknosa", price: 649, url: "https://www.teknosa.com" },
+                    { name: "Trendyol", price: 599, url: "https://www.trendyol.com" },
+                    { name: "Hepsiburada", price: 580, url: "https://www.hepsiburada.com" }
+                ]
+            },
+            // 5. SEKTÖR: HIRDAVAT & TUHAFİYE
             {
                 title: "Altın Başak Renkli Dikiş İpliği Seti (24'lü)",
                 sector: "Hırdavat & Tuhafiye",
@@ -402,4 +428,72 @@
                     </div>
                     <div style="display: flex; align-items: center;">
                         <span class="price-tag-neon">${cheapestOffer.price.toLocaleString('tr-TR')} TL</span>
-                        <button class="btn-ucuza-git" onclick="window.open('${cheapestOffer.url}', '_blank')">UCUZA GİT</button
+                        <button class="btn-ucuza-git" onclick="window.open('${cheapestOffer.url}', '_blank')">UCUZA GİT</button>
+                    </div>
+                `;
+                container.appendChild(itemRow);
+            });
+        }
+
+        function refreshComparisonScreen() {
+            const container = document.getElementById("comparisonWrapper");
+            const query = document.getElementById("engineSearchBox").value.toLowerCase().trim();
+            container.innerHTML = "";
+
+            const targetData = MasterDatabasePool.filter(item => item.title.toLowerCase().includes(query) || item.sector.toLowerCase().includes(query));
+
+            targetData.forEach(prod => {
+                const wrapperBlock = document.createElement("div");
+                wrapperBlock.style.marginBottom = "35px";
+                wrapperBlock.style.borderBottom = "2px dashed #edf2f7";
+                wrapperBlock.style.paddingBottom = "20px";
+
+                const sortedOffers = [...prod.platforms].sort((a,b) => a.price - b.price);
+
+                let rowsHtml = "";
+                sortedOffers.forEach((site, index) => {
+                    const isCheapest = (index === 0);
+                    rowsHtml += `
+                        <tr class="${isCheapest ? 'cheapest-row-glow' : ''}">
+                            <td style="font-weight: bold; color: ${isCheapest ? '#2f855a' : '#2d3748'}">
+                                ${site.name} ${isCheapest ? '<span class="badge-cheapest">EN UCUZ</span>' : ''}
+                            </td>
+                            <td style="color: #2f855a; font-weight: bold; font-size: 16px;">
+                                ${site.price.toLocaleString('tr-TR')} TL
+                            </td>
+                            <td>
+                                <button class="btn-ucuza-git" style="background: ${isCheapest ? '#2f855a' : '#e2e8f0'}; color: ${isCheapest ? '#ffffff' : '#4a5568'}" onclick="window.open('${site.url}', '_blank')">
+                                    SİTEYE BAĞLAN
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                wrapperBlock.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <img src="${prod.img}" style="width: 45px; height: 45px; object-fit: contain; background: #fff; padding: 2px; border-radius: 6px; border:1px solid #e2e8f0;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 19px; color: #2d3748;">${prod.title}</h3>
+                            <span style="font-size:12px; color:#ff007f; font-weight:bold;">Sektör: ${prod.sector}</span>
+                        </div>
+                    </div>
+                    <table class="compare-data-table">
+                        <thead>
+                            <tr>
+                                <th>Satış Platformu</th>
+                                <th>Anlık Fiyat Verisi</th>
+                                <th>Aksiyon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
+                `;
+                container.appendChild(wrapperBlock);
+            });
+        }
+    </script>
+</body>
+</html>
